@@ -1,0 +1,14 @@
+{
+  "name": "imperio-nordestina",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.cjs"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
+  }
+}
