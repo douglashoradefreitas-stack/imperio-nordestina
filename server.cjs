@@ -18,12 +18,14 @@ return {contacts:{phone,instagram,email,pix:text(c.pix,180)},theme:{title:text(t
 function session(req){const cookie=(req.headers.cookie||'').split(';').map(x=>x.trim()).find(x=>x.startsWith('imperio_session='));const id=cookie?cookie.slice(16):'';const s=sessions.get(id);if(s&&s.expires>Date.now())return {id,...s};if(s)sessions.delete(id);return null}
 function permitted(req,s){if(!s||!equal(req.headers['x-csrf-token']||'',s.csrf))return false;const origin=req.headers.origin;if(!origin)return true;try{return new URL(origin).host===req.headers.host}catch{return false}}
 const cookie=(id,age)=>`imperio_session=${id}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${age}${SECURE?'; Secure':''}`;
+const members=require('./members.cjs')({store,session,permitted,getContent:()=>content,send,secure:SECURE});
 const server=http.createServer(async(req,res)=>{try{const u=new URL(req.url,'http://localhost');const method=req.method;
+if(await members(req,res,u))return;
 if(method==='GET'&&u.pathname==='/api/conteudo')return send(res,200,content);
 if(method==='GET'&&u.pathname==='/api/sessao'){const s=session(req);return s?send(res,200,{email:account.email,csrf:s.csrf}):send(res,401,{error:'Entre para acessar o painel.'})}
 if(method==='POST'&&u.pathname==='/api/entrar'){
  const origin=req.headers.origin;if(origin&&new URL(origin).host!==req.headers.host)return send(res,403,{error:'Origem não autorizada.'});
- const key=(String(req.headers['x-forwarded-for']||'').split(',')[0].trim())||req.socket.remoteAddress||'desconhecido';let rate=attempts.get(key);if(!rate||rate.reset<Date.now()){rate={count:0,reset:Date.now()+15*60*1000};attempts.set(key,rate)}
+ const key=req.socket.remoteAddress||'desconhecido';let rate=attempts.get(key);if(!rate||rate.reset<Date.now()){rate={count:0,reset:Date.now()+15*60*1000};attempts.set(key,rate)}
  if(rate.count>=8)return send(res,429,{error:'Muitas tentativas. Aguarde 15 minutos.'});rate.count++;
  const b=await body(req);if(typeof b.password!=='string'||b.password.length>256)return send(res,401,{error:'E-mail ou senha inválidos.'});
  const hash=crypto.scryptSync(b.password,Buffer.from(account.salt,'hex'),64,{N:16384,r:8,p:1}).toString('hex');
@@ -32,7 +34,7 @@ if(method==='POST'&&u.pathname==='/api/entrar'){
 }
 if(method==='PUT'&&u.pathname==='/api/conteudo'){const s=session(req);if(!s)return send(res,401,{error:'Sua sessão terminou. Entre novamente.'});if(!permitted(req,s))return send(res,403,{error:'Atualize a página antes de salvar.'});const input=await body(req);const clean=validate(input);await store.set('conteudo',clean);content=clean;return send(res,200,{ok:true})}
 if(method==='POST'&&u.pathname==='/api/sair'){const s=session(req);if(!s||!permitted(req,s))return send(res,403,{error:'Sessão inválida.'});sessions.delete(s.id);return send(res,200,{ok:true},{'Set-Cookie':cookie('',0)})}
-if(method==='GET'&&(u.pathname==='/'||u.pathname==='/admin'||u.pathname==='/admin/')){const file=u.pathname==='/'?'index.html':'admin.html';return send(res,200,fs.readFileSync(path.join(ROOT,'public',file),'utf8'))}
+if(method==='GET'&&['/','/admin','/admin/','/perfil','/perfil/','/diretoria','/diretoria/'].includes(u.pathname)){const file=u.pathname==='/'?'index.html':u.pathname.startsWith('/admin')?'admin.html':u.pathname.startsWith('/perfil')?'perfil.html':'diretoria.html';try{return send(res,200,fs.readFileSync(path.join(ROOT,'public',file),'utf8'))}catch(e){if(e.code==='ENOENT')return send(res,404,{error:'Página não encontrada.'});throw e}}
 return send(res,404,{error:'Página não encontrada.'});
 }catch(e){if(e.validation)return send(res,400,{error:e.message});if(e.message==='invalid_json')return send(res,400,{error:'Dados inválidos.'});console.error('Falha de processamento:',e.code||e.name);if(!res.headersSent&&!res.destroyed)send(res,500,{error:'Não foi possível concluir. Tente novamente.'})}});
 server.requestTimeout=30000;server.headersTimeout=15000;

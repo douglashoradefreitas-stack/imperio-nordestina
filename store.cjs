@@ -5,7 +5,7 @@ const url=process.env.DATABASE_URL;
 let impl;
 if(url){
   // Deploy com banco externo (ex.: Neon). O pacote "pg" só é exigido neste modo.
-  const {Pool}=require('pg');
+  let Pool;try{({Pool}=require('pg'))}catch(e){console.error('Instalando dependencias (uma unica vez)...');require('child_process').execSync('npm install --no-audit --no-fund',{cwd:__dirname,stdio:'inherit'});({Pool}=require('pg'))}
   const pool=new Pool({connectionString:url,ssl:{rejectUnauthorized:false},max:5});
   let ready=null;
   const init=()=>ready??=pool.query('CREATE TABLE IF NOT EXISTS app_state (chave TEXT, valor JSONB)');

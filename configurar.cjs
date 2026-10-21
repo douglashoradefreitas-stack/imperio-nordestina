@@ -1,12 +1,16 @@
 'use strict';
 // Cria ou redefine o único acesso administrativo — roda no Node.js, sem Python.
-// Salva onde o servidor salva: banco externo (com DATABASE_URL) ou pasta local.
-const fs=require('fs'),crypto=require('crypto');
-const store=require('./store.cjs');
+// Salva onde o servidor salva: banco externo (DATABASE_URL ou string informada aqui) ou pasta local.
+const fs=require('fs'),path=require('path'),crypto=require('crypto');
 const TTY=Boolean(process.stdin.isTTY);
-process.stdin.pause();
+const readline=require('node:readline');
+const {Writable}=require('node:stream');
+let muted=false;
+const output=new Writable({write(chunk,encoding,callback){if(!muted)process.stdout.write(chunk);callback()}});
+const terminal=TTY?readline.createInterface({input:process.stdin,output,terminal:true,historySize:0}):null;
+let activeStore=null;
+if(terminal)terminal.on('SIGINT',()=>{terminal.close();process.exit(130)});
 
-// Pergunta com senha oculta, usando modo raw do terminal (só quando interativo).
 function askHidden(label){
   return new Promise(resolve=>{
     process.stdout.write(label);
@@ -32,23 +36,34 @@ function askVisible(label){
     process.stdin.resume();process.stdin.on('data',handler);
   });
 }
-// Entrada não interativa (testes e automação): lê toda a entrada padrão de uma vez.
 let piped=null;
 function nextLine(label,hide){
-  if(TTY)return hide?askHidden(label):askVisible(label);
+  if(TTY){
+    process.stdout.write(label);
+    muted=hide;
+    return new Promise(resolve=>terminal.question('',answer=>{muted=false;if(hide)process.stdout.write('\n');resolve(answer)}));
+  }
   if(piped===null)piped=fs.readFileSync(0,'utf8').split(/\r?\n/);
   const value=piped.shift()??'';
-  process.stdout.write(label+(hide?'***':''));
-  process.stdout.write('\n');
+  process.stdout.write(label+(hide?'***':'')+'\n');
   return Promise.resolve(value);
 }
-function stop(){process.stdout.write('')}
+function stop(){if(terminal)terminal.close()}
 function exitWith(message){console.log('\n'+message);stop();process.exit(1)}
 
 async function main(){
-  console.log('Configurador do painel — Império Nordestina\n'+(store.mode==='db'?(process.env.DATABASE_URL?'(Armazenamento: banco de dados externo informado em DATABASE_URL.)':''):'(Armazenamento: pasta local "dados".)')+'\n');
-  if(fs.existsSync(process.env.DATA_DIR?process.env.DATA_DIR+'/acesso.json':__dirname+'/dados/acesso.json')&&store.mode==='file'){
-    console.log('Este procedimento redefine o acesso. Reinicie o servidor após concluir.');
+  console.log('Configurador do painel — Império Nordestina\n');
+  let dburl=process.env.DATABASE_URL;
+  if(!dburl){
+    dburl=(await nextLine('Cole a connection string do Neon (ou aperte Enter para usar a pasta local): ',false)).trim();
+    if(!dburl)console.log('\nSem banco externo: o acesso será salvo na pasta local "dados".\n');
+  }
+  if(dburl)process.env.DATABASE_URL=dburl;
+  const store=require('./store.cjs');
+  activeStore=store;
+  const localFile=path.join(process.env.DATA_DIR||path.join(__dirname,'dados'),'acesso.json');
+  if(store.mode==='file'&&fs.existsSync(localFile)){
+    console.log('Este procedimento redefine o acesso local. Reinicie o servidor após concluir.');
     const confirm=(await nextLine('Digite REDEFINIR para continuar: ',false)).trim();
     if(confirm!=='REDEFINIR'){console.log('\nNenhuma alteração realizada.');stop();return}
   }
@@ -61,7 +76,8 @@ async function main(){
   const salt=crypto.randomBytes(16);
   const hash=crypto.scryptSync(password,salt,64,{N:16384,r:8,p:1}).toString('hex');
   await store.set('acesso',{email,salt:salt.toString('hex'),hash});
+  await store.close();
   stop();
-  console.log('\nAcesso criado. Inicie ou reinicie o servidor com: node server.cjs');
+  console.log('\nAcesso criado '+(store.mode==='db'?'no banco de dados.':'na pasta local.')+' Inicie ou reinicie o servidor com: node server.cjs');
 }
-main().catch(error=>{console.error('Falha na configuração: '+error.message);process.exit(1)});
+main().catch(error=>{console.error('Falha na configuração: '+(error.message||error.code||'não foi possível conectar ao banco de dados. Verifique a connection string e tente de novo.'));process.exit(1)});
