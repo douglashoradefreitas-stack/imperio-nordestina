@@ -69,7 +69,7 @@ async function main(){
   }
   const email=(await nextLine('E-mail para acessar o painel: ',false)).trim().toLowerCase();
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))exitWith('E-mail inválido.');
-  const password=await nextLine('Crie uma senha com pelo menos 12 caracteres: ',true);
+const password=await nextLine('Crie uma senha com pelo menos 12 caracteres: ',true);
   if(password.length<12||password.length>256)exitWith('A senha precisa ter entre 12 e 256 caracteres.');
   const again=await nextLine('Repita a senha: ',true);
   if(again!==password)exitWith('As senhas não coincidem.');
