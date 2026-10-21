@@ -11,7 +11,7 @@
       "title": "Fundação e organização da associação",
       "description": "A Associação Cultural Império Nordestina foi fundada em 2020 em Gurupi, para desenvolver a cultura junina. O portfólio registra a reunião de organização da diretoria de 2020.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-001.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -19,7 +19,17 @@
         9
       ],
       "sourceNote": "",
-      "sourceHash": "0a2e1e77bfa9e2e9984b46cf2ca11b981c2a7be5bb6f5d44377b684cb4906c5c"
+      "sourceHash": "0a2e1e77bfa9e2e9984b46cf2ca11b981c2a7be5bb6f5d44377b684cb4906c5c",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          9
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "aa2dc7594066e19f4763f3ef580345e60d4d6a3e109eaab347f683bc87f12215"
     },
     {
       "id": "3b33a19b-e653-5f74-b4ad-5f6864eb45c4",
@@ -28,14 +38,24 @@
       "title": "Início dos trabalhos no Centro Cultural Mauro Cunha",
       "description": "O grupo iniciou os trabalhos em janeiro no Centro Cultural Mauro Cunha, em Gurupi, Tocantins.",
       "date": "",
-      "photo": "/assets/portfolio/cultural-v1-2020.webp",
+      "photo": "/assets/portfolio/atividade-v2-002.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         9
       ],
       "sourceNote": "",
-      "sourceHash": "8bec74817d2444fbcf26e3465d8324e21b45864350b0bc813fbe66cda9169d04"
+      "sourceHash": "8bec74817d2444fbcf26e3465d8324e21b45864350b0bc813fbe66cda9169d04",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          9
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "/assets/portfolio/cultural-v1-2020.webp",
+      "evidenceHash": "1c942f2d16e0fbfe83a6cdffcdecf081036e83ed61cd466b66f52522d25c3bce"
     },
     {
       "id": "bdabbcdb-e269-5478-a471-edc7729caec8",
@@ -44,14 +64,24 @@
       "title": "Destaques juninos em formato de transmissão ao vivo",
       "description": "O documento registra a mudança das competições para o formato on-line durante a pandemia e um evento de destaques em Palmas, em dezembro.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-003.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         9
       ],
       "sourceNote": "",
-      "sourceHash": "c0a70bff20a5f37a1e1d991879f4093e5a195396979aea3de30cabaa22475a03"
+      "sourceHash": "c0a70bff20a5f37a1e1d991879f4093e5a195396979aea3de30cabaa22475a03",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          9
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Fotografia do palco associada à transmissão na página 9; não mostra a apresentação em andamento."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "3a0ac84605fab3f4180553ec4c8055c64ba621827f63ce1eaa06cb69b8b84bb5"
     },
     {
       "id": "e60a6e09-e600-513a-af52-5b848cab4f29",
@@ -60,14 +90,24 @@
       "title": "Casal de Reis e Casal de Noivos",
       "description": "O Casal de Reis apresentou a fé africana e sua diversidade étnico-cultural. O Casal de Noivos trouxe o tema “Que assim seja para sempre”, com a celebração de bodas de cristal.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-004.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         10
       ],
       "sourceNote": "",
-      "sourceHash": "6844e9981a88a64ee0b983a89a44b924faf2278ae612e871f1a1cf1c0dd5b7f2"
+      "sourceHash": "6844e9981a88a64ee0b983a89a44b924faf2278ae612e871f1a1cf1c0dd5b7f2",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          10
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "278726224e8a42601d50d9ad34fef222a01b54bc96963c15fbf17b5ecbdd6230"
     },
     {
       "id": "714faa01-0386-5be0-8117-d192e57c7bbf",
@@ -76,14 +116,24 @@
       "title": "Rainha — Mãe África",
       "description": "Representação da religiosidade africana com o tema “Mãe África”. O registro está na seção de 2020, mas a descrição também menciona 2022. Ano pendente de confirmação.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-005.webp",
       "youtubeUrl": "",
       "status": "Rascunho",
       "sourcePages": [
         10
       ],
       "sourceNote": "Conflito explícito entre 2020 e 2022 na mesma página; mantido como rascunho para revisão.",
-      "sourceHash": "4825d5f08403a3605a20a60143002b44737d41b45cf4ec6d0bb5392b48665586"
+      "sourceHash": "4825d5f08403a3605a20a60143002b44737d41b45cf4ec6d0bb5392b48665586",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          10
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "e469bdb798d8213943d6b3ef64473f975057bd80f9d345696101d2a0f9817dd0"
     },
     {
       "id": "4fcb7172-7556-519e-968c-b8dd4bbc9eed",
@@ -92,14 +142,24 @@
       "title": "Aula de dança junina na UNIPLAN",
       "description": "Aula no curso de Educação Física da UNIPLAN sobre danças tradicionais brasileiras, com foco na dança junina.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-006.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         11
       ],
       "sourceNote": "",
-      "sourceHash": "6327a1fc4e5a01a28582384daa3367a17c4e66f81d617d1670876d6e9e628280"
+      "sourceHash": "6327a1fc4e5a01a28582384daa3367a17c4e66f81d617d1670876d6e9e628280",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          11
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "6cc90a1657ee9a1d828440a1698f62972aff9668f85ec9fc37c652d751817fc3"
     },
     {
       "id": "3d4d6af3-3985-59d4-9396-5ccf19544a17",
@@ -108,7 +168,7 @@
       "title": "Gravação dos destaques de 2021",
       "description": "Gravação dos destaques Rainha da Diversidade, Reis, Cangaço, Rainha e Noivos. A página seguinte informa que Reis, Noivos e Rainha não puderam ser levados ao espetáculo por falta de recursos.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-007.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -116,7 +176,17 @@
         12
       ],
       "sourceNote": "",
-      "sourceHash": "aab2e520d29d4905e94c520682182023f9cc37253b826eae7d02574356d88714"
+      "sourceHash": "aab2e520d29d4905e94c520682182023f9cc37253b826eae7d02574356d88714",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          11
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Imagem de bastidores associada à gravação na página 11; não documenta cada destaque individual."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "8c18cadef9f4cc338753bd65dc597f0848192b6fcea01111690b36d8925c4c04"
     },
     {
       "id": "347214ce-b835-5382-8955-c580ed720a03",
@@ -125,7 +195,7 @@
       "title": "Organização, filiação e nova presidência",
       "description": "Organização da documentação da associação e filiação à Associação Municipal de Quadrilhas Juninas de Gurupi. O documento registra Kaio Alencar como novo presidente.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-008.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -133,7 +203,17 @@
         12
       ],
       "sourceNote": "",
-      "sourceHash": "2c01e627f6c0f1c81b59862e55a984126ed90848eb2fe76728c136046954088d"
+      "sourceHash": "2c01e627f6c0f1c81b59862e55a984126ed90848eb2fe76728c136046954088d",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          12
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "56d081c833ceb4b5679b9e32e33cf18ed42dd2a307c935d4c40f1e7db180f28b"
     },
     {
       "id": "dc24d43e-6b7b-5ff5-b29b-f5917d9382a6",
@@ -149,7 +229,9 @@
         12
       ],
       "sourceNote": "",
-      "sourceHash": "0e5b96aec108fa2c10693bb04dda786463f31f179398e7f3e23dab4305e5e4a6"
+      "sourceHash": "0e5b96aec108fa2c10693bb04dda786463f31f179398e7f3e23dab4305e5e4a6",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-009.webp"
     },
     {
       "id": "06107a70-8aec-5d96-b9a3-653f7a2580c8",
@@ -158,14 +240,24 @@
       "title": "Totem entre a Vida e a Morte",
       "description": "Temática geral de 2021. O Casal Cangaço representou os barqueiros que conduzem as almas; a Rainha da Diversidade apresentou a personagem Deusa Mãe.",
       "date": "",
-      "photo": "/assets/portfolio/cultural-v1-2021.webp",
+      "photo": "/assets/portfolio/atividade-v2-010.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         13
       ],
       "sourceNote": "",
-      "sourceHash": "6d5126821b5408e83035feff586a892dfc5f5d6bf8d0374475cd9277e5ce7d65"
+      "sourceHash": "6d5126821b5408e83035feff586a892dfc5f5d6bf8d0374475cd9277e5ce7d65",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          13
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "/assets/portfolio/cultural-v1-2021.webp",
+      "evidenceHash": "6c42afcefb894f805c61cd59b6806c89b9eeecd8496a07e9c26dbcd9f33f8886"
     },
     {
       "id": "39be014d-bd3b-5aea-8647-9a663ee543a6",
@@ -174,7 +266,7 @@
       "title": "Assembleias da FEQUAJUTO",
       "description": "Participação na assembleia de planejamento de 2022 e na assembleia geral com as juninas regionais, em Araguaína.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-011.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -182,7 +274,17 @@
         15
       ],
       "sourceNote": "",
-      "sourceHash": "f3f645a0ab4b176e4eb8df063c24df2b8aaa0ea5518e6f8b655ea0ffda80de57"
+      "sourceHash": "f3f645a0ab4b176e4eb8df063c24df2b8aaa0ea5518e6f8b655ea0ffda80de57",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          14
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "39aa45a322f826cfe186330547205dfea2f953edb0e5e7132953736659ac7b57"
     },
     {
       "id": "07f3d822-d342-504b-b39d-d38cb7796d09",
@@ -191,7 +293,7 @@
       "title": "Retomada dos trabalhos e ensaio aberto em Dueré",
       "description": "Início dos trabalhos em fevereiro no Centro Cultural Mauro Cunha e realização de ensaio aberto na cidade de Dueré.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-012.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -199,7 +301,17 @@
         15
       ],
       "sourceNote": "",
-      "sourceHash": "aecd95b0726afd3045da5d7ce217e9eecb9b244f1d1c43a8100782e2f1caf19a"
+      "sourceHash": "aecd95b0726afd3045da5d7ce217e9eecb9b244f1d1c43a8100782e2f1caf19a",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          14
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "020b57a5d0c53a90143d979db8c5a3b48d1113c7d98f906f06e7132d28b5c64f"
     },
     {
       "id": "99e5b8ff-8ac4-5c23-975e-18317994aa3e",
@@ -208,14 +320,24 @@
       "title": "Participação no Melhores do Ano 2021",
       "description": "Participação no evento Melhores do Ano 2021, promovido pela FEQUAJUTO em Palmas. O registro aparece na seção de atividades de 2022; 2021 integra o nome da edição.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-013.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         14
       ],
       "sourceNote": "",
-      "sourceHash": "16ef75017ff6dd73576e1be9c2f82e7feaa412be2c4409a2c523367b1e698dfd"
+      "sourceHash": "16ef75017ff6dd73576e1be9c2f82e7feaa412be2c4409a2c523367b1e698dfd",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          14
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "8a466a8a5ff2b83664a6373d2b00df34a34e543f9246aec7925c972eb77e0467"
     },
     {
       "id": "b7ea447b-e539-5976-9e49-95576b503c0a",
@@ -224,7 +346,7 @@
       "title": "Capacitação de Damas Juninas e Jurados Juninos",
       "description": "Participação dos coreógrafos em capacitação de Damas Juninas e formação de dançarinos como possíveis jurados, junto à FEQUAJUTO.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-014.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -232,7 +354,17 @@
         16
       ],
       "sourceNote": "",
-      "sourceHash": "d5a85e37ef34c383fedd264b1ee68f255f70ff5112c036ab9771e9e1e0ff6715"
+      "sourceHash": "d5a85e37ef34c383fedd264b1ee68f255f70ff5112c036ab9771e9e1e0ff6715",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          16
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "47d81f9031946333d2ab04190d3eeb03cc10d7dd0979d722dd52dfad90c7b0cd"
     },
     {
       "id": "ac35cf74-4f13-5b51-b40d-708ddabc1d57",
@@ -248,7 +380,9 @@
         15
       ],
       "sourceNote": "",
-      "sourceHash": "07e92746a176b9ff62aed52f9032b82a167ae489e855a1a41b5698182c1a2ac9"
+      "sourceHash": "07e92746a176b9ff62aed52f9032b82a167ae489e855a1a41b5698182c1a2ac9",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-015.webp"
     },
     {
       "id": "c5861c5c-77f2-5e2e-b95b-c595ee1452b1",
@@ -257,14 +391,24 @@
       "title": "Divulgação da dança junina nas escolas",
       "description": "Divulgação em escolas de Gurupi e Dueré para captar novos dançarinos.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-016.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         15
       ],
       "sourceNote": "",
-      "sourceHash": "d4e8ced699d3b72890a699d353bf3382c14f4a46dc46d13b3215ab4e14d49ba8"
+      "sourceHash": "d4e8ced699d3b72890a699d353bf3382c14f4a46dc46d13b3215ab4e14d49ba8",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          15
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "6cd76fab9f44010b3c8245fe7ab434c03dedec83282d38b0c05cbe3738266150"
     },
     {
       "id": "4441e431-b6a5-575b-803c-4bf5a3141343",
@@ -273,14 +417,24 @@
       "title": "Reunião na Câmara de Vereadores de Gurupi",
       "description": "Solicitação de apoio e de uma lei de incentivo às juninas da cidade.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-017.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         16
       ],
       "sourceNote": "",
-      "sourceHash": "d642c2b0fc71a65139a5e3ba57426bd1b6b5d03fc42441070005e0a1b6bbf31b"
+      "sourceHash": "d642c2b0fc71a65139a5e3ba57426bd1b6b5d03fc42441070005e0a1b6bbf31b",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          16
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "d91665f50d981bbbb7268196ba57885a10bff1aaef50bc178b3091cf852ba518"
     },
     {
       "id": "8187d165-fdbd-5c30-a32a-4dd599e7035f",
@@ -289,14 +443,24 @@
       "title": "Apresentação em assentamento rural de Gurupi",
       "description": "Apresentação em arraiá de assentamento, atendendo à solicitação da comunidade da zona rural de Gurupi.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-018.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         16
       ],
       "sourceNote": "",
-      "sourceHash": "8111391a62802fa98416a71c67b8ffd3e7aefabcaff4f4ed655e4a584a71ba04"
+      "sourceHash": "8111391a62802fa98416a71c67b8ffd3e7aefabcaff4f4ed655e4a584a71ba04",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          16
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "5ebeb0161331bdadd6835695c861f425d9c5fa6d5e2b2e6c20e078c0c41105df"
     },
     {
       "id": "eac170f6-3145-5dee-878f-19ff1201f17d",
@@ -305,14 +469,24 @@
       "title": "Forró, amor e São João",
       "description": "O Casal de Reis trouxe o tema Forró; o Casal de Noivos, “O Amor na Festa de São João”; e a Rainha, “A Rainha do Forró”.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-019.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         17
       ],
       "sourceNote": "",
-      "sourceHash": "f55ff123326309f8c5467333b3a100996cd6957a1bffcd21f7b98898452365fa"
+      "sourceHash": "f55ff123326309f8c5467333b3a100996cd6957a1bffcd21f7b98898452365fa",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          17
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "a5cb1b522291bed2d04b7bf83825c9de8f3c60d37bbc0931dc690cdca55d8f36"
     },
     {
       "id": "882a6056-7e89-5439-bdd6-412b1d706d88",
@@ -321,14 +495,24 @@
       "title": "Cangaço e homenagem a Elza Soares",
       "description": "O Casal Cangaço retratou a força e a bravura do cangaço brasileiro. A Rainha da Diversidade homenageou Elza Soares. O portfólio identifica Leandro Sampaio como puxador.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-020.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         18
       ],
       "sourceNote": "",
-      "sourceHash": "360efbcffd649af1e383e3e979154c2b30ddee925562adcc2aefe9b6f7afe896"
+      "sourceHash": "360efbcffd649af1e383e3e979154c2b30ddee925562adcc2aefe9b6f7afe896",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          18
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "4d28c8320cb3084b0f4bd0744ef44ff2e598fc8c7dc1db02488786118afd1be0"
     },
     {
       "id": "70b3609d-b581-5fb8-8a3d-44d3646763f6",
@@ -337,14 +521,24 @@
       "title": "Arraiá da Amizade e Estadual FEQUAJUTO",
       "description": "Participação no Arraiá da Amizade e representação da região sul do Tocantins na competição estadual de quadrilhas juninas, mesmo com o quadro de dançarinos reduzido.",
       "date": "",
-      "photo": "/assets/portfolio/cultural-v1-2022.webp",
+      "photo": "/assets/portfolio/atividade-v2-021.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         19
       ],
       "sourceNote": "",
-      "sourceHash": "bc27e2816705d1faf9fc87380a8ed94b75c4850fe8da5e22f84f6d3daa846227"
+      "sourceHash": "bc27e2816705d1faf9fc87380a8ed94b75c4850fe8da5e22f84f6d3daa846227",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          19
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "/assets/portfolio/cultural-v1-2022.webp",
+      "evidenceHash": "faca2eaddb8fe0c95929c494168fa764f4b7c2b2becdbdf9ea2787b19422cef7"
     },
     {
       "id": "504c550a-8abb-5ef2-8c89-0b5eeeda1720",
@@ -360,7 +554,9 @@
         20
       ],
       "sourceNote": "",
-      "sourceHash": "b045a761e124f6cdbc908457f80af214cce0e5e458f389e486a23145e8bd8786"
+      "sourceHash": "b045a761e124f6cdbc908457f80af214cce0e5e458f389e486a23145e8bd8786",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-022.webp"
     },
     {
       "id": "556c5474-46fa-5581-bc94-319568e74fd6",
@@ -369,14 +565,24 @@
       "title": "Prêmio Junino Melhores do Ano",
       "description": "Registros do 11º Prêmio Junino Melhores do Ano: terceira melhor noiva, terceira melhor cangaceira e terceiro melhor presidente de 2022.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-023.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         21
       ],
       "sourceNote": "",
-      "sourceHash": "e8e9b70d8f90af55decd40164dc827f92752693398fd2a82c926849d02d84b02"
+      "sourceHash": "e8e9b70d8f90af55decd40164dc827f92752693398fd2a82c926849d02d84b02",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          21
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "a33b02ef3b9c9ef92fe72dfd8f040b81a52bd7297d3846a74354e810f78c44d3"
     },
     {
       "id": "a41a8f2f-fea4-565d-945a-2b6c642ce9ea",
@@ -392,7 +598,9 @@
         22
       ],
       "sourceNote": "",
-      "sourceHash": "1132e2439541cdcde769a3d31c43a0314a8f95115083c00368e6785fef987fc3"
+      "sourceHash": "1132e2439541cdcde769a3d31c43a0314a8f95115083c00368e6785fef987fc3",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-024.webp"
     },
     {
       "id": "39c55567-ba61-5290-b0c5-27655232e8f0",
@@ -401,14 +609,24 @@
       "title": "Preparação da temporada 2023",
       "description": "Início dos trabalhos em fevereiro no Centro Cultural Mauro Cunha; lançamento da temporada junina pela Prefeitura de Gurupi e lançamento dos destaques de 2023.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-025.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         23
       ],
       "sourceNote": "",
-      "sourceHash": "7cf26ab60b98ee6a9537b47b0d7d19b4239141999289cb9a7397ac1bcff12dfb"
+      "sourceHash": "7cf26ab60b98ee6a9537b47b0d7d19b4239141999289cb9a7397ac1bcff12dfb",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          23
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "ddef5b1a4de093fc2d49e3367ffbe060841dc993f03b87685a295d30d2a24f6c"
     },
     {
       "id": "87c30953-c421-5801-b6c3-c817225261e4",
@@ -417,14 +635,24 @@
       "title": "Feira GurupiTem",
       "description": "Participação da Império Nordestina na Feira GurupiTem.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-026.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         23
       ],
       "sourceNote": "",
-      "sourceHash": "bc715f39b68b52bd85501dd4ce09656f63e5d98495d759fe6b41a64c29c9d6f9"
+      "sourceHash": "bc715f39b68b52bd85501dd4ce09656f63e5d98495d759fe6b41a64c29c9d6f9",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          23
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "d662080eec985068f0709d0c991bf18abe6266a1daad56fb34bb485f622ff99c"
     },
     {
       "id": "86c4ebc0-0f52-5ca5-ad17-36e5a03d4df5",
@@ -433,7 +661,7 @@
       "title": "Galinhada para o espetáculo",
       "description": "Ação de arrecadação para a construção do espetáculo junino de 2023, com cerca de 100 refeições vendidas, segundo o documento.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-027.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -441,7 +669,17 @@
         25
       ],
       "sourceNote": "",
-      "sourceHash": "dfd6f7b1797f73ac13a51aec9787500a4ea48f3e927b2b16f213e462106b2c80"
+      "sourceHash": "dfd6f7b1797f73ac13a51aec9787500a4ea48f3e927b2b16f213e462106b2c80",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          25
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "758bda6490d5a8d9c09d1b38f927a4c7d1fd72dbdad3e2bb7d297b8c39d59334"
     },
     {
       "id": "ea5e1a76-16cc-52a3-8de7-b541b9e46d6c",
@@ -450,7 +688,7 @@
       "title": "Corrida solidária de 2023",
       "description": "Evento de arrecadação para o espetáculo junino de 2023, com participação de 200 atletas informada no portfólio.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-028.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -458,7 +696,17 @@
         25
       ],
       "sourceNote": "",
-      "sourceHash": "dc6c27b2be357a03331bc72cb56daa3096ab928ff5dce1aa520e54599b2aa50f"
+      "sourceHash": "dc6c27b2be357a03331bc72cb56daa3096ab928ff5dce1aa520e54599b2aa50f",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          25
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "5175dd20bc5ac236be3c2989e19457e79922bcdb7fe4e2d5796f6ce2b7e33445"
     },
     {
       "id": "3ce0bb0a-0cd1-5f08-add8-a0579704bbb1",
@@ -467,7 +715,7 @@
       "title": "Acabamentos e bordados manuais",
       "description": "Capacitação dos participantes em acabamentos e bordados manuais, com participação de 35 pessoas, conforme o documento.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-029.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -475,7 +723,17 @@
         26
       ],
       "sourceNote": "",
-      "sourceHash": "9bcdf56175b8e1aecb30e8213942987f90797b4364b9e02abf1aa22f6d542bbf"
+      "sourceHash": "9bcdf56175b8e1aecb30e8213942987f90797b4364b9e02abf1aa22f6d542bbf",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          26
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "2c366f387e67a7f34945946df3ec9d18d1517c93997fea384c97f7a8da1b86bf"
     },
     {
       "id": "39b54546-7f00-52fe-b7f4-58ab03c2200c",
@@ -484,7 +742,7 @@
       "title": "Concurso Rainha da Diversidade",
       "description": "Evento com rainhas da diversidade de todo o Tocantins, incluindo a campeã estadual de 2023.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-030.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -492,7 +750,17 @@
         26
       ],
       "sourceNote": "",
-      "sourceHash": "09f91922888d975cd54df0b0bdb431346ee5c8838d5ed3e7f8ae7fd3b449274d"
+      "sourceHash": "09f91922888d975cd54df0b0bdb431346ee5c8838d5ed3e7f8ae7fd3b449274d",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          26
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "e90575608554af3346d6ec1fb9321b73fb4af0e3253ed9046dfef51627fc4cce"
     },
     {
       "id": "664f0bb8-09a0-5037-8232-176cffa3ad92",
@@ -501,14 +769,16 @@
       "title": "Os Olhos da Terra",
       "description": "Espetáculo de 2023 inspirado na lenda do guaraná, com enredo indígena característico da região Norte.",
       "date": "",
-      "photo": "/assets/portfolio/cultural-v1-2023.webp",
+      "photo": "",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         27
       ],
       "sourceNote": "",
-      "sourceHash": "0c16c756bd75830e6c0d8d6aedba180a1b717730b6d16f00a525e303c19ce326"
+      "sourceHash": "0c16c756bd75830e6c0d8d6aedba180a1b717730b6d16f00a525e303c19ce326",
+      "legacyPhoto": "/assets/portfolio/cultural-v1-2023.webp",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-031.webp"
     },
     {
       "id": "d6e2c378-3171-5e60-980a-a9b4d8713925",
@@ -517,14 +787,24 @@
       "title": "Circulação pela região sul",
       "description": "Registros de apresentações no Arraiá de Dueré, em Sucupira e em Cariri, no Tocantins.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-032.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         28
       ],
       "sourceNote": "",
-      "sourceHash": "e748799784e1a024b046ab1778a20bef087c15bd944c489f545fef58561f9e00"
+      "sourceHash": "e748799784e1a024b046ab1778a20bef087c15bd944c489f545fef58561f9e00",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          28
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "9dff235ce2c03162e07b1de061fdd5743299ebb4c613dbcad2b191603fa0c37a"
     },
     {
       "id": "a444e2be-847f-57ba-b500-efb9b6bdf19d",
@@ -533,7 +813,7 @@
       "title": "Croquis e figurinos de Os Olhos da Terra",
       "description": "O portfólio reúne os croquis e fotografias dos figurinos confeccionados para a temporada de 2023.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-033.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -541,7 +821,17 @@
         30
       ],
       "sourceNote": "",
-      "sourceHash": "edd14605f6e7ef1e704d7dc94f26821eacb697e6ca47f78ae3cf0f31d8eea7b5"
+      "sourceHash": "edd14605f6e7ef1e704d7dc94f26821eacb697e6ca47f78ae3cf0f31d8eea7b5",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          30
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "b5cb1713cffa8c177eb19174521e74b7b9e86c82fdbd8d99664146a806d6bd07"
     },
     {
       "id": "bce9bdc5-56af-5f44-ab3b-7c61a7901166",
@@ -557,7 +847,9 @@
         31
       ],
       "sourceNote": "",
-      "sourceHash": "22abdaf7fe9e65bc56cbae4540d0a971814112adeb77052bdfdb939c80773710"
+      "sourceHash": "22abdaf7fe9e65bc56cbae4540d0a971814112adeb77052bdfdb939c80773710",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-034.webp"
     },
     {
       "id": "8728d399-8401-5738-a105-04196b213a25",
@@ -573,7 +865,9 @@
         32
       ],
       "sourceNote": "",
-      "sourceHash": "20b3494d4399a92e9cdd53d8cf38a64c52a0d7c56a229a5e543011d031a18aea"
+      "sourceHash": "20b3494d4399a92e9cdd53d8cf38a64c52a0d7c56a229a5e543011d031a18aea",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-035.webp"
     },
     {
       "id": "7efa4ca2-68aa-5246-ac46-6dabbbeda4ea",
@@ -589,7 +883,9 @@
         33
       ],
       "sourceNote": "",
-      "sourceHash": "39445dd45bb69bb0c768c1bb1e72f622e030257228cfafbc5c7206d86f6c8cff"
+      "sourceHash": "39445dd45bb69bb0c768c1bb1e72f622e030257228cfafbc5c7206d86f6c8cff",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-036.webp"
     },
     {
       "id": "4628a157-1320-5c1a-a785-1a844da75be5",
@@ -598,14 +894,24 @@
       "title": "Representantes da região sul no estadual",
       "description": "Registros de Rainha da Diversidade, Casal de Noivos e Rainha. O documento informa que o grupo junino não participou do concurso estadual por falta de transporte; não se trata de participação do conjunto completo.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-037.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         34
       ],
       "sourceNote": "",
-      "sourceHash": "81591de2bb10da0ed58fbedab4a19cd77d2bfbb897b132190b5a1fac866b39d9"
+      "sourceHash": "81591de2bb10da0ed58fbedab4a19cd77d2bfbb897b132190b5a1fac866b39d9",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          34
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "254b2b932e38fb5986bda083d8f3726d671fe3a5b0a2bf34a172d7781c005975"
     },
     {
       "id": "957bc0ab-b6a4-5e96-9609-a2a6423a32df",
@@ -614,14 +920,24 @@
       "title": "Conferência Municipal de Cultura e palestra na UnirG",
       "description": "Participação na Conferência Municipal de Cultura de 2023 e palestra na Universidade de Gurupi sobre psicologia criativa na cultura, relacionada ao tema da temporada.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-038.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         35
       ],
       "sourceNote": "",
-      "sourceHash": "190949de6aebba93b6f75ab2b532491bbc4f96b951b2369c80fde6e928c6d799"
+      "sourceHash": "190949de6aebba93b6f75ab2b532491bbc4f96b951b2369c80fde6e928c6d799",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          35
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "b009f9012bc9a82649fc20e4b826d20e060755159d0166b530889a897bf352ff"
     },
     {
       "id": "05ccbf64-8806-5f77-a038-bb4b3c8a76f9",
@@ -637,7 +953,9 @@
         36
       ],
       "sourceNote": "",
-      "sourceHash": "895f04fc23484adceb6847367bc2450682d37715bbb29995360202540a9cd028"
+      "sourceHash": "895f04fc23484adceb6847367bc2450682d37715bbb29995360202540a9cd028",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-039.webp"
     },
     {
       "id": "f2112cb5-33b8-50f1-84a6-498a14dd2953",
@@ -653,7 +971,9 @@
         37
       ],
       "sourceNote": "",
-      "sourceHash": "46bae5c201df5e44a8d0a51312ba8e710e29a210cae9a13bad5d1fa70074e959"
+      "sourceHash": "46bae5c201df5e44a8d0a51312ba8e710e29a210cae9a13bad5d1fa70074e959",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-040.webp"
     },
     {
       "id": "06176a53-fad4-5e27-92e4-7ea4bf3c8ae6",
@@ -662,7 +982,7 @@
       "title": "Padrinhos e memória da temporada",
       "description": "Padrinhos do ano: Professora Alana e Tia Zizi. O clipping reúne registros de inscrições, premiações do Arraiá da Amizade e apresentação em edição especial do JA1.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-041.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -670,7 +990,17 @@
         39
       ],
       "sourceNote": "",
-      "sourceHash": "0ddd3aaa401986881d72f090a3e65d384e3461ea30d84dce7e038b171a097f0c"
+      "sourceHash": "0ddd3aaa401986881d72f090a3e65d384e3461ea30d84dce7e038b171a097f0c",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          38
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "c380ef53d9978052dd01f4aaa00f8a237fc4b130c8296e296d88ed8c532fb723"
     },
     {
       "id": "7e5d6ba2-a84b-5a62-8857-8c028bba329a",
@@ -679,14 +1009,24 @@
       "title": "Organização da temporada 2024",
       "description": "Lançamento da temporada no Close Day, estudos sobre fontes de recursos e registro de Douglas Freitas como novo presidente da associação.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-042.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         40
       ],
       "sourceNote": "",
-      "sourceHash": "6a03cd4ddd080ec39198c1455d06d0631efbef0d9546ad5c5d21fbdf57192dab"
+      "sourceHash": "6a03cd4ddd080ec39198c1455d06d0631efbef0d9546ad5c5d21fbdf57192dab",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          40
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "8d25b3c9c7a2a0853d742d4d286a38ba7e6d8e05b20ad93525b9da03c49b200e"
     },
     {
       "id": "8fc0e946-1e0c-5de1-95e6-fb48cc05abe1",
@@ -695,14 +1035,24 @@
       "title": "Feira GurupiTem de 2024",
       "description": "Participação na Feira GurupiTem, registrada na seção de atividades de 2024.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-043.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         40
       ],
       "sourceNote": "",
-      "sourceHash": "f889c141a3f59c659f1c31e0773a82340c99e2791bcfa7ccde5d5f77da841bd0"
+      "sourceHash": "f889c141a3f59c659f1c31e0773a82340c99e2791bcfa7ccde5d5f77da841bd0",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          40
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "12909727caae162c4c3633923a9c801f9bbe7949efe9ef3613c6cdd488944016"
     },
     {
       "id": "c151272e-00ad-5ae1-91fb-981f872ddeac",
@@ -719,7 +1069,9 @@
         44
       ],
       "sourceNote": "",
-      "sourceHash": "82effd36fff9d4feaf3621dfa63bd00fe7ee425dfe3ccacb85f63c4f22f523ed"
+      "sourceHash": "82effd36fff9d4feaf3621dfa63bd00fe7ee425dfe3ccacb85f63c4f22f523ed",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-044.webp"
     },
     {
       "id": "7c02b01e-ac54-566a-bc6d-99f150a34069",
@@ -728,7 +1080,7 @@
       "title": "Videoclipes Seu Moço e Ao redor do Céu",
       "description": "Produções audiovisuais de música e dança junina descritas no portfólio e incluídas na lista de projetos aprovados.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-045.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -736,7 +1088,17 @@
         44
       ],
       "sourceNote": "",
-      "sourceHash": "ac7c7fbe507ebba06f7f02ace8e49a7af9ac78b6edc11487705d3e5b74f9800a"
+      "sourceHash": "ac7c7fbe507ebba06f7f02ace8e49a7af9ac78b6edc11487705d3e5b74f9800a",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          41
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "8f2690030506a971d23712b579f989046b0e1d8d846d99a7bebe152ab8fd0503"
     },
     {
       "id": "69270cf8-5e19-5da3-865d-365075d73802",
@@ -745,7 +1107,7 @@
       "title": "Segundo Concurso Rainha da Diversidade",
       "description": "Evento com rainhas da diversidade de todo o Tocantins e duas rainhas nacionais, conforme o documento. Incluído na relação de projetos aprovados.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-046.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -754,7 +1116,17 @@
         44
       ],
       "sourceNote": "",
-      "sourceHash": "b67e51b3cd21f78a8f4c078ef10a10642556ea5e55e392b0931d96c709fef904"
+      "sourceHash": "b67e51b3cd21f78a8f4c078ef10a10642556ea5e55e392b0931d96c709fef904",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          43
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "e1bcaa76e4649b835e941604e9d2999a008c266cded360298fedfc898173afad"
     },
     {
       "id": "b915193f-a06f-5964-a0ea-7b0454a8de9d",
@@ -763,7 +1135,7 @@
       "title": "Corrida solidária de 2024",
       "description": "Ação de arrecadação para o espetáculo junino de 2024, com participação de 300 atletas informada no portfólio.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-047.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -771,7 +1143,17 @@
         43
       ],
       "sourceNote": "",
-      "sourceHash": "40ee202d76ceac318e0824461fb75692d96b83428d2d65599d5c41fcf4d9482f"
+      "sourceHash": "40ee202d76ceac318e0824461fb75692d96b83428d2d65599d5c41fcf4d9482f",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          43
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "87c06d94bbd25f20ead346882dc721c4e96eda8040e9a223d076ac28e03e13f8"
     },
     {
       "id": "36d0090e-4bb9-54fa-828b-5aeee39cd981",
@@ -787,7 +1169,9 @@
         42
       ],
       "sourceNote": "",
-      "sourceHash": "ce49e8d178aeca561bd66cd52e29e37c2f86b0ee889b686bb2206a646fb86984"
+      "sourceHash": "ce49e8d178aeca561bd66cd52e29e37c2f86b0ee889b686bb2206a646fb86984",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-048.webp"
     },
     {
       "id": "842202b7-2435-518f-be2e-9cd4e17320b4",
@@ -796,7 +1180,7 @@
       "title": "Cursos de artesanato, damas e bordado",
       "description": "Cursos de Confecção e Artesanato em Arranjos, Adereços e Chapéus; Formação de Damas Juninas — Celebrando a Diversidade; e Produção e Bordado de Indumentária Junina. Há registros de formação e inclusão na lista de projetos aprovados.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-049.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -804,7 +1188,17 @@
         55
       ],
       "sourceNote": "",
-      "sourceHash": "d48aa3aaf7a318ccdcef3d21cf923dff9bc182fdec50fe995778c04b89d53f12"
+      "sourceHash": "d48aa3aaf7a318ccdcef3d21cf923dff9bc182fdec50fe995778c04b89d53f12",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          55
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "f8d39b9bec4c434eca359a718e993f7c58e153cc482bf778180fba124692042d"
     },
     {
       "id": "04ab75e9-ca75-594d-9914-f148572164ab",
@@ -813,7 +1207,7 @@
       "title": "O Purgatório — A Purificação dos Condenados",
       "description": "Espetáculo de 2024 com enredo entre o céu e o inferno. Dois jovens apaixonados embarcam em uma aventura além da vida em busca de purificação e felicidade eterna.",
       "date": "",
-      "photo": "/assets/portfolio/cultural-v1-2024.webp",
+      "photo": "/assets/portfolio/atividade-v2-050.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -821,7 +1215,17 @@
         46
       ],
       "sourceNote": "",
-      "sourceHash": "362618085acc2c0e78d93c9dd70dfa657d072aa612de92a3fa63dfcaeb1c6719"
+      "sourceHash": "362618085acc2c0e78d93c9dd70dfa657d072aa612de92a3fa63dfcaeb1c6719",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          46
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "/assets/portfolio/cultural-v1-2024.webp",
+      "evidenceHash": "3df9c9d34c9d56c07dc514874fb6d4d11b9f347ea35c9ba72ee77e316fac23b2"
     },
     {
       "id": "46c517ec-7d43-5e36-9ae0-a27db88e9173",
@@ -830,14 +1234,24 @@
       "title": "Circulação cultural de 2024",
       "description": "Apresentações registradas em Sucupira, Paraíso, Figueirópolis e Brejinho de Nazaré, além do Arraiá Campos Belo e do Arraiá da UnirG.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-051.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         47
       ],
       "sourceNote": "",
-      "sourceHash": "9a72e7f7394b65f0a345fe3055c1c74bd37fd5664dd0c27cb6b7f9a18b7d89ba"
+      "sourceHash": "9a72e7f7394b65f0a345fe3055c1c74bd37fd5664dd0c27cb6b7f9a18b7d89ba",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          47
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "4a1116d4ebd33bcbb083ee03a78201967ce0af2375f1abb18c0c9d7db4359311"
     },
     {
       "id": "d5c54941-1f88-5d8b-bb5e-2f6760960c18",
@@ -856,7 +1270,9 @@
         50
       ],
       "sourceNote": "",
-      "sourceHash": "7fea59bcf66ab5fa4a05ce641e7753f6fe3e3232ba198675f5fc94f665955ef0"
+      "sourceHash": "7fea59bcf66ab5fa4a05ce641e7753f6fe3e3232ba198675f5fc94f665955ef0",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-052.webp"
     },
     {
       "id": "33d742cb-26a7-54f2-84c7-89fa09847f18",
@@ -865,14 +1281,24 @@
       "title": "Reis, Noivos e Rainha de O Purgatório",
       "description": "Reis representaram Marie Laveau e Papa Legba; a Rainha, Marie Laveau. O Casal de Noivos encenou um reencontro de amor em uma noite de São João.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-053.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         51
       ],
       "sourceNote": "",
-      "sourceHash": "1b54d5809cd24834834c68687f58ba330932e94ae3199c15a833521666f73485"
+      "sourceHash": "1b54d5809cd24834834c68687f58ba330932e94ae3199c15a833521666f73485",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          51
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "a821e3774421f95663ded1d38a7deea75b36ff20337069104dcd16e594fe739d"
     },
     {
       "id": "39913758-5e91-52c6-95b8-e431911a152d",
@@ -881,14 +1307,24 @@
       "title": "Cangaço e Rainha da Diversidade de 2024",
       "description": "O cangaço representou as forças do mal no enredo. A Rainha da Diversidade apresentou “Cuidado com a Múmia”, história de uma rainha do Antigo Egito.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-054.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         52
       ],
       "sourceNote": "",
-      "sourceHash": "2216ff0ff1d531857ee9f7c14ad0fcb0d97a5c2a41ceb37ca3dd00ab79c68ff8"
+      "sourceHash": "2216ff0ff1d531857ee9f7c14ad0fcb0d97a5c2a41ceb37ca3dd00ab79c68ff8",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          52
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "f7de2bb30bcfba0c8c85a06d4d521e912054dd1ed829e1f716546700ff866b5b"
     },
     {
       "id": "e1484f6d-bbd7-5e8f-ae1e-49e9dc4e75c6",
@@ -897,14 +1333,24 @@
       "title": "Rainha Mirim e Marcador de 2024",
       "description": "A Rainha Mirim representou Moana. O Marcador apresentou o Anjo da Noite, figura cênica de conexão entre luz e escuridão.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-055.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         53
       ],
       "sourceNote": "",
-      "sourceHash": "843963331f27854a97cb8a7648d9e73d5dabafe8f0d7d7125170fb9e30c7203b"
+      "sourceHash": "843963331f27854a97cb8a7648d9e73d5dabafe8f0d7d7125170fb9e30c7203b",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          53
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "410f23613636a0a32feb50e6341a845a2c5a06375c00ab9cb9d4974399da82a5"
     },
     {
       "id": "cfb658cb-baeb-5afc-bfff-cd8ee95af907",
@@ -913,14 +1359,24 @@
       "title": "Representantes no Estadual FEQUAJUTO",
       "description": "Registros do Casal de Noivos, Rainha, Rainha Mirim e Rainha da Diversidade como representantes da região sul. O texto informa que o grupo junino completo não participou por falta de transporte.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-056.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         54
       ],
       "sourceNote": "",
-      "sourceHash": "04f30ee98a87639b51595893f89ba7dbe09cb5e972ddbec90bbfafcab0fc286d"
+      "sourceHash": "04f30ee98a87639b51595893f89ba7dbe09cb5e972ddbec90bbfafcab0fc286d",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          54
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "c8cab3bfdcfb779a2df03ca5216f5f72b969ac4cf9b4c5b5f12962c589102ba7"
     },
     {
       "id": "f49802c8-c99f-5c81-bd74-8eb4d598ca90",
@@ -936,7 +1392,9 @@
         55
       ],
       "sourceNote": "",
-      "sourceHash": "0391b20ef2491fb5678ecfb66ed27531f89b6e0681f0f52c2b607e46b6b3684b"
+      "sourceHash": "0391b20ef2491fb5678ecfb66ed27531f89b6e0681f0f52c2b607e46b6b3684b",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-057.webp"
     },
     {
       "id": "cfc8f71f-6964-5ea6-909f-98db82c55e2b",
@@ -953,7 +1411,9 @@
         57
       ],
       "sourceNote": "",
-      "sourceHash": "09deb5ae1447eb92258cbec81e9946ace417833102f81e16b37f62dce91948b7"
+      "sourceHash": "09deb5ae1447eb92258cbec81e9946ace417833102f81e16b37f62dce91948b7",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-058.webp"
     },
     {
       "id": "4868173d-98b9-50fb-b5bb-e50671916d98",
@@ -962,14 +1422,24 @@
       "title": "Rainha da Diversidade — Arraial Capim Dourado",
       "description": "O portfólio registra a vitória de Barbara Lins no Concurso da Rainha da Diversidade da IV edição do Arraial Capim Dourado, em Taquaralto, em 2024.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-059.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         58
       ],
       "sourceNote": "",
-      "sourceHash": "5ad1589c7299fa46c605b67daf3e481b36b4707814540804e85b8006fb4c8a60"
+      "sourceHash": "5ad1589c7299fa46c605b67daf3e481b36b4707814540804e85b8006fb4c8a60",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          58
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "09f61d2e237631e1e04228736d9327676ff284fc1bc21ab75b931dd1a4a73f64"
     },
     {
       "id": "b67f70cb-78ec-5cb1-b101-2be4593c0f06",
@@ -986,7 +1456,9 @@
         59
       ],
       "sourceNote": "",
-      "sourceHash": "c85db2389e598fca6ba1f0a2ebb341566e33d00246b86c43f700efcff8b4d5da"
+      "sourceHash": "c85db2389e598fca6ba1f0a2ebb341566e33d00246b86c43f700efcff8b4d5da",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-060.webp"
     },
     {
       "id": "de3cd279-c473-5d68-96b6-3d6d38a10cbc",
@@ -1003,7 +1475,9 @@
         62
       ],
       "sourceNote": "",
-      "sourceHash": "7f36306ab4512c6ed76335664648d972a88c01ed6ef3f9ecc86c7221362e2131"
+      "sourceHash": "7f36306ab4512c6ed76335664648d972a88c01ed6ef3f9ecc86c7221362e2131",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-061.webp"
     },
     {
       "id": "3f064a58-69e2-56d5-9a86-67ab3438109b",
@@ -1019,7 +1493,9 @@
         61
       ],
       "sourceNote": "A narrativa identifica Lanna Menucelli; a arte identifica Gensilanna Alencar. Nome omitido até confirmação.",
-      "sourceHash": "438a1f96dd3cffce6c683de3c8086e6d4a7e73b029a82cc2fc0390f10aadfaf9"
+      "sourceHash": "438a1f96dd3cffce6c683de3c8086e6d4a7e73b029a82cc2fc0390f10aadfaf9",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-062.webp"
     },
     {
       "id": "e7cd1f20-2449-5038-873c-37b89ebddc62",
@@ -1028,14 +1504,24 @@
       "title": "Abertura e primeiro ensaio de 2025",
       "description": "Lançamento da temporada no Close Day e início dos ensaios para preparação do novo espetáculo.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-063.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         63
       ],
       "sourceNote": "",
-      "sourceHash": "a245b90f458e911fc77a07b69e9960dd731277a1064d98987b2a5ac9f1494119"
+      "sourceHash": "a245b90f458e911fc77a07b69e9960dd731277a1064d98987b2a5ac9f1494119",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          63
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "7eca81ab1e22b6dc3e72bccdff7e884898ea04c350cce07201bf3f188df6caef"
     },
     {
       "id": "607e8755-293d-5fa5-ade5-e719d51437e7",
@@ -1044,7 +1530,7 @@
       "title": "Articulação para eventos estaduais em Gurupi",
       "description": "Apresentação de propostas à Secretaria de Cultura e dos projetos do Estadual de Rainhas e do Estadual de Quadrilhas Juninas para realização em Gurupi, em articulação com Prefeitura, Secretaria de Cultura e UnirG.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-064.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -1052,7 +1538,17 @@
         64
       ],
       "sourceNote": "",
-      "sourceHash": "da2c93b53dc1348f16d11086e81b0ec69cdd9692ddca16098dfe638a390e2ec9"
+      "sourceHash": "da2c93b53dc1348f16d11086e81b0ec69cdd9692ddca16098dfe638a390e2ec9",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          63
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "b1bcc9e6e2c97df8ce875d7a3ba71296b55440da8ff5f88f16f71cb16e05c533"
     },
     {
       "id": "e48c4bc8-1939-5d8f-ac8a-790bf4cb40e4",
@@ -1068,7 +1564,9 @@
         64
       ],
       "sourceNote": "",
-      "sourceHash": "4f4becc34c92768c05c4897017645574b0834ea4d3b6cab101ac1af4a26ee524"
+      "sourceHash": "4f4becc34c92768c05c4897017645574b0834ea4d3b6cab101ac1af4a26ee524",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-065.webp"
     },
     {
       "id": "6c2697cb-950b-5192-b662-d4e48c424a50",
@@ -1077,14 +1575,24 @@
       "title": "Assembleia Nacional de Entidades Juninas",
       "description": "Participação da diretoria na Assembleia Nacional de Entidades Juninas, em Canaã dos Carajás.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-066.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         64
       ],
       "sourceNote": "",
-      "sourceHash": "f93aca4ff1d2ccfc22a5b7ed8e6567470358c003ad32ce495c14c18c9ad9750e"
+      "sourceHash": "f93aca4ff1d2ccfc22a5b7ed8e6567470358c003ad32ce495c14c18c9ad9750e",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          64
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "b9f5d7a19d00b706687c0ffc4882ca4275759c9219f10c9944251e209c201415"
     },
     {
       "id": "4e31d05d-76d7-59b0-a82e-74de72e4be08",
@@ -1093,14 +1601,24 @@
       "title": "Apresentação no show de Mastruz com Leite",
       "description": "Apresentação da junina no show da banda Mastruz com Leite, em Gurupi.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-067.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         64
       ],
       "sourceNote": "",
-      "sourceHash": "6e213d6c5b5e050c983ec1bfe251de1e37fe708b703bf6f11ab330649bb66558"
+      "sourceHash": "6e213d6c5b5e050c983ec1bfe251de1e37fe708b703bf6f11ab330649bb66558",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          64
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "5d161b8c4c07304af7d18c593573cc7526a1d98ec3e8fbcf7ffac7118a1688b0"
     },
     {
       "id": "f477930e-7ba3-5609-9651-58e8dadc4822",
@@ -1109,7 +1627,7 @@
       "title": "Estaduais de Quadrilhas e de Rainhas em Gurupi",
       "description": "Realização do Estadual de Quadrilhas Juninas em Gurupi e do Estadual de Rainhas, que marcou os 40 anos da UnirG. O portfólio registra a participação do grupo no estadual e o reconhecimento como melhor quadrilha do interior do Tocantins.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-068.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -1117,7 +1635,17 @@
         79
       ],
       "sourceNote": "",
-      "sourceHash": "c3aaab938df5a7e5ccc17e2e9c414895ec19bc1a18cbbc2ae29b5fbd7c4d755d"
+      "sourceHash": "c3aaab938df5a7e5ccc17e2e9c414895ec19bc1a18cbbc2ae29b5fbd7c4d755d",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          65
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "b6e5d9293d9220bf43a503d9c7addb872b75c43a129333fb892ae784ae8f5cad"
     },
     {
       "id": "67e8c782-a318-56e3-b938-b903e67bcc32",
@@ -1134,7 +1662,9 @@
         66
       ],
       "sourceNote": "",
-      "sourceHash": "64cd264bd598bb5959186bd02fc11a3912de07126990746bc4961eee593096cb"
+      "sourceHash": "64cd264bd598bb5959186bd02fc11a3912de07126990746bc4961eee593096cb",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-069.webp"
     },
     {
       "id": "194d6ca3-7228-5ff8-82ae-777ba2768b0d",
@@ -1143,7 +1673,7 @@
       "title": "Rifa de Páscoa",
       "description": "Ação beneficente para arrecadar recursos e fortalecer as atividades culturais. Há registro da equipe da rifa on-line de 2025.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-070.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -1151,7 +1681,17 @@
         68
       ],
       "sourceNote": "",
-      "sourceHash": "087b5cf86c4cabb605f2c35f1fe81361158b8a06a40b7261c4422d310bf4e537"
+      "sourceHash": "087b5cf86c4cabb605f2c35f1fe81361158b8a06a40b7261c4422d310bf4e537",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          68
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Foto identificada no PDF como equipe da rifa on-line de 2025; não documenta a entrega dos prêmios."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "5a73d3271cfe759c198bf8dbb0305b4d69f4cdfbb9765bc359eeb03b5fcc45d9"
     },
     {
       "id": "94ed0e52-2bba-5ee9-af96-479ff3e339df",
@@ -1160,7 +1700,7 @@
       "title": "Terceira corrida solidária",
       "description": "Evento de arrecadação para construção do espetáculo junino de 2025, com participação de 350 atletas informada no portfólio.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-071.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -1168,7 +1708,17 @@
         68
       ],
       "sourceNote": "",
-      "sourceHash": "825931a48e6c06b465ac44b7d3282e8e76d0f34ea67d3c5254374eae36b162ad"
+      "sourceHash": "825931a48e6c06b465ac44b7d3282e8e76d0f34ea67d3c5254374eae36b162ad",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          68
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "07780c0059c371d97060eba20f9419b06e843f84a2d26ca6e98f7d8f8b786c1a"
     },
     {
       "id": "2b654591-7903-55a6-b37b-424bd536a3d1",
@@ -1177,7 +1727,7 @@
       "title": "Criação de portfólios culturais",
       "description": "Curso para capacitar os membros a organizar e apresentar seus projetos culturais.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-072.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -1185,7 +1735,17 @@
         69
       ],
       "sourceNote": "",
-      "sourceHash": "739c98780d693e06e39084e280c489fd87ed619450ac27ba775c4d4093e64078"
+      "sourceHash": "739c98780d693e06e39084e280c489fd87ed619450ac27ba775c4d4093e64078",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          69
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "d070501dfbe38b45b7ec5bd081ee9b12ec83eb858a9533ef79fabeae4c9b49bf"
     },
     {
       "id": "b42b02fa-7f12-562f-b8a9-573b27c5cbe8",
@@ -1194,7 +1754,7 @@
       "title": "Concurso de Dança da Rainha da Diversidade",
       "description": "Projeto apresentado no documento como aprovado pela Lei Aldir Blanc Estadual, com registros do concurso e clipping sobre inclusão e representatividade.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-073.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -1203,7 +1763,17 @@
         85
       ],
       "sourceNote": "",
-      "sourceHash": "3c57332f4f29a52f440ff01800ac6070fdad463508ec5472b739cf0228104b9f"
+      "sourceHash": "3c57332f4f29a52f440ff01800ac6070fdad463508ec5472b739cf0228104b9f",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          69
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "f19c4c573d393fb1886b2e9eb79deecec3ad94e6e725fdb4127e20eb1f1eb5ac"
     },
     {
       "id": "db84663a-bee8-5ae3-860f-2d542656656e",
@@ -1212,7 +1782,7 @@
       "title": "Do Ouro de Aluvião Se Reluz uma Paixão",
       "description": "Espetáculo da temporada de 2025, identificado nas artes do tema, na fotografia oficial do grupo e no lançamento do terceiro CD junino.",
       "date": "",
-      "photo": "/assets/portfolio/cultural-v1-2025.webp",
+      "photo": "/assets/portfolio/atividade-v2-074.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -1221,7 +1791,17 @@
         81
       ],
       "sourceNote": "",
-      "sourceHash": "1de7622eb791beac97f9ba081ca7813e574968e24f5e2e4429a170a8db1aaa6d"
+      "sourceHash": "1de7622eb791beac97f9ba081ca7813e574968e24f5e2e4429a170a8db1aaa6d",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          71
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial da atividade; consulte a descrição para o conjunto de ações."
+      },
+      "legacyPhoto": "/assets/portfolio/cultural-v1-2025.webp",
+      "evidenceHash": "90fa5690917809dee8c45e731b47e99383ea37b99781d92ad8058eb852a24902"
     },
     {
       "id": "e5b2b2c1-49e9-51b8-a01f-870f8777b46e",
@@ -1230,7 +1810,7 @@
       "title": "Circulação cultural de 2025",
       "description": "Apresentações registradas em Dueré, Gurupi no Arraiá da UnirG, Brejinho de Nazaré, Sucupira e Santa Rita, no Tocantins.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-075.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -1238,7 +1818,17 @@
         86
       ],
       "sourceNote": "",
-      "sourceHash": "58717ca07d1d9abd2c5862b1148fb9870c3080b29c94f3e3054df00d221c32be"
+      "sourceHash": "58717ca07d1d9abd2c5862b1148fb9870c3080b29c94f3e3054df00d221c32be",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          72
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "9c927c6b83e48da362cb02f2c786eff42b1e52d706f826895613ba3edc956656"
     },
     {
       "id": "2fb5d03f-a898-5aa0-bfad-315878ca4cbe",
@@ -1247,7 +1837,7 @@
       "title": "Croquis e figurinos da temporada 2025",
       "description": "Registros de croquis e fotografias dos figurinos confeccionados, incluindo os trajes de Noivos, Cangaço e demais personagens.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-076.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
@@ -1256,7 +1846,17 @@
         75
       ],
       "sourceNote": "",
-      "sourceHash": "17646f0716e6f98256633aaf61672ee38ba1141d7fba115923bd4ebeb5e94233"
+      "sourceHash": "17646f0716e6f98256633aaf61672ee38ba1141d7fba115923bd4ebeb5e94233",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          73
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "66da3d95810a1e3f2f1597b84f57848c3b5c58f447fd8ab96b264673c4ec004c"
     },
     {
       "id": "fba92299-0931-5bc2-a8ca-08c1f7560816",
@@ -1265,14 +1865,24 @@
       "title": "Noivos — Vale Ouro e Rainha — Mãe do Ouro",
       "description": "O Casal de Noivos trouxe “Vale Ouro”, história de uma moça rica e do garimpeiro Isaías. A Rainha apresentou Mãe do Ouro, a bola de fogo que se transforma em mulher.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-077.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         76
       ],
       "sourceNote": "",
-      "sourceHash": "f6b58b60b174d92f55c4322a6420fb69d9a3d23b8362d7fec180414098b011a1"
+      "sourceHash": "f6b58b60b174d92f55c4322a6420fb69d9a3d23b8362d7fec180414098b011a1",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          76
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "ded001e064fcf1bf8c5cd9259e75ffbc2fffabf1ef58cf2a9449fd905aab2174"
     },
     {
       "id": "55e8fa31-12d0-5ca3-8ef4-163cca27abf7",
@@ -1281,14 +1891,24 @@
       "title": "Casal de Reis — Mãe do Ouro",
       "description": "O bloco do Casal de Reis traz o tema Mãe do Ouro na seção “Destaques do Ano 2025”, mas seu texto menciona 2023. Ano pendente de confirmação.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-078.webp",
       "youtubeUrl": "",
       "status": "Rascunho",
       "sourcePages": [
         76
       ],
       "sourceNote": "Cabeçalho 2025 e texto 2023; aguarda confirmação antes de publicar.",
-      "sourceHash": "f975cd59295233dd73f0a07983f3634276fef0e3e95235ba5f356d3f56519fcf"
+      "sourceHash": "f975cd59295233dd73f0a07983f3634276fef0e3e95235ba5f356d3f56519fcf",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          76
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro da atividade no documento enviado."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "74d15ffe743d6617c7ac4250a1ad870d594ad79a0a87e3b5ea7a7216d580720b"
     },
     {
       "id": "6fc3a975-a17e-50ac-acf0-6fb5883598ba",
@@ -1297,14 +1917,24 @@
       "title": "Cangaço e Afrodite",
       "description": "O Casal Cangaço encenou a transformação do sertão em mar e dos cangaceiros em piratas. A Rainha da Diversidade trouxe “Entre Pétalas e espinhos: Afrodite vem quebrando padrões”.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-079.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         77
       ],
       "sourceNote": "",
-      "sourceHash": "a54d67a20ea6a93d24475063e2051ed0cba6a63ddd31fd517ce2b038401d889c"
+      "sourceHash": "a54d67a20ea6a93d24475063e2051ed0cba6a63ddd31fd517ce2b038401d889c",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          77
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "a1efa6e2fac719a5b55d8a444ace3d1c5b36fa261509ab1feb80642f37ca5309"
     },
     {
       "id": "17d8b658-3004-5b3a-9ab5-7783786fe2b0",
@@ -1313,14 +1943,24 @@
       "title": "Rainha Mirim e Marcador de 2025",
       "description": "A Rainha Mirim foi inspirada na lenda da Vitória-Régia. O Marcador representou Chico Além, mascate e cronista popular da história.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-080.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         78
       ],
       "sourceNote": "",
-      "sourceHash": "6790c4b32acda35ea1886a15f201f3afe76f7e206dccf393602c6fa32832335c"
+      "sourceHash": "6790c4b32acda35ea1886a15f201f3afe76f7e206dccf393602c6fa32832335c",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          78
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "a51e2f053f1769d65b0567b8a62d441ae8c31d45b67819801c1364c1083eaa69"
     },
     {
       "id": "799df808-b55d-5288-9b2b-dcf39b8db4e8",
@@ -1336,7 +1976,9 @@
         80
       ],
       "sourceNote": "",
-      "sourceHash": "ca587992a8c05eeadbddc33c77b3220c2bc47c86f3a01e4e38c412f710e2d855"
+      "sourceHash": "ca587992a8c05eeadbddc33c77b3220c2bc47c86f3a01e4e38c412f710e2d855",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-081.webp"
     },
     {
       "id": "fb7c3a28-1d9d-544a-8d84-7800581f2a09",
@@ -1352,7 +1994,9 @@
         81
       ],
       "sourceNote": "",
-      "sourceHash": "afcceeea16acaba4f987c18294041de6255e507f15767988c918031473976753"
+      "sourceHash": "afcceeea16acaba4f987c18294041de6255e507f15767988c918031473976753",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-082.webp"
     },
     {
       "id": "369c846c-e3cf-5983-9916-5add1a84b938",
@@ -1361,14 +2005,24 @@
       "title": "Padrinhos de 2025",
       "description": "O documento identifica Luana Nunes e Walison Felix como padrinhos da temporada.",
       "date": "",
-      "photo": "",
+      "photo": "/assets/portfolio/atividade-v2-083.webp",
       "youtubeUrl": "",
       "status": "Publicado",
       "sourcePages": [
         82
       ],
       "sourceNote": "",
-      "sourceHash": "76e89c1aa42294e4d84de02c7c516cd6e4241c5125ff9852dc1c6953a92f2f31"
+      "sourceHash": "76e89c1aa42294e4d84de02c7c516cd6e4241c5125ff9852dc1c6953a92f2f31",
+      "photoEvidence": {
+        "kind": "Registro fotográfico",
+        "pages": [
+          82
+        ],
+        "notice": "Imagem presente no portfólio enviado; não verificada independentemente.",
+        "scope": "Registro parcial dos participantes ou ações descritos; a imagem não comprova todos os resultados relatados."
+      },
+      "legacyPhoto": "",
+      "evidenceHash": "26cebbc5d7e38d4492f0af703b12053bcc96f52de12584cbee65beb9219698aa"
     },
     {
       "id": "083b85cc-a134-52a8-a476-a44fa6c76fd7",
@@ -1384,7 +2038,9 @@
         83
       ],
       "sourceNote": "",
-      "sourceHash": "c333a10c3b0bd81cd9491c0d6388fd57fd3781184cc1b16c779ab3629a1166ea"
+      "sourceHash": "c333a10c3b0bd81cd9491c0d6388fd57fd3781184cc1b16c779ab3629a1166ea",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-084.webp"
     },
     {
       "id": "140c44aa-b3e9-5cfb-9d73-eead581829ba",
@@ -1404,7 +2060,9 @@
         87
       ],
       "sourceNote": "",
-      "sourceHash": "98ca546cc932a5285a78b820e242bbf4f9641b6cb20988d5b6aa093325c7ca91"
+      "sourceHash": "98ca546cc932a5285a78b820e242bbf4f9641b6cb20988d5b6aa093325c7ca91",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-085.webp"
     },
     {
       "id": "4a62adb6-e8db-560a-a76b-88f98a9c1c41",
@@ -1423,7 +2081,9 @@
         8
       ],
       "sourceNote": "",
-      "sourceHash": "8bf0a4a51b06c3383547e912b992472dc5f2f1cfe24eb3dc94bd9504b83420a6"
+      "sourceHash": "8bf0a4a51b06c3383547e912b992472dc5f2f1cfe24eb3dc94bd9504b83420a6",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-086.webp"
     },
     {
       "id": "e190547d-7ac2-59eb-b219-8d105bdc36ba",
@@ -1439,7 +2099,9 @@
         88
       ],
       "sourceNote": "",
-      "sourceHash": "96b4aae6654a8260659090d6ed4cd2d9e490686a0df279eabba1415a4903c738"
+      "sourceHash": "96b4aae6654a8260659090d6ed4cd2d9e490686a0df279eabba1415a4903c738",
+      "legacyPhoto": "",
+      "supersededPhoto": "/assets/portfolio/atividade-v2-087.webp"
     }
   ],
   "excludedPages": {
@@ -1447,5 +2109,6 @@
     "2": "Ficha técnica histórica, endereço e telefone; não altera diretoria2027",
     "89": "Conclusão institucional, sem nova atividade",
     "90": "Contracapa e contatos; não altera contatos existentes"
-  }
+  },
+  "evidenceImportId": "portfolio-fotos-originais-v3"
 }

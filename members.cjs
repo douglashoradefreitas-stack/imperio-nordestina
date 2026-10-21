@@ -126,6 +126,11 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
         item.status={aprovar:'Aprovado',rejeitar:'Rejeitado',despublicar:'Despublicado'}[b.action];item.version++;item.updatedAt=new Date().toISOString();aggregate(data);await store.set(sponsorKey,data);
         return send(res,200,{ok:true,status:item.status,version:item.version});
       }
+      if(p==='/api/admin/portfolio/adicionar-imagens'){
+        if(method!=='POST')error('Método não permitido.',405);const b=await readBody(req,1024);fields(b,['confirm']);if(b.confirm!==true)error('Confirme a inclusão das imagens.');
+        const result=require('./portfolio-cultural.cjs').addImages(await load(portfolioKey,initial));aggregate(result.data);if(!result.alreadyImported)await store.set(portfolioKey,result.data);
+        return send(res,200,{ok:true,updated:result.updated,skipped:result.skipped,alreadyImported:result.alreadyImported});
+      }
       if(p==='/api/admin/portfolio/importar-cultural'){
         if(method!=='POST')error('Método não permitido.',405);const b=await readBody(req,1024);fields(b,['confirm']);if(b.confirm!==true)error('Confirme a importação.');
         const result=require('./portfolio-cultural.cjs')(await load(portfolioKey,initial));aggregate(result.data);if(!result.alreadyImported)await store.set(portfolioKey,result.data);
@@ -133,7 +138,7 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       }
       if(p==='/api/portfolio'){
         if(method!=='GET')error('Método não permitido.',405);const data=await load(portfolioKey,initial);
-        return send(res,200,{items:data.items.filter(i=>i.status==='Publicado').map(({title,description,date,photo,youtubeUrl:video='',year,activity})=>({title,description,date,photo,youtubeUrl:youtubeUrl(video),...(year!==undefined?{year}:{}),...(activity!==undefined?{activity}:{})}))});
+        return send(res,200,{items:data.items.filter(i=>i.status==='Publicado').map(({title,description,date,photo,youtubeUrl:video='',year,activity,photoEvidence})=>({title,description,date,photo,youtubeUrl:youtubeUrl(video),...(year!==undefined?{year}:{}),...(activity!==undefined?{activity}:{}),...(photoEvidence&&photo?{photoEvidence:{kind:photoEvidence.kind,pages:photoEvidence.pages,notice:photoEvidence.notice,scope:photoEvidence.scope}}:{})}))});
       }
       if(p==='/api/admin/portfolio'&&method==='GET')return send(res,200,await load(portfolioKey,initial));
       if((p==='/api/admin/portfolio'&&method==='POST')||portfolioMatch){
@@ -145,9 +150,9 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
         if(!['Publicado','Rascunho'].includes(b.status))error('Situação inválida.');const date=b.date===undefined?'':text(b.date,10);if(date)meetingDate(date);
         const extras={};if(b.year!==undefined||item?.year!==undefined){const year=text(b.year===undefined?item.year:b.year,4);if(year&&!/^(19|20|21)\d{2}$/.test(year))error('Ano inválido. Use quatro dígitos ou deixe vazio.');if(year&&date&&date.slice(0,4)!==year)error('Ano e data devem corresponder.');extras.year=year;}
         if(b.activity!==undefined||item?.activity!==undefined)extras.activity=text(b.activity===undefined?item.activity:b.activity,100);
-        const photoValue=b.photo===undefined?'':b.photo,localAsset=typeof photoValue==='string'&&/^\/assets\/portfolio\/cultural-v1-202[0-5]\.webp$/.test(photoValue);if(localAsset&&photoValue!==item?.photo)error('Imagem local disponível somente no registro importado de origem.');
+        const photoValue=b.photo===undefined?'':b.photo,localAsset=typeof photoValue==='string'&&/^\/assets\/portfolio\/(?:cultural-v1-202[0-5]|atividade-v2-(?:00[1-9]|0[1-7]\d|08[0-7]))\.webp$/.test(photoValue);if(localAsset&&photoValue!==item?.photo)error('Imagem local disponível somente no registro importado de origem.');
         const clean={title:text(b.title,150,true),description:text(b.description,5000),date,photo:localAsset?photoValue:photo(photoValue,false),youtubeUrl:youtubeUrl(b.youtubeUrl===undefined?(item?.youtubeUrl||''):b.youtubeUrl),status:b.status,...extras,updatedAt:new Date().toISOString()};
-        if(item)Object.assign(item,clean,{version:item.version+1});else{if(data.items.length>=100)error('Limite de 100 trabalhos atingido.',409);data.items.push({...clean,id:crypto.randomUUID(),version:1});}
+        if(item){if(Object.hasOwn(b,'photo')&&b.photo!==item.photo){item.photoTouched=true;delete item.photoEvidence;delete item.evidenceHash;}Object.assign(item,clean,{version:item.version+1});}else{if(data.items.length>=100)error('Limite de 100 trabalhos atingido.',409);data.items.push({...clean,id:crypto.randomUUID(),version:1});}
         aggregate(data);await store.set(portfolioKey,data);return send(res,item?200:201,item||data.items.at(-1));
       }
       error('Método não permitido.',405);
