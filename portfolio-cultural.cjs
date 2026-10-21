@@ -19,7 +19,7 @@ function updateGallery(body,item,validate,fail){
  const photos=input.map(entry=>{
   if(!entry||typeof entry!=='object'||Array.isArray(entry)||Object.keys(entry).some(k=>!['image','evidence'].includes(k))||typeof entry.image!=='string'||!entry.image)fail('Cada foto deve conter image e apenas evidence opcional.');
   const image=entry.image,old=previous.find(p=>p.image===image);let evidence;
-  if(image.startsWith('/')){if(!allowed.has(image)||(!old&&image!==original?.photo))fail('Imagem local disponível somente no registro importado de origem.');evidence=old?.evidence||(image===original.photo?{...original.photoEvidence,revision:s.evidenceImportId}:undefined);}
+  if(image.startsWith('/')){const v3=require('./portfolio-pptx-v3.cjs').localPhoto(item,image);if(v3){if(!old)fail('Fotos da revisão só podem ser anexadas pela importação autorizada.');evidence=old.evidence;}else{if(!allowed.has(image)||(!old&&image!==original?.photo))fail('Imagem local disponível somente no registro importado de origem.');evidence=old?.evidence||(image===original.photo?{...original.photoEvidence,revision:s.evidenceImportId}:undefined);}}
   else validate(image);
   if(entry.evidence!==undefined&&!require('util').isDeepStrictEqual(entry.evidence,evidence))fail('A origem da foto é definida pelo servidor; uploads não recebem crédito do PDF.');
   if(seen.has(image))return null;seen.add(image);return {image,...(evidence?{evidence}:{})};

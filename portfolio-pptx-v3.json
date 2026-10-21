@@ -1,0 +1,4236 @@
+{
+  "schemaVersion": 3,
+  "importId": "portfolio-pptx-2b7637019f030502-v3",
+  "source": {
+    "sourceFile": "portfolio-cultural-atualizado.pptx",
+    "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+    "sourceBytes": 143222855,
+    "slideCount": 94
+  },
+  "baseline": {
+    "seed": "../imperio-admin/portfolio-cultural-inicial.json",
+    "seedSha256": "a0455141e56e282d4987fb3723f66afe97c5c29626f4a687ed7595266c8e0646",
+    "codeSha256": "3e281f1a0963dac21c6840df32a7b108169d24a0a6df602ffd13f4c1df47de53",
+    "itemCount": 87,
+    "assetCount": 67,
+    "activeUniquePhotos": 61
+  },
+  "newItems": [
+    {
+      "operation": "create_if_unseen",
+      "id": "cfdb7357-a51e-5846-8464-7d91648fb8c1",
+      "stableKey": "play-na-danca-2024",
+      "title": "Play na Dança — Bloco Os Enforcados",
+      "year": "2024",
+      "activity": "Eventos e apresentações",
+      "description": "O projeto Play na Dança nasceu em 2024 para incentivar a atuação artística fora do período junino. O portfólio relaciona sua participação em 2024 ao Bloco Os Enforcados.",
+      "date": "",
+      "status": "Publicado",
+      "sourceHash": "016ce754f5bbbda3a2cbf3f7ea4469d1da3f7323dc48f73a1638223a75964668",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          9
+        ],
+        "sourceAssets": []
+      },
+      "photo": "",
+      "photos": [
+        {
+          "image": "/assets/portfolio/pptx-v3-71c6463acf41548d8220.webp",
+          "evidence": {
+            "kind": "Registro fotográfico",
+            "slides": [
+              9
+            ],
+            "sourceFile": "portfolio-cultural-atualizado.pptx",
+            "revision": "portfolio-pptx-v3",
+            "scope": "Registro do projeto ou da atividade conforme legenda e contexto do slide; sem identificação por reconhecimento facial."
+          }
+        },
+        {
+          "image": "/assets/portfolio/pptx-v3-7b6896bd1b3b5292add4.webp",
+          "evidence": {
+            "kind": "Registro fotográfico",
+            "slides": [
+              9
+            ],
+            "sourceFile": "portfolio-cultural-atualizado.pptx",
+            "revision": "portfolio-pptx-v3",
+            "scope": "Registro do projeto ou da atividade conforme legenda e contexto do slide; sem identificação por reconhecimento facial."
+          }
+        }
+      ],
+      "replaceCover": false,
+      "initialCoverPolicy": "somente se novo registro sem foto e mediante aprovação; não alterar capa de existente"
+    },
+    {
+      "operation": "create_if_unseen",
+      "id": "346c64c5-ec62-5958-b57c-4fd24d7f0b50",
+      "stableKey": "play-na-danca-2025",
+      "title": "Play na Dança — Bloco Bora",
+      "year": "2025",
+      "activity": "Eventos e apresentações",
+      "description": "Participação do projeto Play na Dança no carnaval de 2025, associada ao Bloco Bora no portfólio.",
+      "date": "",
+      "status": "Publicado",
+      "sourceHash": "8c389272a965de0019db1ae3342983eab7a5c5eeac2afe2db81c9713e78dc99c",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          9
+        ],
+        "sourceAssets": []
+      },
+      "photo": "",
+      "photos": [
+        {
+          "image": "/assets/portfolio/pptx-v3-b13b1b9513178ec3c138.webp",
+          "evidence": {
+            "kind": "Registro fotográfico",
+            "slides": [
+              9
+            ],
+            "sourceFile": "portfolio-cultural-atualizado.pptx",
+            "revision": "portfolio-pptx-v3",
+            "scope": "Registro do projeto ou da atividade conforme legenda e contexto do slide; sem identificação por reconhecimento facial."
+          }
+        },
+        {
+          "image": "/assets/portfolio/pptx-v3-72b071465c4231e07cd5.webp",
+          "evidence": {
+            "kind": "Registro fotográfico",
+            "slides": [
+              9
+            ],
+            "sourceFile": "portfolio-cultural-atualizado.pptx",
+            "revision": "portfolio-pptx-v3",
+            "scope": "Registro do projeto ou da atividade conforme legenda e contexto do slide; sem identificação por reconhecimento facial."
+          }
+        },
+        {
+          "image": "/assets/portfolio/pptx-v3-0324e1bbab490d8c9e8b.webp",
+          "evidence": {
+            "kind": "Registro fotográfico",
+            "slides": [
+              9
+            ],
+            "sourceFile": "portfolio-cultural-atualizado.pptx",
+            "revision": "portfolio-pptx-v3",
+            "scope": "Registro do projeto ou da atividade conforme legenda e contexto do slide; sem identificação por reconhecimento facial."
+          }
+        }
+      ],
+      "replaceCover": false,
+      "initialCoverPolicy": "somente se novo registro sem foto e mediante aprovação; não alterar capa de existente"
+    },
+    {
+      "operation": "create_if_unseen",
+      "id": "312aeb87-7cfb-5284-a0ed-f2faeb64ea31",
+      "stableKey": "play-na-danca-2026",
+      "title": "Play na Dança — Bloco Carrasca",
+      "year": "2026",
+      "activity": "Eventos e apresentações",
+      "description": "Participação do projeto Play na Dança no carnaval de 2026, associada ao Bloco Carrasca no portfólio.",
+      "date": "",
+      "status": "Publicado",
+      "sourceHash": "d135cdc54eba1bbf5b3807e4fa7bf52d7007dec74efcc25f287b9c20fade9479",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          9
+        ],
+        "sourceAssets": []
+      },
+      "photo": "",
+      "photos": [
+        {
+          "image": "/assets/portfolio/pptx-v3-55fdbbcc0e7cf369d398.webp",
+          "evidence": {
+            "kind": "Registro fotográfico",
+            "slides": [
+              9
+            ],
+            "sourceFile": "portfolio-cultural-atualizado.pptx",
+            "revision": "portfolio-pptx-v3",
+            "scope": "Registro do projeto ou da atividade conforme legenda e contexto do slide; sem identificação por reconhecimento facial."
+          }
+        },
+        {
+          "image": "/assets/portfolio/pptx-v3-2f7dec204ca7c09180d7.webp",
+          "evidence": {
+            "kind": "Registro fotográfico",
+            "slides": [
+              9
+            ],
+            "sourceFile": "portfolio-cultural-atualizado.pptx",
+            "revision": "portfolio-pptx-v3",
+            "scope": "Registro do projeto ou da atividade conforme legenda e contexto do slide; sem identificação por reconhecimento facial."
+          }
+        },
+        {
+          "image": "/assets/portfolio/pptx-v3-6eab4ccf9e0bfe4212fc.webp",
+          "evidence": {
+            "kind": "Registro fotográfico",
+            "slides": [
+              9
+            ],
+            "sourceFile": "portfolio-cultural-atualizado.pptx",
+            "revision": "portfolio-pptx-v3",
+            "scope": "Registro do projeto ou da atividade conforme legenda e contexto do slide; sem identificação por reconhecimento facial."
+          }
+        }
+      ],
+      "replaceCover": false,
+      "initialCoverPolicy": "somente se novo registro sem foto e mediante aprovação; não alterar capa de existente"
+    },
+    {
+      "operation": "create_if_unseen",
+      "id": "494061b4-e905-5786-99e7-27429b6531ba",
+      "stableKey": "imperio-em-movimento-2026",
+      "title": "Império em Movimento: Cultura que Move Gerações",
+      "year": "2026",
+      "activity": "Formação e educação",
+      "description": "Projeto apresentado em 2026 para integrar gerações por meio da cultura, de atividades físicas e de ações educativas. Organiza-se nos eixos Império Cuidando de Quem Já Cuidou, Império na Escola e Império nos Passos da Tradição.",
+      "date": "",
+      "status": "Rascunho",
+      "sourceHash": "acfeb49204670009c066337eee522411530db8e769a7ee887fde133cdf8ada78",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          10,
+          11
+        ],
+        "sourceAssets": []
+      },
+      "photo": "",
+      "photos": [
+        {
+          "image": "/assets/portfolio/pptx-v3-b47f74e046e793353b4a.webp",
+          "evidence": {
+            "kind": "Registro fotográfico",
+            "slides": [
+              11
+            ],
+            "sourceFile": "portfolio-cultural-atualizado.pptx",
+            "revision": "portfolio-pptx-v3",
+            "scope": "Registro do projeto ou da atividade conforme legenda e contexto do slide; sem identificação por reconhecimento facial."
+          }
+        },
+        {
+          "image": "/assets/portfolio/pptx-v3-61f037058e5941352c6e.webp",
+          "evidence": {
+            "kind": "Registro fotográfico",
+            "slides": [
+              11
+            ],
+            "sourceFile": "portfolio-cultural-atualizado.pptx",
+            "revision": "portfolio-pptx-v3",
+            "scope": "Registro do projeto ou da atividade conforme legenda e contexto do slide; sem identificação por reconhecimento facial."
+          }
+        },
+        {
+          "image": "/assets/portfolio/pptx-v3-ab45497ceeb0f972d895.webp",
+          "evidence": {
+            "kind": "Registro fotográfico",
+            "slides": [
+              11
+            ],
+            "sourceFile": "portfolio-cultural-atualizado.pptx",
+            "revision": "portfolio-pptx-v3",
+            "scope": "Registro do projeto ou da atividade conforme legenda e contexto do slide; sem identificação por reconhecimento facial."
+          }
+        }
+      ],
+      "replaceCover": false,
+      "initialCoverPolicy": "somente se novo registro sem foto e mediante aprovação; não alterar capa de existente",
+      "internalReview": "Projeto apresentado no portfólio como uma iniciativa de 2026, voltada à integração de gerações por meio da cultura, de atividades físicas e de ações educativas. A proposta se organiza nos eixos Império Cuidando de Quem Já Cuidou, Império na Escola e Império nos Passos da Tradição. O material inclui fotografias escolares, mas não demonstra a execução integral dos três eixos; a situação de realização permanece em revisão."
+    },
+    {
+      "operation": "create_if_unseen",
+      "id": "4805ad39-a7ac-5034-a7f7-2f2e528e891f",
+      "stableKey": "close-day-2026",
+      "title": "Abertura da temporada junina de 2026 — Close Day",
+      "year": "2026",
+      "activity": "Eventos e apresentações",
+      "description": "Proposta de registro da abertura da temporada junina de 2026 no Close Day.",
+      "date": "",
+      "status": "Rascunho",
+      "sourceHash": "cab4acc870e9165ad02f13894592aa485f1c23d637e902ea3e9c163b2c47b109",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          91
+        ],
+        "sourceAssets": []
+      },
+      "photo": "",
+      "photos": [],
+      "replaceCover": false,
+      "initialCoverPolicy": "somente se novo registro sem foto e mediante aprovação; não alterar capa de existente",
+      "internalReview": "O slide de atividades de 2026 relata o lançamento da temporada no Close Day. A mesma página mantém texto de primeiro ensaio com o ano de 2025 e não traz fotografia correspondente verificável. A confirmação da atividade e de sua cronologia permanece pendente."
+    }
+  ],
+  "existingTextDeltas": [
+    {
+      "operation": "append_description_if_source_unchanged",
+      "id": "e60a6e09-e600-513a-af52-5b848cab4f29",
+      "title": "Casal de Reis e Casal de Noivos",
+      "year": "2020",
+      "activity": "Destaques artísticos",
+      "descriptionAddition": "O slide identifica Jackeline Martins e Gusthavo Vinícius no Casal de Reis, e Geovana Cryatina e Douglas Freitas no Casal de Noivos.",
+      "expectedSourceHash": "6844e9981a88a64ee0b983a89a44b924faf2278ae612e871f1a1cf1c0dd5b7f2",
+      "expectedDescriptionSha256": "ee5242d1332f39f40ebf810dc1f187de2ca3b00c891a00002f71976806ec80f2",
+      "expectedStatus": "Publicado",
+      "preserveStatus": true,
+      "sourceHash": "37ca74702a6ef05bf10091e0e1fd6950fbff81f13e4fe269123187c9dc12bbce",
+      "deltaKey": "texto:37ca74702a6ef05bf10091e0e1fd6950fbff81f13e4fe269123187c9dc12bbce",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          13
+        ],
+        "sourceAssets": []
+      },
+      "reviewRequired": false,
+      "publicationText": "O slide identifica Jackeline Martins e Gusthavo Vinícius no Casal de Reis, e Geovana Cryatina e Douglas Freitas no Casal de Noivos.",
+      "applyAutomatically": false
+    },
+    {
+      "operation": "append_description_if_source_unchanged",
+      "id": "06107a70-8aec-5d96-b9a3-653f7a2580c8",
+      "title": "Totem entre a Vida e a Morte",
+      "year": "2021",
+      "activity": "Destaques artísticos",
+      "descriptionAddition": "Os créditos artísticos identificam José Renato como Lampião, Tàyna Brito como Maria Bonita e Roh Barros como Rainha da Diversidade.",
+      "expectedSourceHash": "6d5126821b5408e83035feff586a892dfc5f5d6bf8d0374475cd9277e5ce7d65",
+      "expectedDescriptionSha256": "a5c2b49ba5632ad6631787b5b65d0e68d64b3e8c8ae0936a78e2d414cb3e32cc",
+      "expectedStatus": "Publicado",
+      "preserveStatus": true,
+      "sourceHash": "43635d6296ca952b16efe9981d62afe11d83e0283b92827214ec669e43f92fd2",
+      "deltaKey": "texto:43635d6296ca952b16efe9981d62afe11d83e0283b92827214ec669e43f92fd2",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          16
+        ],
+        "sourceAssets": []
+      },
+      "reviewRequired": false,
+      "publicationText": "Os créditos artísticos identificam José Renato como Lampião, Tàyna Brito como Maria Bonita e Roh Barros como Rainha da Diversidade.",
+      "applyAutomatically": false
+    },
+    {
+      "operation": "append_description_if_source_unchanged",
+      "id": "eac170f6-3145-5dee-878f-19ff1201f17d",
+      "title": "Forró, amor e São João",
+      "year": "2022",
+      "activity": "Destaques artísticos",
+      "descriptionAddition": "O slide identifica Vitória Alves como Rainha, Alexsandro Miranda como Rei, Raimundo Oliveira como Noivo e Franciele Silva como Noiva.",
+      "expectedSourceHash": "f55ff123326309f8c5467333b3a100996cd6957a1bffcd21f7b98898452365fa",
+      "expectedDescriptionSha256": "a1343cb0477a23e83a0858134553bba8196f452c8933016b77064ca4e271d75f",
+      "expectedStatus": "Publicado",
+      "preserveStatus": true,
+      "sourceHash": "8a669be066b14b41d4ca5e886ad2f8ec23c7dd231c1cb8ef937ed8b4156c3518",
+      "deltaKey": "texto:8a669be066b14b41d4ca5e886ad2f8ec23c7dd231c1cb8ef937ed8b4156c3518",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          20
+        ],
+        "sourceAssets": []
+      },
+      "reviewRequired": false,
+      "publicationText": "O slide identifica Vitória Alves como Rainha, Alexsandro Miranda como Rei, Raimundo Oliveira como Noivo e Franciele Silva como Noiva.",
+      "applyAutomatically": false
+    },
+    {
+      "operation": "append_description_if_source_unchanged",
+      "id": "882a6056-7e89-5439-bdd6-412b1d706d88",
+      "title": "Cangaço e homenagem a Elza Soares",
+      "year": "2022",
+      "activity": "Destaques artísticos",
+      "descriptionAddition": "O slide identifica Ohana Barros como Rainha da Diversidade, Beatriz Lopes como Maria Bonita e José Renato como Lampião.",
+      "expectedSourceHash": "360efbcffd649af1e383e3e979154c2b30ddee925562adcc2aefe9b6f7afe896",
+      "expectedDescriptionSha256": "39e958ca6f056743488fc0ab0a66660eb2d2f68492624fc79df1aa06fa5aaf1f",
+      "expectedStatus": "Publicado",
+      "preserveStatus": true,
+      "sourceHash": "11e2d9ad0932b6f4402511d0aec42b6b4edb145c60666201d21048e9ffb38820",
+      "deltaKey": "texto:11e2d9ad0932b6f4402511d0aec42b6b4edb145c60666201d21048e9ffb38820",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          21
+        ],
+        "sourceAssets": []
+      },
+      "reviewRequired": false,
+      "publicationText": "O slide identifica Ohana Barros como Rainha da Diversidade, Beatriz Lopes como Maria Bonita e José Renato como Lampião.",
+      "applyAutomatically": false
+    },
+    {
+      "operation": "append_description_if_source_unchanged",
+      "id": "bce9bdc5-56af-5f44-ab3b-7c61a7901166",
+      "title": "Reis, Noivos e Rainha de 2023",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "descriptionAddition": "Os créditos identificam Pedro Henrique Pontes como Rei, Layanne Cristine como Rainha, Vitória Alves como Noiva e Douglas Freitas como Noivo.",
+      "expectedSourceHash": "22abdaf7fe9e65bc56cbae4540d0a971814112adeb77052bdfdb939c80773710",
+      "expectedDescriptionSha256": "66989431c6eec8407decc1dab3f0a06348f166ffbc93d5dcf6a8735de74fbd76",
+      "expectedStatus": "Publicado",
+      "preserveStatus": true,
+      "sourceHash": "f6d7ec4aa41e0faadbf87c7be29a70247a6a88e967c4ba7d4dd6ba0b8ce873c9",
+      "deltaKey": "texto:f6d7ec4aa41e0faadbf87c7be29a70247a6a88e967c4ba7d4dd6ba0b8ce873c9",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          34
+        ],
+        "sourceAssets": []
+      },
+      "reviewRequired": false,
+      "publicationText": "Os créditos identificam Pedro Henrique Pontes como Rei, Layanne Cristine como Rainha, Vitória Alves como Noiva e Douglas Freitas como Noivo.",
+      "applyAutomatically": false
+    },
+    {
+      "operation": "append_description_if_source_unchanged",
+      "id": "8728d399-8401-5738-a105-04196b213a25",
+      "title": "Cangaço, Pajé e Rainha da Diversidade",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "descriptionAddition": "Os créditos identificam Victor Gabriel como Pajé, Crislayne Reis como Maria Bonita, André Alves como Lampião e Roh Barros como Rainha da Diversidade.",
+      "expectedSourceHash": "20b3494d4399a92e9cdd53d8cf38a64c52a0d7c56a229a5e543011d031a18aea",
+      "expectedDescriptionSha256": "abf5df919aaea2e14870094e6b19680ed3ae2a30283c21edb3bd93d3c6afbdde",
+      "expectedStatus": "Publicado",
+      "preserveStatus": true,
+      "sourceHash": "34e6864044eac0b4dfe5eb649f68600915a4d5fcdab7b61f98c0a78148bb32d7",
+      "deltaKey": "texto:34e6864044eac0b4dfe5eb649f68600915a4d5fcdab7b61f98c0a78148bb32d7",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          35
+        ],
+        "sourceAssets": []
+      },
+      "reviewRequired": false,
+      "publicationText": "Os créditos identificam Victor Gabriel como Pajé, Crislayne Reis como Maria Bonita, André Alves como Lampião e Roh Barros como Rainha da Diversidade.",
+      "applyAutomatically": false
+    },
+    {
+      "operation": "append_description_if_source_unchanged",
+      "id": "fba92299-0931-5bc2-a8ca-08c1f7560816",
+      "title": "Noivos — Vale Ouro e Rainha — Mãe do Ouro",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "descriptionAddition": "Os créditos identificam Vitória Alves como Rainha, Suellen Cristine como Noiva e Douglas Freitas como Noivo.",
+      "expectedSourceHash": "f6b58b60b174d92f55c4322a6420fb69d9a3d23b8362d7fec180414098b011a1",
+      "expectedDescriptionSha256": "211f9b16535e0f0ce5b06e73945c98eb9bdb82f92c0701a620f50abdfd2e6e1b",
+      "expectedStatus": "Publicado",
+      "preserveStatus": true,
+      "sourceHash": "aa31a6eb981e2c219b351df4d7d83a53aa0f46d9eac4c74679379da69ea006c6",
+      "deltaKey": "texto:aa31a6eb981e2c219b351df4d7d83a53aa0f46d9eac4c74679379da69ea006c6",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          79
+        ],
+        "sourceAssets": []
+      },
+      "reviewRequired": false,
+      "publicationText": "Os créditos identificam Vitória Alves como Rainha, Suellen Cristine como Noiva e Douglas Freitas como Noivo.",
+      "applyAutomatically": false
+    },
+    {
+      "operation": "append_description_if_source_unchanged",
+      "id": "55e8fa31-12d0-5ca3-8ef4-163cca27abf7",
+      "title": "Casal de Reis — Mãe do Ouro",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "descriptionAddition": "O crédito artístico identifica José Renato como Rei.",
+      "expectedSourceHash": "f975cd59295233dd73f0a07983f3634276fef0e3e95235ba5f356d3f56519fcf",
+      "expectedDescriptionSha256": "78ee423110347d65e7e6c7bf20e403548bfe9ad4dd39ee7d367c1e7976c23ad1",
+      "expectedStatus": "Rascunho",
+      "preserveStatus": true,
+      "sourceHash": "3206339a4de36f24c3205c0b456319af3a3a276313925f9ccc2dd06fbc6dc053",
+      "deltaKey": "texto:3206339a4de36f24c3205c0b456319af3a3a276313925f9ccc2dd06fbc6dc053",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          79
+        ],
+        "sourceAssets": []
+      },
+      "reviewRequired": true,
+      "publicationText": "O crédito artístico identifica José Renato como Rei.",
+      "internalReview": "O crédito do Casal de Reis identifica José Renato como Rei. Permanece a divergência entre o cabeçalho de 2025 e o ano de 2023 mencionado no texto; não alterar o ano nem o estado de rascunho.",
+      "applyAutomatically": false
+    },
+    {
+      "operation": "append_description_if_source_unchanged",
+      "id": "6fc3a975-a17e-50ac-acf0-6fb5883598ba",
+      "title": "Cangaço e Afrodite",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "descriptionAddition": "Os créditos identificam Ohana Barros como Rainha da Diversidade, Maria Eduarda como Maria Bonita e Victor Gabriel como Lampião.",
+      "expectedSourceHash": "a54d67a20ea6a93d24475063e2051ed0cba6a63ddd31fd517ce2b038401d889c",
+      "expectedDescriptionSha256": "1892eb614c406d60cce2fb06713fa3fadc70284124399ebc60ddef2220cd3595",
+      "expectedStatus": "Publicado",
+      "preserveStatus": true,
+      "sourceHash": "36df42652ecf4de067021eff561723ddb7a442f3d1ad3c429512a222c5f40aaa",
+      "deltaKey": "texto:36df42652ecf4de067021eff561723ddb7a442f3d1ad3c429512a222c5f40aaa",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          80
+        ],
+        "sourceAssets": []
+      },
+      "reviewRequired": false,
+      "publicationText": "Os créditos identificam Ohana Barros como Rainha da Diversidade, Maria Eduarda como Maria Bonita e Victor Gabriel como Lampião.",
+      "applyAutomatically": false
+    },
+    {
+      "operation": "append_description_if_source_unchanged",
+      "id": "17d8b658-3004-5b3a-9ab5-7783786fe2b0",
+      "title": "Rainha Mirim e Marcador de 2025",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "descriptionAddition": "O slide identifica Jhonny Macer como Marcador.",
+      "expectedSourceHash": "6790c4b32acda35ea1886a15f201f3afe76f7e206dccf393602c6fa32832335c",
+      "expectedDescriptionSha256": "0cb12d8e981c56149f99daa9eaa8eeabe1cdaca3552e604fb17a04987a241bfe",
+      "expectedStatus": "Publicado",
+      "preserveStatus": true,
+      "sourceHash": "74a1b52c1e56cdb47c37539d86619803791318d2b17d106e52d45dc0e9f97775",
+      "deltaKey": "texto:74a1b52c1e56cdb47c37539d86619803791318d2b17d106e52d45dc0e9f97775",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          81
+        ],
+        "sourceAssets": []
+      },
+      "reviewRequired": false,
+      "publicationText": "O slide identifica Jhonny Macer como Marcador.",
+      "applyAutomatically": false
+    },
+    {
+      "operation": "append_description_if_source_unchanged",
+      "id": "4a62adb6-e8db-560a-a76b-88f98a9c1c41",
+      "title": "Eixos de atuação cultural",
+      "year": "",
+      "activity": "Gestão e articulação",
+      "descriptionAddition": "Os eixos incluem educação sobre cultura e diversidade, atualização de conhecimentos, capacitação em dança, maquiagem, costura e bordado, além de intervenção comunitária na região de Gurupi.",
+      "expectedSourceHash": "8bf0a4a51b06c3383547e912b992472dc5f2f1cfe24eb3dc94bd9504b83420a6",
+      "expectedDescriptionSha256": "f47ad3a2c81421d123c5da36f041e609bcc9bc8716a9c702c10d42514b2bd1a5",
+      "expectedStatus": "Publicado",
+      "preserveStatus": true,
+      "sourceHash": "cec222e5ccc9c0646f661f408ba7bad516b89c850c6dbcb7e38f63679f3c34ac",
+      "deltaKey": "texto:cec222e5ccc9c0646f661f408ba7bad516b89c850c6dbcb7e38f63679f3c34ac",
+      "provenance": {
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+        "slideNos": [
+          8
+        ],
+        "sourceAssets": []
+      },
+      "reviewRequired": false,
+      "publicationText": "Os eixos incluem educação sobre cultura e diversidade, atualização de conhecimentos, capacitação em dança, maquiagem, costura e bordado, além de intervenção comunitária na região de Gurupi.",
+      "applyAutomatically": false
+    }
+  ],
+  "photoAdditions": [
+    {
+      "operation": "append_photo",
+      "targetId": "cfdb7357-a51e-5846-8464-7d91648fb8c1",
+      "title": "Play na Dança — Bloco Os Enforcados",
+      "year": "2024",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-71c6463acf41548d8220.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-71c6463acf41548d8220.webp",
+      "width": 800,
+      "height": 442,
+      "bytes": 58192,
+      "sha256": "a9d1e35725241364157abfa68d24cd879d8e082b2cccfb56e6a53198bf949b7a",
+      "sourceAssetOriginalHash": "71c6463acf41548d82209b8e362cf96f1d42d0166eee98f0b37d2f9e48775bd7",
+      "sourceAsset": "ppt/media/image73.png",
+      "slideNos": [
+        9
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:cfdb7357-a51e-5846-8464-7d91648fb8c1:71c6463acf41548d82209b8e362cf96f1d42d0166eee98f0b37d2f9e48775bd7",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          9
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "346c64c5-ec62-5958-b57c-4fd24d7f0b50",
+      "title": "Play na Dança — Bloco Bora",
+      "year": "2025",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-b13b1b9513178ec3c138.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-b13b1b9513178ec3c138.webp",
+      "width": 759,
+      "height": 800,
+      "bytes": 89136,
+      "sha256": "477b060b1c2834240c7149a4c358b492794db7f77c2fef82b5f424665c001a88",
+      "sourceAssetOriginalHash": "b13b1b9513178ec3c138b0adab023e3af65b2ae723c73f05f7cb5332d1ba0e4c",
+      "sourceAsset": "ppt/media/image74.jpeg",
+      "slideNos": [
+        9
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:346c64c5-ec62-5958-b57c-4fd24d7f0b50:b13b1b9513178ec3c138b0adab023e3af65b2ae723c73f05f7cb5332d1ba0e4c",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          9
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "312aeb87-7cfb-5284-a0ed-f2faeb64ea31",
+      "title": "Play na Dança — Bloco Carrasca",
+      "year": "2026",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-55fdbbcc0e7cf369d398.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-55fdbbcc0e7cf369d398.webp",
+      "width": 800,
+      "height": 533,
+      "bytes": 114174,
+      "sha256": "f3a4b426ee49e1f170cd3c32128defc419bd8ec4699cf8fc3b62fcfbcbd80003",
+      "sourceAssetOriginalHash": "55fdbbcc0e7cf369d398fd196f169916b95ecf1e5292359b3a2962338101238c",
+      "sourceAsset": "ppt/media/image75.jpeg",
+      "slideNos": [
+        9
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:312aeb87-7cfb-5284-a0ed-f2faeb64ea31:55fdbbcc0e7cf369d398fd196f169916b95ecf1e5292359b3a2962338101238c",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          9
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "494061b4-e905-5786-99e7-27429b6531ba",
+      "title": "Império em Movimento: Cultura que Move Gerações",
+      "year": "2026",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-b47f74e046e793353b4a.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-b47f74e046e793353b4a.webp",
+      "width": 389,
+      "height": 493,
+      "bytes": 32152,
+      "sha256": "7faa3e8f25c1437d43cdd9136a13f38c6eb9c320cbe5693f59b58fcb6f20f511",
+      "sourceAssetOriginalHash": "b47f74e046e793353b4afa7158f520898faf3c722cd08b8ae3164f080ed02f52",
+      "sourceAsset": "ppt/media/image85.png",
+      "slideNos": [
+        11
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:494061b4-e905-5786-99e7-27429b6531ba:b47f74e046e793353b4afa7158f520898faf3c722cd08b8ae3164f080ed02f52",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Rascunho",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          11
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": true
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "e60a6e09-e600-513a-af52-5b848cab4f29",
+      "title": "Casal de Reis e Casal de Noivos",
+      "year": "2020",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-5f0d62e93b566d77ec23.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-5f0d62e93b566d77ec23.webp",
+      "width": 657,
+      "height": 657,
+      "bytes": 85758,
+      "sha256": "82ca0d166078fa53ed421586db30103f6fc47eefb4e61720a7608d37dc78c2be",
+      "sourceAssetOriginalHash": "5f0d62e93b566d77ec23441b6a00dafd799da89f6d83c813ac2b640668d6cf33",
+      "sourceAsset": "ppt/media/image95.jpeg",
+      "slideNos": [
+        13
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:e60a6e09-e600-513a-af52-5b848cab4f29:5f0d62e93b566d77ec23441b6a00dafd799da89f6d83c813ac2b640668d6cf33",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          13
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "06107a70-8aec-5d96-b9a3-653f7a2580c8",
+      "title": "Totem entre a Vida e a Morte",
+      "year": "2021",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-1dce090a1831119084b6.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-1dce090a1831119084b6.webp",
+      "width": 377,
+      "height": 319,
+      "bytes": 37132,
+      "sha256": "9859f520e06c05f554cd9bea57f7150186945a3be46b4773e862722f0648ba90",
+      "sourceAssetOriginalHash": "1dce090a1831119084b684e1891fdde861c629501fbd09b2cf6a270d39974407",
+      "sourceAsset": "ppt/media/image116.png",
+      "slideNos": [
+        16
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:06107a70-8aec-5d96-b9a3-653f7a2580c8:1dce090a1831119084b684e1891fdde861c629501fbd09b2cf6a270d39974407",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          16
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "eac170f6-3145-5dee-878f-19ff1201f17d",
+      "title": "Forró, amor e São João",
+      "year": "2022",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-781e9f78079529ba4198.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-781e9f78079529ba4198.webp",
+      "width": 390,
+      "height": 396,
+      "bytes": 10482,
+      "sha256": "5669eddeeb7dd0f14534f17b024c02e2ea55c2ff974267d6f73109de61223697",
+      "sourceAssetOriginalHash": "781e9f78079529ba4198646e3ee76b1384a75a356a7f91fa2cc6c26fa0f8a079",
+      "sourceAsset": "ppt/media/image134.png",
+      "slideNos": [
+        20
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:eac170f6-3145-5dee-878f-19ff1201f17d:781e9f78079529ba4198646e3ee76b1384a75a356a7f91fa2cc6c26fa0f8a079",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          20
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "882a6056-7e89-5439-bdd6-412b1d706d88",
+      "title": "Cangaço e homenagem a Elza Soares",
+      "year": "2022",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-c934293dbee59f18aef9.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-c934293dbee59f18aef9.webp",
+      "width": 450,
+      "height": 800,
+      "bytes": 59936,
+      "sha256": "5901b3045c437cdac5de8e0def4c69959c56ca6e60830319e604d57975a6253d",
+      "sourceAssetOriginalHash": "c934293dbee59f18aef9f5a9b06d7ab4336a69e9c09f85bd32608846b36ab4e2",
+      "sourceAsset": "ppt/media/image137.jpeg",
+      "slideNos": [
+        21
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:882a6056-7e89-5439-bdd6-412b1d706d88:c934293dbee59f18aef9f5a9b06d7ab4336a69e9c09f85bd32608846b36ab4e2",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          21
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "70b3609d-b581-5fb8-8a3d-44d3646763f6",
+      "title": "Arraiá da Amizade e Estadual FEQUAJUTO",
+      "year": "2022",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-a2f5b2b31151af15eee9.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-a2f5b2b31151af15eee9.webp",
+      "width": 553,
+      "height": 364,
+      "bytes": 46050,
+      "sha256": "49c26d0b6e27ddb5c8e9ae591b9e2b206e33e8e67067ae6bbb4b952fef77b749",
+      "sourceAssetOriginalHash": "a2f5b2b31151af15eee91626b5fa803120728f6592bffa93332245d170824e66",
+      "sourceAsset": "ppt/media/image144.png",
+      "slideNos": [
+        22
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:70b3609d-b581-5fb8-8a3d-44d3646763f6:a2f5b2b31151af15eee91626b5fa803120728f6592bffa93332245d170824e66",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          22
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "556c5474-46fa-5581-bc94-319568e74fd6",
+      "title": "Prêmio Junino Melhores do Ano",
+      "year": "2022",
+      "activity": "Premiações",
+      "imagefile": "assets/pptx-v3-f30949ef405f94d78344.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-f30949ef405f94d78344.webp",
+      "width": 638,
+      "height": 639,
+      "bytes": 50346,
+      "sha256": "930cf066f6e07bac7cbd8a4669072a1544e6a097ad96981ebe811c3b7fb789f9",
+      "sourceAssetOriginalHash": "f30949ef405f94d78344bd1896fca58234ac62f5195e93e7a7a576ae707b0316",
+      "sourceAsset": "ppt/media/image148.png",
+      "slideNos": [
+        24
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:556c5474-46fa-5581-bc94-319568e74fd6:f30949ef405f94d78344bd1896fca58234ac62f5195e93e7a7a576ae707b0316",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          24
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "3ce0bb0a-0cd1-5f08-add8-a0579704bbb1",
+      "title": "Acabamentos e bordados manuais",
+      "year": "2023",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-f46efe9c02526e82af51.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-f46efe9c02526e82af51.webp",
+      "width": 800,
+      "height": 533,
+      "bytes": 40628,
+      "sha256": "66a4df387fed4380491eaff844881d1a80dcda76181725f09c3b7e9d116068a1",
+      "sourceAssetOriginalHash": "f46efe9c02526e82af510fd1c13ad4c3a1035713f45ec1ee0f6d50b8b567b61e",
+      "sourceAsset": "ppt/media/image176.jpg",
+      "slideNos": [
+        29
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:3ce0bb0a-0cd1-5f08-add8-a0579704bbb1:f46efe9c02526e82af510fd1c13ad4c3a1035713f45ec1ee0f6d50b8b567b61e",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          29
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "39b54546-7f00-52fe-b7f4-58ab03c2200c",
+      "title": "Concurso Rainha da Diversidade",
+      "year": "2023",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-6084e79731d654285c5d.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-6084e79731d654285c5d.webp",
+      "width": 307,
+      "height": 212,
+      "bytes": 12116,
+      "sha256": "3e5f2b189299b47518b26dcf696a39a8a542f2303b076bd62e646c3411d7df05",
+      "sourceAssetOriginalHash": "6084e79731d654285c5dc4a0aedcf0385ba130a9387daf1538ce3af718e3d1b3",
+      "sourceAsset": "ppt/media/image172.png",
+      "slideNos": [
+        29
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:39b54546-7f00-52fe-b7f4-58ab03c2200c:6084e79731d654285c5dc4a0aedcf0385ba130a9387daf1538ce3af718e3d1b3",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          29
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "d6e2c378-3171-5e60-980a-a9b4d8713925",
+      "title": "Circulação pela região sul",
+      "year": "2023",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-3cbd67beb29ecba32106.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-3cbd67beb29ecba32106.webp",
+      "width": 800,
+      "height": 308,
+      "bytes": 27776,
+      "sha256": "ef0592ba429783504035732002a30b2acbcbfcdae8f5d89d9a3f4a9e7dd24c8b",
+      "sourceAssetOriginalHash": "3cbd67beb29ecba32106e0c062483055f2b4890f782dda2756b5bb768b36e867",
+      "sourceAsset": "ppt/media/image180.png",
+      "slideNos": [
+        31
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:d6e2c378-3171-5e60-980a-a9b4d8713925:3cbd67beb29ecba32106e0c062483055f2b4890f782dda2756b5bb768b36e867",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          31
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "bce9bdc5-56af-5f44-ab3b-7c61a7901166",
+      "title": "Reis, Noivos e Rainha de 2023",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-6fa00d057d65c16476de.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-6fa00d057d65c16476de.webp",
+      "width": 537,
+      "height": 434,
+      "bytes": 53938,
+      "sha256": "3acfff6c0ee4dc848b9c1d6135cce40c820002a9c2d91b4361564f2f72ab509c",
+      "sourceAssetOriginalHash": "6fa00d057d65c16476de9dbd22d85fdbccc9f8f83be24d95d023f8a200bd0852",
+      "sourceAsset": "ppt/media/image193.png",
+      "slideNos": [
+        34
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:bce9bdc5-56af-5f44-ab3b-7c61a7901166:6fa00d057d65c16476de9dbd22d85fdbccc9f8f83be24d95d023f8a200bd0852",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          34
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "8728d399-8401-5738-a105-04196b213a25",
+      "title": "Cangaço, Pajé e Rainha da Diversidade",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-642c8571a93e8a4fd094.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-642c8571a93e8a4fd094.webp",
+      "width": 401,
+      "height": 334,
+      "bytes": 31728,
+      "sha256": "e1521932e586c49f99e0cb9b5c5debb9c46b4b5d4ba77ab0269ecb28f4d6dc3b",
+      "sourceAssetOriginalHash": "642c8571a93e8a4fd0943ab1094713e84ee50b5203597f5b34c247bb1aaadaf2",
+      "sourceAsset": "ppt/media/image200.png",
+      "slideNos": [
+        35
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:8728d399-8401-5738-a105-04196b213a25:642c8571a93e8a4fd0943ab1094713e84ee50b5203597f5b34c247bb1aaadaf2",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          35
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "7efa4ca2-68aa-5246-ac46-6dabbbeda4ea",
+      "title": "Curumim, Puxador e conjunto indígena",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-6e1e0c59f96e65342186.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-6e1e0c59f96e65342186.webp",
+      "width": 359,
+      "height": 676,
+      "bytes": 29108,
+      "sha256": "1c4894e3e3d54235ff5a682c6e0e3b342ec7f2d5cf140879443fd7f3ae79a085",
+      "sourceAssetOriginalHash": "6e1e0c59f96e65342186c66689f2d2d6270fff135400e092acca0950dc2bc8cd",
+      "sourceAsset": "ppt/media/image206.png",
+      "slideNos": [
+        36
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:7efa4ca2-68aa-5246-ac46-6dabbbeda4ea:6e1e0c59f96e65342186c66689f2d2d6270fff135400e092acca0950dc2bc8cd",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          36
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "4628a157-1320-5c1a-a785-1a844da75be5",
+      "title": "Representantes da região sul no estadual",
+      "year": "2023",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-778f20b65ab08a944508.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-778f20b65ab08a944508.webp",
+      "width": 519,
+      "height": 637,
+      "bytes": 76614,
+      "sha256": "f3c0c14170dd34ff710bd174a42c84cd2805dc710f59f1de60b0a42973776c28",
+      "sourceAssetOriginalHash": "778f20b65ab08a944508c4da0f58c5110472aa037887f696220ff9a0c0e607a9",
+      "sourceAsset": "ppt/media/image213.png",
+      "slideNos": [
+        37
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:4628a157-1320-5c1a-a785-1a844da75be5:778f20b65ab08a944508c4da0f58c5110472aa037887f696220ff9a0c0e607a9",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          37
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "957bc0ab-b6a4-5e96-9609-a2a6423a32df",
+      "title": "Conferência Municipal de Cultura e palestra na UnirG",
+      "year": "2023",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-6911642705d3e1c2455f.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-6911642705d3e1c2455f.webp",
+      "width": 603,
+      "height": 497,
+      "bytes": 52574,
+      "sha256": "f494740383ffd261362ede7f2e9a5ba87b29ab5dab5beba6b9a9ad42b15d6f1c",
+      "sourceAssetOriginalHash": "6911642705d3e1c2455f7f613fe8ed1e9e2568083cee0717865f01610eecda40",
+      "sourceAsset": "ppt/media/image216.png",
+      "slideNos": [
+        38
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:957bc0ab-b6a4-5e96-9609-a2a6423a32df:6911642705d3e1c2455f7f613fe8ed1e9e2568083cee0717865f01610eecda40",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          38
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "7c02b01e-ac54-566a-bc6d-99f150a34069",
+      "title": "Videoclipes Seu Moço e Ao redor do Céu",
+      "year": "2024",
+      "activity": "Audiovisual e música",
+      "imagefile": "assets/pptx-v3-ce879c2aaf868d4c8c80.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-ce879c2aaf868d4c8c80.webp",
+      "width": 338,
+      "height": 322,
+      "bytes": 24788,
+      "sha256": "0d41982372f730c462411e097885a82f0e159e735abf142ce16ef3feff336241",
+      "sourceAssetOriginalHash": "ce879c2aaf868d4c8c80a9364d6af96bb48a0aa62643514c46d906bec9f35791",
+      "sourceAsset": "ppt/media/image257.png",
+      "slideNos": [
+        47
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:7c02b01e-ac54-566a-bc6d-99f150a34069:ce879c2aaf868d4c8c80a9364d6af96bb48a0aa62643514c46d906bec9f35791",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          47
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "b915193f-a06f-5964-a0ea-7b0454a8de9d",
+      "title": "Corrida solidária de 2024",
+      "year": "2024",
+      "activity": "Ações sociais",
+      "imagefile": "assets/pptx-v3-b4e5655d2637b047369a.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-b4e5655d2637b047369a.webp",
+      "width": 800,
+      "height": 442,
+      "bytes": 60846,
+      "sha256": "28d1e29784fdeefd0f2601002a2cfb1c1e7085ba58cca27b228eca5d3fbde8b5",
+      "sourceAssetOriginalHash": "b4e5655d2637b047369a739ae77578635fb7a8e549dd891a07da82c1e8ae35f7",
+      "sourceAsset": "ppt/media/image253.png",
+      "slideNos": [
+        46
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:b915193f-a06f-5964-a0ea-7b0454a8de9d:b4e5655d2637b047369a739ae77578635fb7a8e549dd891a07da82c1e8ae35f7",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          46
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "842202b7-2435-518f-be2e-9cd4e17320b4",
+      "title": "Cursos de artesanato, damas e bordado",
+      "year": "2024",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-2caaffa3323a76fbc954.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-2caaffa3323a76fbc954.webp",
+      "width": 406,
+      "height": 476,
+      "bytes": 46868,
+      "sha256": "e84ee642fd89a4b7e9fb4e69c33b6e6f532ae083dc357274adaa35b36dfcef5e",
+      "sourceAssetOriginalHash": "2caaffa3323a76fbc954c4e457b382dd6d501477b311073971c7dab77e5a871f",
+      "sourceAsset": "ppt/media/image259.png",
+      "slideNos": [
+        47
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:842202b7-2435-518f-be2e-9cd4e17320b4:2caaffa3323a76fbc954c4e457b382dd6d501477b311073971c7dab77e5a871f",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          47
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "04ab75e9-ca75-594d-9914-f148572164ab",
+      "title": "O Purgatório — A Purificação dos Condenados",
+      "year": "2024",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-989d4c7b136f9e5714a9.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-989d4c7b136f9e5714a9.webp",
+      "width": 486,
+      "height": 546,
+      "bytes": 56520,
+      "sha256": "b477cbca2c8a1d3ee63849b3f130de6b211c89dca0b20d5d9a103776f08143e2",
+      "sourceAssetOriginalHash": "989d4c7b136f9e5714a9f6f9cd049ae85b0e1b0fca35bbd5dbd7ca80727c36cd",
+      "sourceAsset": "ppt/media/image263.png",
+      "slideNos": [
+        49
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:04ab75e9-ca75-594d-9914-f148572164ab:989d4c7b136f9e5714a9f6f9cd049ae85b0e1b0fca35bbd5dbd7ca80727c36cd",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          49
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "46c517ec-7d43-5e36-9ae0-a27db88e9173",
+      "title": "Circulação cultural de 2024",
+      "year": "2024",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-0a9679925a326ddd570d.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-0a9679925a326ddd570d.webp",
+      "width": 800,
+      "height": 600,
+      "bytes": 110686,
+      "sha256": "db1d82d7572a4e495ceb2af1fdb927aacd091734aa3000d0a6889bf911116232",
+      "sourceAssetOriginalHash": "0a9679925a326ddd570d657adc15eeb5784241e6794b3280bdaaef315e7522bf",
+      "sourceAsset": "ppt/media/image265.jpeg",
+      "slideNos": [
+        50
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:46c517ec-7d43-5e36-9ae0-a27db88e9173:0a9679925a326ddd570d657adc15eeb5784241e6794b3280bdaaef315e7522bf",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          50
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": true
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "d5c54941-1f88-5d8b-bb5e-2f6760960c18",
+      "title": "Croquis e figurinos de O Purgatório",
+      "year": "2024",
+      "activity": "Figurinos e criação",
+      "imagefile": "assets/pptx-v3-a51831b4cdeb870f6e86.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-a51831b4cdeb870f6e86.webp",
+      "width": 792,
+      "height": 800,
+      "bytes": 52752,
+      "sha256": "4ea54c21b00d9e2a286820fbb30ba55b81dfe8810da32449c58e9a85a561f902",
+      "sourceAssetOriginalHash": "a51831b4cdeb870f6e86142801fbb622a71b38f8f48eab5cedec3a5327c3cd11",
+      "sourceAsset": "ppt/media/image273.png",
+      "slideNos": [
+        51
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:d5c54941-1f88-5d8b-bb5e-2f6760960c18:a51831b4cdeb870f6e86142801fbb622a71b38f8f48eab5cedec3a5327c3cd11",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          51
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "33d742cb-26a7-54f2-84c7-89fa09847f18",
+      "title": "Reis, Noivos e Rainha de O Purgatório",
+      "year": "2024",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-5c15edc09e49f57b5f99.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-5c15edc09e49f57b5f99.webp",
+      "width": 636,
+      "height": 742,
+      "bytes": 59504,
+      "sha256": "0f6e7e318a4ea61f2b172dc0d41f96945fdc5bf71779e2e36ff1d9780957152e",
+      "sourceAssetOriginalHash": "5c15edc09e49f57b5f9993fdd3fb4f7548e7d0ac0e948be3706c95da70fe7eb0",
+      "sourceAsset": "ppt/media/image286.png",
+      "slideNos": [
+        54
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:33d742cb-26a7-54f2-84c7-89fa09847f18:5c15edc09e49f57b5f9993fdd3fb4f7548e7d0ac0e948be3706c95da70fe7eb0",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          54
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "e1484f6d-bbd7-5e8f-ae1e-49e9dc4e75c6",
+      "title": "Rainha Mirim e Marcador de 2024",
+      "year": "2024",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-7ce051567d100f0679cd.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-7ce051567d100f0679cd.webp",
+      "width": 600,
+      "height": 800,
+      "bytes": 18722,
+      "sha256": "b50d677da8fbfeb02252231e8a2e20505c6dfe3a21c16d754876c572b084447e",
+      "sourceAssetOriginalHash": "7ce051567d100f0679cdf4a5310fad7f856536a41bb6a9c203971aa64227f6fc",
+      "sourceAsset": "ppt/media/image300.jpeg",
+      "slideNos": [
+        56
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:e1484f6d-bbd7-5e8f-ae1e-49e9dc4e75c6:7ce051567d100f0679cdf4a5310fad7f856536a41bb6a9c203971aa64227f6fc",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          56
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": true
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "cfb658cb-baeb-5afc-bfff-cd8ee95af907",
+      "title": "Representantes no Estadual FEQUAJUTO",
+      "year": "2024",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-6a721ff0408b89bba1e3.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-6a721ff0408b89bba1e3.webp",
+      "width": 600,
+      "height": 800,
+      "bytes": 110614,
+      "sha256": "73c7eef6547efeca19a55081c5d25c108aa9d4eac03b22cfa37eca59b3ba1788",
+      "sourceAssetOriginalHash": "6a721ff0408b89bba1e3cde7c25fb8031f7a482bec0e2ba63e702a6f482cfce9",
+      "sourceAsset": "ppt/media/image301.jpg",
+      "slideNos": [
+        57
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:cfb658cb-baeb-5afc-bfff-cd8ee95af907:6a721ff0408b89bba1e3cde7c25fb8031f7a482bec0e2ba63e702a6f482cfce9",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          57
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "4868173d-98b9-50fb-b5bb-e50671916d98",
+      "title": "Rainha da Diversidade — Arraial Capim Dourado",
+      "year": "2024",
+      "activity": "Premiações",
+      "imagefile": "assets/pptx-v3-e1a678f5f8efe05f23a9.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-e1a678f5f8efe05f23a9.webp",
+      "width": 632,
+      "height": 531,
+      "bytes": 49074,
+      "sha256": "0105235bbee14cc52ea91ba2967b8433ad70747477c69bdb928b1c7be1bdd53c",
+      "sourceAssetOriginalHash": "e1a678f5f8efe05f23a97847e5ca72ae860bd893eb70a8b2a0964580742b9bca",
+      "sourceAsset": "ppt/media/image316.png",
+      "slideNos": [
+        61
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:4868173d-98b9-50fb-b5bb-e50671916d98:e1a678f5f8efe05f23a97847e5ca72ae860bd893eb70a8b2a0964580742b9bca",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          61
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "f477930e-7ba3-5609-9651-58e8dadc4822",
+      "title": "Estaduais de Quadrilhas e de Rainhas em Gurupi",
+      "year": "2025",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-37d141896f7b96144ba1.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-37d141896f7b96144ba1.webp",
+      "width": 798,
+      "height": 800,
+      "bytes": 66250,
+      "sha256": "44a0221d7c31aa4322463110f8382b2f273103c87241bfe839d496e0493e0947",
+      "sourceAssetOriginalHash": "37d141896f7b96144ba1cc9aeee127a440414a08b14028dbdf7a17d9c631bd67",
+      "sourceAsset": "ppt/media/image342.png",
+      "slideNos": [
+        68
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:f477930e-7ba3-5609-9651-58e8dadc4822:37d141896f7b96144ba1cc9aeee127a440414a08b14028dbdf7a17d9c631bd67",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          68
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "94ed0e52-2bba-5ee9-af96-479ff3e339df",
+      "title": "Terceira corrida solidária",
+      "year": "2025",
+      "activity": "Ações sociais",
+      "imagefile": "assets/pptx-v3-74f4f5e4dd43062339da.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-74f4f5e4dd43062339da.webp",
+      "width": 600,
+      "height": 800,
+      "bytes": 41916,
+      "sha256": "7f1eda6854c6d54e5487e42d5106f984361852fee87cd09db5271c1890e0b7e4",
+      "sourceAssetOriginalHash": "74f4f5e4dd43062339da475dec77a28bbf2aea063edaf48df7160a960228c691",
+      "sourceAsset": "ppt/media/image356.jpeg",
+      "slideNos": [
+        71
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:94ed0e52-2bba-5ee9-af96-479ff3e339df:74f4f5e4dd43062339da475dec77a28bbf2aea063edaf48df7160a960228c691",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          71
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "b42b02fa-7f12-562f-b8a9-573b27c5cbe8",
+      "title": "Concurso de Dança da Rainha da Diversidade",
+      "year": "2025",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-c2b36bef85a2032327b2.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-c2b36bef85a2032327b2.webp",
+      "width": 600,
+      "height": 800,
+      "bytes": 81320,
+      "sha256": "28c55b6a9ee4bd43576c13c83c29b31030b39083c8e8566aec6a2f78fd2a29a5",
+      "sourceAssetOriginalHash": "c2b36bef85a2032327b29caf696e1d3531fe1eab223ceed1d0499c6c852fd3e4",
+      "sourceAsset": "ppt/media/image365.jpeg",
+      "slideNos": [
+        72
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:b42b02fa-7f12-562f-b8a9-573b27c5cbe8:c2b36bef85a2032327b29caf696e1d3531fe1eab223ceed1d0499c6c852fd3e4",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          72
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "2fb5d03f-a898-5aa0-bfad-315878ca4cbe",
+      "title": "Croquis e figurinos da temporada 2025",
+      "year": "2025",
+      "activity": "Figurinos e criação",
+      "imagefile": "assets/pptx-v3-4dd5d25b01e1f59c6111.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-4dd5d25b01e1f59c6111.webp",
+      "width": 584,
+      "height": 800,
+      "bytes": 56176,
+      "sha256": "d4583cbd3728d596258be71ff0490b4aad522047b833ef0156accccfd984c925",
+      "sourceAssetOriginalHash": "4dd5d25b01e1f59c61114823b775f7ea166124c460fc33c40dd66db2eba2fde5",
+      "sourceAsset": "ppt/media/image378.jpeg",
+      "slideNos": [
+        76
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:2fb5d03f-a898-5aa0-bfad-315878ca4cbe:4dd5d25b01e1f59c61114823b775f7ea166124c460fc33c40dd66db2eba2fde5",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          76
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "fba92299-0931-5bc2-a8ca-08c1f7560816",
+      "title": "Noivos — Vale Ouro e Rainha — Mãe do Ouro",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-6b291c39dfdd40507bd1.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-6b291c39dfdd40507bd1.webp",
+      "width": 602,
+      "height": 794,
+      "bytes": 111670,
+      "sha256": "9fd8a301c0177c1feea3ed76456aea7006a5343c1db1f01473fbb99bdaa2ea5e",
+      "sourceAssetOriginalHash": "6b291c39dfdd40507bd13b28106530c2dd6482041b0814f9d686af557ef4aebc",
+      "sourceAsset": "ppt/media/image393.jpeg",
+      "slideNos": [
+        79
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:fba92299-0931-5bc2-a8ca-08c1f7560816:6b291c39dfdd40507bd13b28106530c2dd6482041b0814f9d686af557ef4aebc",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          79
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "6fc3a975-a17e-50ac-acf0-6fb5883598ba",
+      "title": "Cangaço e Afrodite",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-6d29bf7b97d87c34accc.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-6d29bf7b97d87c34accc.webp",
+      "width": 490,
+      "height": 431,
+      "bytes": 50840,
+      "sha256": "9bd06c65f11540c4fa94b9a7d9d85d27d424bf096fe1a82f56eb548b2b032ec2",
+      "sourceAssetOriginalHash": "6d29bf7b97d87c34accc48323b6aa9213798ecd43ac2a3e96225634625c14ddf",
+      "sourceAsset": "ppt/media/image400.png",
+      "slideNos": [
+        80
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:6fc3a975-a17e-50ac-acf0-6fb5883598ba:6d29bf7b97d87c34accc48323b6aa9213798ecd43ac2a3e96225634625c14ddf",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          80
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "799df808-b55d-5288-9b2b-dcf39b8db4e8",
+      "title": "Campeões e vice-campeões municipais",
+      "year": "2025",
+      "activity": "Premiações",
+      "imagefile": "assets/pptx-v3-b9d8cf82ab9cc5d89e3f.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-b9d8cf82ab9cc5d89e3f.webp",
+      "width": 800,
+      "height": 533,
+      "bytes": 63662,
+      "sha256": "425b2fea5ed12fdd124570de7c03121aec2db97a915ed7f3a1cfe66a7017603e",
+      "sourceAssetOriginalHash": "b9d8cf82ab9cc5d89e3f38985bef7b2204ece77b3c5c590bf7b5f6d7799a865f",
+      "sourceAsset": "ppt/media/image416.jpeg",
+      "slideNos": [
+        83
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:799df808-b55d-5288-9b2b-dcf39b8db4e8:b9d8cf82ab9cc5d89e3f38985bef7b2204ece77b3c5c590bf7b5f6d7799a865f",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          83
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "cfdb7357-a51e-5846-8464-7d91648fb8c1",
+      "title": "Play na Dança — Bloco Os Enforcados",
+      "year": "2024",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-7b6896bd1b3b5292add4.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-7b6896bd1b3b5292add4.webp",
+      "width": 367,
+      "height": 241,
+      "bytes": 13402,
+      "sha256": "c342a7a2e3516afecffda816b2bc18e64e6e858c01906e171b5af8e3fe2fbaeb",
+      "sourceAssetOriginalHash": "7b6896bd1b3b5292add494e2f29f4ec6e3603b0b94fbdc4687f52b8b2e846e77",
+      "sourceAsset": "ppt/media/image82.png",
+      "slideNos": [
+        9
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:cfdb7357-a51e-5846-8464-7d91648fb8c1:7b6896bd1b3b5292add494e2f29f4ec6e3603b0b94fbdc4687f52b8b2e846e77",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          9
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "346c64c5-ec62-5958-b57c-4fd24d7f0b50",
+      "title": "Play na Dança — Bloco Bora",
+      "year": "2025",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-72b071465c4231e07cd5.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-72b071465c4231e07cd5.webp",
+      "width": 551,
+      "height": 361,
+      "bytes": 35770,
+      "sha256": "9d132ab13509fadbef4a5ad98710e32638c4f4f0a59d485a19060b7e866d7fd2",
+      "sourceAssetOriginalHash": "72b071465c4231e07cd57048f23ad5a68a777798be7b9e3f492e3a419aa48cb4",
+      "sourceAsset": "ppt/media/image78.png",
+      "slideNos": [
+        9
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:346c64c5-ec62-5958-b57c-4fd24d7f0b50:72b071465c4231e07cd57048f23ad5a68a777798be7b9e3f492e3a419aa48cb4",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          9
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "312aeb87-7cfb-5284-a0ed-f2faeb64ea31",
+      "title": "Play na Dança — Bloco Carrasca",
+      "year": "2026",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-2f7dec204ca7c09180d7.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-2f7dec204ca7c09180d7.webp",
+      "width": 800,
+      "height": 600,
+      "bytes": 106230,
+      "sha256": "38c16e9cd5a34917f69e6038d13439dab7d59699e28be4e78f3c31a7e27a7f52",
+      "sourceAssetOriginalHash": "2f7dec204ca7c09180d78d7918c1e743d3e22a8430091301619f73febc2a0834",
+      "sourceAsset": "ppt/media/image76.jpeg",
+      "slideNos": [
+        9
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:312aeb87-7cfb-5284-a0ed-f2faeb64ea31:2f7dec204ca7c09180d78d7918c1e743d3e22a8430091301619f73febc2a0834",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          9
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "494061b4-e905-5786-99e7-27429b6531ba",
+      "title": "Império em Movimento: Cultura que Move Gerações",
+      "year": "2026",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-61f037058e5941352c6e.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-61f037058e5941352c6e.webp",
+      "width": 468,
+      "height": 437,
+      "bytes": 65954,
+      "sha256": "9d9130ecb63333f4eba1fd29faf6dc52ee42f6071de2b2eea5f9e598fa8300a9",
+      "sourceAssetOriginalHash": "61f037058e5941352c6e618a77665f9756ed13a80eff5b37b667598b2903fd74",
+      "sourceAsset": "ppt/media/image86.png",
+      "slideNos": [
+        11
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:494061b4-e905-5786-99e7-27429b6531ba:61f037058e5941352c6e618a77665f9756ed13a80eff5b37b667598b2903fd74",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Rascunho",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          11
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": true
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "39be014d-bd3b-5aea-8647-9a663ee543a6",
+      "title": "Assembleias da FEQUAJUTO",
+      "year": "2022",
+      "activity": "Gestão e articulação",
+      "imagefile": "assets/pptx-v3-ca0b4b54d708fc419187.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-ca0b4b54d708fc419187.webp",
+      "width": 800,
+      "height": 369,
+      "bytes": 31950,
+      "sha256": "9d786c9fe268dc9fcf3be2f3af3e8ba8e84ebdf8942bfddacc9953007e81abef",
+      "sourceAssetOriginalHash": "ca0b4b54d708fc419187c6b230281576c95d46659609e2617974987085b406e8",
+      "sourceAsset": "ppt/media/image123.jpg",
+      "slideNos": [
+        18
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:39be014d-bd3b-5aea-8647-9a663ee543a6:ca0b4b54d708fc419187c6b230281576c95d46659609e2617974987085b406e8",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          18
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "556c5474-46fa-5581-bc94-319568e74fd6",
+      "title": "Prêmio Junino Melhores do Ano",
+      "year": "2022",
+      "activity": "Premiações",
+      "imagefile": "assets/pptx-v3-37c7a86824bb438ec951.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-37c7a86824bb438ec951.webp",
+      "width": 489,
+      "height": 461,
+      "bytes": 39484,
+      "sha256": "78cdc6d849939f7274edbd5e3401bf1274ba8c60c4ea9b78a4a88ddcab132328",
+      "sourceAssetOriginalHash": "37c7a86824bb438ec95139f28323155be0ba3f3413c208f3d642293b987bed2d",
+      "sourceAsset": "ppt/media/image149.png",
+      "slideNos": [
+        24
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:556c5474-46fa-5581-bc94-319568e74fd6:37c7a86824bb438ec95139f28323155be0ba3f3413c208f3d642293b987bed2d",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          24
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "86c4ebc0-0f52-5ca5-ad17-36e5a03d4df5",
+      "title": "Galinhada para o espetáculo",
+      "year": "2023",
+      "activity": "Ações sociais",
+      "imagefile": "assets/pptx-v3-5c0f1bef53e31b2472f3.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-5c0f1bef53e31b2472f3.webp",
+      "width": 507,
+      "height": 438,
+      "bytes": 20390,
+      "sha256": "f49220dab0e467d38419568a53727596f4ab9cd434b023f80e19c42797ebfa6b",
+      "sourceAssetOriginalHash": "5c0f1bef53e31b2472f3068a6c9a5ee3a9a8dd95d65c93777d1eb35ca4551b0e",
+      "sourceAsset": "ppt/media/image169.png",
+      "slideNos": [
+        28
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:86c4ebc0-0f52-5ca5-ad17-36e5a03d4df5:5c0f1bef53e31b2472f3068a6c9a5ee3a9a8dd95d65c93777d1eb35ca4551b0e",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          28
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "ea5e1a76-16cc-52a3-8de7-b541b9e46d6c",
+      "title": "Corrida solidária de 2023",
+      "year": "2023",
+      "activity": "Ações sociais",
+      "imagefile": "assets/pptx-v3-0a7dd516640ae8f7147f.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-0a7dd516640ae8f7147f.webp",
+      "width": 486,
+      "height": 499,
+      "bytes": 67230,
+      "sha256": "e812c9b6f717b2b29365eeb25d37a485436b475efa443df6a2e4bb34c7e8fa3b",
+      "sourceAssetOriginalHash": "0a7dd516640ae8f7147f7542b3f254621a517e16752e61cec6a2ca456fde260a",
+      "sourceAsset": "ppt/media/image168.png",
+      "slideNos": [
+        28
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:ea5e1a76-16cc-52a3-8de7-b541b9e46d6c:0a7dd516640ae8f7147f7542b3f254621a517e16752e61cec6a2ca456fde260a",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          28
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "39b54546-7f00-52fe-b7f4-58ab03c2200c",
+      "title": "Concurso Rainha da Diversidade",
+      "year": "2023",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-436c2b52d16bf59b8cb9.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-436c2b52d16bf59b8cb9.webp",
+      "width": 404,
+      "height": 321,
+      "bytes": 34806,
+      "sha256": "b64787ae697bae3279f54090a48f2618cb925d7a7f7c3b973358ba7dd975ede8",
+      "sourceAssetOriginalHash": "436c2b52d16bf59b8cb97660b663b9d8885aae8bdec2231dfe8352db9f737c51",
+      "sourceAsset": "ppt/media/image173.png",
+      "slideNos": [
+        29
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:39b54546-7f00-52fe-b7f4-58ab03c2200c:436c2b52d16bf59b8cb97660b663b9d8885aae8bdec2231dfe8352db9f737c51",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          29
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "d6e2c378-3171-5e60-980a-a9b4d8713925",
+      "title": "Circulação pela região sul",
+      "year": "2023",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-84d3ba84c266d8c5763d.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-84d3ba84c266d8c5763d.webp",
+      "width": 800,
+      "height": 359,
+      "bytes": 46646,
+      "sha256": "4131c80ff01a53e7398f5583db79d079ec145754eeac44ac6bba8bbdb6fe90e1",
+      "sourceAssetOriginalHash": "84d3ba84c266d8c5763d503f4819c5c80562086117dd44df6dff0c30e97dc4a9",
+      "sourceAsset": "ppt/media/image181.png",
+      "slideNos": [
+        31
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:d6e2c378-3171-5e60-980a-a9b4d8713925:84d3ba84c266d8c5763d503f4819c5c80562086117dd44df6dff0c30e97dc4a9",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          31
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "a444e2be-847f-57ba-b500-efb9b6bdf19d",
+      "title": "Croquis e figurinos de Os Olhos da Terra",
+      "year": "2023",
+      "activity": "Figurinos e criação",
+      "imagefile": "assets/pptx-v3-e8a68c948c7626d12086.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-e8a68c948c7626d12086.webp",
+      "width": 590,
+      "height": 800,
+      "bytes": 102924,
+      "sha256": "4158db65cc058c94cf58ea61d24736266c3f767d8cf66abe6f13f755e435ecbf",
+      "sourceAssetOriginalHash": "e8a68c948c7626d12086d08d072153a1e90e00e482833d2dc791de5c92998b07",
+      "sourceAsset": "ppt/media/image189.png",
+      "slideNos": [
+        33
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:a444e2be-847f-57ba-b500-efb9b6bdf19d:e8a68c948c7626d12086d08d072153a1e90e00e482833d2dc791de5c92998b07",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          33
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "bce9bdc5-56af-5f44-ab3b-7c61a7901166",
+      "title": "Reis, Noivos e Rainha de 2023",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-cefbbf47fe00ba4add1e.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-cefbbf47fe00ba4add1e.webp",
+      "width": 690,
+      "height": 460,
+      "bytes": 32690,
+      "sha256": "728df80d5cc7afe65d9c1d89cdd69c5f52c199e6cff88fccdf72c558ad19bdd2",
+      "sourceAssetOriginalHash": "cefbbf47fe00ba4add1ed57e92a6e4dde44d1f9b94eae2df256de2f90de9efd8",
+      "sourceAsset": "ppt/media/image194.png",
+      "slideNos": [
+        34
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:bce9bdc5-56af-5f44-ab3b-7c61a7901166:cefbbf47fe00ba4add1ed57e92a6e4dde44d1f9b94eae2df256de2f90de9efd8",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          34
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "8728d399-8401-5738-a105-04196b213a25",
+      "title": "Cangaço, Pajé e Rainha da Diversidade",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-c35a8726ef374bcfa0ca.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-c35a8726ef374bcfa0ca.webp",
+      "width": 654,
+      "height": 779,
+      "bytes": 58006,
+      "sha256": "316bc55d78bc4ae3618e5fd1394fc0ab2caaa9b3db26eb972a11fae29bba0f2c",
+      "sourceAssetOriginalHash": "c35a8726ef374bcfa0ca20110aa2fd3b1375d56368015f32d45d9b305086dac4",
+      "sourceAsset": "ppt/media/image201.png",
+      "slideNos": [
+        35
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:8728d399-8401-5738-a105-04196b213a25:c35a8726ef374bcfa0ca20110aa2fd3b1375d56368015f32d45d9b305086dac4",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          35
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "7efa4ca2-68aa-5246-ac46-6dabbbeda4ea",
+      "title": "Curumim, Puxador e conjunto indígena",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-8612f5b5e920088749c6.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-8612f5b5e920088749c6.webp",
+      "width": 487,
+      "height": 800,
+      "bytes": 37450,
+      "sha256": "3f20942388ddc79a4d8ff2a5776d2a89ceb6bdf036ca8e29baccb7cd5d18e9a3",
+      "sourceAssetOriginalHash": "8612f5b5e920088749c6000db34d348a36ba56cf50267ab2d25af20b9073ac3f",
+      "sourceAsset": "ppt/media/image208.png",
+      "slideNos": [
+        36
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:7efa4ca2-68aa-5246-ac46-6dabbbeda4ea:8612f5b5e920088749c6000db34d348a36ba56cf50267ab2d25af20b9073ac3f",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          36
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": true
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "4628a157-1320-5c1a-a785-1a844da75be5",
+      "title": "Representantes da região sul no estadual",
+      "year": "2023",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-21a873c74b26b121c36d.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-21a873c74b26b121c36d.webp",
+      "width": 545,
+      "height": 782,
+      "bytes": 56506,
+      "sha256": "01bc57a07412a783258eaba48f18909b2f1dd2a36e7b1bd1c101de70cea4661a",
+      "sourceAssetOriginalHash": "21a873c74b26b121c36d23285132804311a2b3f89e1a74d5c8b33304109d252c",
+      "sourceAsset": "ppt/media/image215.png",
+      "slideNos": [
+        37
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:4628a157-1320-5c1a-a785-1a844da75be5:21a873c74b26b121c36d23285132804311a2b3f89e1a74d5c8b33304109d252c",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          37
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "957bc0ab-b6a4-5e96-9609-a2a6423a32df",
+      "title": "Conferência Municipal de Cultura e palestra na UnirG",
+      "year": "2023",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-6b86c3ef41e1a1f5b4ce.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-6b86c3ef41e1a1f5b4ce.webp",
+      "width": 751,
+      "height": 563,
+      "bytes": 121188,
+      "sha256": "6716e2eefa87a22a1ffe7fc78f048a68b029c52643ad5aa1a4272b387bae2eab",
+      "sourceAssetOriginalHash": "6b86c3ef41e1a1f5b4ce97a729cb5f25299b588427a6c4c199edc0a4f24abe4c",
+      "sourceAsset": "ppt/media/image217.jpeg",
+      "slideNos": [
+        38
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:957bc0ab-b6a4-5e96-9609-a2a6423a32df:6b86c3ef41e1a1f5b4ce97a729cb5f25299b588427a6c4c199edc0a4f24abe4c",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          38
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "7c02b01e-ac54-566a-bc6d-99f150a34069",
+      "title": "Videoclipes Seu Moço e Ao redor do Céu",
+      "year": "2024",
+      "activity": "Audiovisual e música",
+      "imagefile": "assets/pptx-v3-984a5da5739fb1ba8011.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-984a5da5739fb1ba8011.webp",
+      "width": 292,
+      "height": 289,
+      "bytes": 7280,
+      "sha256": "edd842ab4cf3f84a9118d5cedda13317629cd1773bcd73c5017d59f9d5aac3dc",
+      "sourceAssetOriginalHash": "984a5da5739fb1ba801117683db4cdf0d71db80486932ce29e60c59f03aafcd0",
+      "sourceAsset": "ppt/media/image258.png",
+      "slideNos": [
+        47
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:7c02b01e-ac54-566a-bc6d-99f150a34069:984a5da5739fb1ba801117683db4cdf0d71db80486932ce29e60c59f03aafcd0",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          47
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "69270cf8-5e19-5da3-865d-365075d73802",
+      "title": "Segundo Concurso Rainha da Diversidade",
+      "year": "2024",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-96baf9e7bd127a716e2c.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-96baf9e7bd127a716e2c.webp",
+      "width": 752,
+      "height": 708,
+      "bytes": 47130,
+      "sha256": "5358b3edfd72e8386759dbeec3afc670022ce970689b6565feaacc3de158e633",
+      "sourceAssetOriginalHash": "96baf9e7bd127a716e2cb034c3b875230a4d6dbc876c15955133259e8b084d87",
+      "sourceAsset": "ppt/media/image256.png",
+      "slideNos": [
+        46
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:69270cf8-5e19-5da3-865d-365075d73802:96baf9e7bd127a716e2cb034c3b875230a4d6dbc876c15955133259e8b084d87",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          46
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "b915193f-a06f-5964-a0ea-7b0454a8de9d",
+      "title": "Corrida solidária de 2024",
+      "year": "2024",
+      "activity": "Ações sociais",
+      "imagefile": "assets/pptx-v3-b1707298afd82c9266fc.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-b1707298afd82c9266fc.webp",
+      "width": 570,
+      "height": 583,
+      "bytes": 43114,
+      "sha256": "d7a32a4f6bda15822481ba2ac65756ee818b0a6f826888b564c2dc03211e1343",
+      "sourceAssetOriginalHash": "b1707298afd82c9266fc33c432cf1f61d93d223031d220be219781f45f9b61e3",
+      "sourceAsset": "ppt/media/image254.png",
+      "slideNos": [
+        46
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:b915193f-a06f-5964-a0ea-7b0454a8de9d:b1707298afd82c9266fc33c432cf1f61d93d223031d220be219781f45f9b61e3",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          46
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "842202b7-2435-518f-be2e-9cd4e17320b4",
+      "title": "Cursos de artesanato, damas e bordado",
+      "year": "2024",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-59c1239c21282a159dd1.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-59c1239c21282a159dd1.webp",
+      "width": 266,
+      "height": 316,
+      "bytes": 14970,
+      "sha256": "daa9c62d716a77e135d2e28d02a3a7a715d5557dcd8314d30b0694641726ab55",
+      "sourceAssetOriginalHash": "59c1239c21282a159dd1985f7166d32e8d7657e99df885f8651085517bb0a219",
+      "sourceAsset": "ppt/media/image260.png",
+      "slideNos": [
+        47
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:842202b7-2435-518f-be2e-9cd4e17320b4:59c1239c21282a159dd1985f7166d32e8d7657e99df885f8651085517bb0a219",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          47
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "d5c54941-1f88-5d8b-bb5e-2f6760960c18",
+      "title": "Croquis e figurinos de O Purgatório",
+      "year": "2024",
+      "activity": "Figurinos e criação",
+      "imagefile": "assets/pptx-v3-0dfc999a930574c854ff.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-0dfc999a930574c854ff.webp",
+      "width": 793,
+      "height": 798,
+      "bytes": 49820,
+      "sha256": "421495a9d9e61df54a021a2fdd288199a2fb303b691f386dea0dd477cd10461a",
+      "sourceAssetOriginalHash": "0dfc999a930574c854ff7bb4ae853b6aee3b814a5b5456b3bdb59b0b62abc890",
+      "sourceAsset": "ppt/media/image274.png",
+      "slideNos": [
+        51
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:d5c54941-1f88-5d8b-bb5e-2f6760960c18:0dfc999a930574c854ff7bb4ae853b6aee3b814a5b5456b3bdb59b0b62abc890",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          51
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "33d742cb-26a7-54f2-84c7-89fa09847f18",
+      "title": "Reis, Noivos e Rainha de O Purgatório",
+      "year": "2024",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-52fdf26ec1bfab5041e9.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-52fdf26ec1bfab5041e9.webp",
+      "width": 446,
+      "height": 431,
+      "bytes": 52374,
+      "sha256": "18f1bc6794ee3bab4ee745837f7dd4735c3a2cc21e185d65111611a7187a1508",
+      "sourceAssetOriginalHash": "52fdf26ec1bfab5041e97736938c74a3a9145c4e929e5f26be03f292299b6acb",
+      "sourceAsset": "ppt/media/image291.png",
+      "slideNos": [
+        54
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:33d742cb-26a7-54f2-84c7-89fa09847f18:52fdf26ec1bfab5041e97736938c74a3a9145c4e929e5f26be03f292299b6acb",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          54
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "94ed0e52-2bba-5ee9-af96-479ff3e339df",
+      "title": "Terceira corrida solidária",
+      "year": "2025",
+      "activity": "Ações sociais",
+      "imagefile": "assets/pptx-v3-2c0747036889dc812f71.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-2c0747036889dc812f71.webp",
+      "width": 600,
+      "height": 800,
+      "bytes": 39108,
+      "sha256": "11d2121ba5abab3490e021bfd5f5431972b9515cdfd19eabba6f5ff4f58bdaa3",
+      "sourceAssetOriginalHash": "2c0747036889dc812f715b2b37cfb8da905422546b5288ddbf766a6ea4cda450",
+      "sourceAsset": "ppt/media/image357.jpeg",
+      "slideNos": [
+        71
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:94ed0e52-2bba-5ee9-af96-479ff3e339df:2c0747036889dc812f715b2b37cfb8da905422546b5288ddbf766a6ea4cda450",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          71
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "2b654591-7903-55a6-b37b-424bd536a3d1",
+      "title": "Criação de portfólios culturais",
+      "year": "2025",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-c53ab3c5bacc94b4d9e6.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-c53ab3c5bacc94b4d9e6.webp",
+      "width": 555,
+      "height": 739,
+      "bytes": 50660,
+      "sha256": "1abe1710990809942f105e21dea3f7806398caa62a2c10481875dd947a2e27ee",
+      "sourceAssetOriginalHash": "c53ab3c5bacc94b4d9e6ca087505f2c90c7ebfbf4a5db1faaa9a237f9ffcdf38",
+      "sourceAsset": "ppt/media/image362.jpeg",
+      "slideNos": [
+        72
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:2b654591-7903-55a6-b37b-424bd536a3d1:c53ab3c5bacc94b4d9e6ca087505f2c90c7ebfbf4a5db1faaa9a237f9ffcdf38",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          72
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "e5b2b2c1-49e9-51b8-a01f-870f8777b46e",
+      "title": "Circulação cultural de 2025",
+      "year": "2025",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-7e09a00fb66c6ae82795.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-7e09a00fb66c6ae82795.webp",
+      "width": 369,
+      "height": 800,
+      "bytes": 18018,
+      "sha256": "520c299a1ed5801ff8195c312275ea54c1f271c5cdd8e815e6080d946c83c02c",
+      "sourceAssetOriginalHash": "7e09a00fb66c6ae827950f5041dbcbcb47044a0bad81aba2f76546a8c48d43fe",
+      "sourceAsset": "ppt/media/image372.jpeg",
+      "slideNos": [
+        75
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:e5b2b2c1-49e9-51b8-a01f-870f8777b46e:7e09a00fb66c6ae827950f5041dbcbcb47044a0bad81aba2f76546a8c48d43fe",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          75
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "fba92299-0931-5bc2-a8ca-08c1f7560816",
+      "title": "Noivos — Vale Ouro e Rainha — Mãe do Ouro",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-b6a40b1843d50f792d9d.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-b6a40b1843d50f792d9d.webp",
+      "width": 358,
+      "height": 475,
+      "bytes": 43120,
+      "sha256": "72aed493d6c2f9b8b181c3887780ccd9b78ef4465c185ce70b8ab4c581541e6b",
+      "sourceAssetOriginalHash": "b6a40b1843d50f792d9d0ba022e63e70a144ceb99d0de5ca225b145cc2963407",
+      "sourceAsset": "ppt/media/image394.jpeg",
+      "slideNos": [
+        79
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:fba92299-0931-5bc2-a8ca-08c1f7560816:b6a40b1843d50f792d9d0ba022e63e70a144ceb99d0de5ca225b145cc2963407",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          79
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "55e8fa31-12d0-5ca3-8ef4-163cca27abf7",
+      "title": "Casal de Reis — Mãe do Ouro",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-76495c2665f432428192.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-76495c2665f432428192.webp",
+      "width": 800,
+      "height": 617,
+      "bytes": 53594,
+      "sha256": "37d95f4acb06f9de1d05e6a46dac1cf7f82ac3f208d5b2a6af908c08cb183d86",
+      "sourceAssetOriginalHash": "76495c2665f43242819247e6bb65ddbdefbc64edd8f45c196490e23d6c4af031",
+      "sourceAsset": "ppt/media/image399.jpeg",
+      "slideNos": [
+        79
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:55e8fa31-12d0-5ca3-8ef4-163cca27abf7:76495c2665f43242819247e6bb65ddbdefbc64edd8f45c196490e23d6c4af031",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Rascunho",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          79
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "6fc3a975-a17e-50ac-acf0-6fb5883598ba",
+      "title": "Cangaço e Afrodite",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-43d8152d846003e8a36f.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-43d8152d846003e8a36f.webp",
+      "width": 640,
+      "height": 800,
+      "bytes": 40048,
+      "sha256": "8b5bd684176cd1fca085b7b2415307d461cc0bb2c58e351f765b60f14de8d698",
+      "sourceAssetOriginalHash": "43d8152d846003e8a36f535d3d1d2765448c6e8133d9faa8c8e3949b0569f498",
+      "sourceAsset": "ppt/media/image401.webp",
+      "slideNos": [
+        80
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:6fc3a975-a17e-50ac-acf0-6fb5883598ba:43d8152d846003e8a36f535d3d1d2765448c6e8133d9faa8c8e3949b0569f498",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          80
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "17d8b658-3004-5b3a-9ab5-7783786fe2b0",
+      "title": "Rainha Mirim e Marcador de 2025",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-c48a92a8f6eb6332fedb.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-c48a92a8f6eb6332fedb.webp",
+      "width": 800,
+      "height": 533,
+      "bytes": 53618,
+      "sha256": "64f816e0a890566413e3d2538b4a53930d181eac51f984a09dbc4d6ae5c029fa",
+      "sourceAssetOriginalHash": "c48a92a8f6eb6332fedba6574212210f9f03377557f79b1e51f4d420487d8dd3",
+      "sourceAsset": "ppt/media/image407.jpeg",
+      "slideNos": [
+        81
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:17d8b658-3004-5b3a-9ab5-7783786fe2b0:c48a92a8f6eb6332fedba6574212210f9f03377557f79b1e51f4d420487d8dd3",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          81
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "346c64c5-ec62-5958-b57c-4fd24d7f0b50",
+      "title": "Play na Dança — Bloco Bora",
+      "year": "2025",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-0324e1bbab490d8c9e8b.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-0324e1bbab490d8c9e8b.webp",
+      "width": 547,
+      "height": 360,
+      "bytes": 34764,
+      "sha256": "744af63c6917f8ae45bfd5a91fb89e2914ee4101291d0e6dad6c3930b29329be",
+      "sourceAssetOriginalHash": "0324e1bbab490d8c9e8b752b51924b9fa30611a99f7a22ca7b103312ab546cc2",
+      "sourceAsset": "ppt/media/image79.png",
+      "slideNos": [
+        9
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:346c64c5-ec62-5958-b57c-4fd24d7f0b50:0324e1bbab490d8c9e8b752b51924b9fa30611a99f7a22ca7b103312ab546cc2",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          9
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "312aeb87-7cfb-5284-a0ed-f2faeb64ea31",
+      "title": "Play na Dança — Bloco Carrasca",
+      "year": "2026",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-6eab4ccf9e0bfe4212fc.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-6eab4ccf9e0bfe4212fc.webp",
+      "width": 800,
+      "height": 326,
+      "bytes": 39584,
+      "sha256": "ecceed13f3f4dc4fe1c9f0d350c8d6ece1171a66a0981ccdeb4dfc9ed27a8f92",
+      "sourceAssetOriginalHash": "6eab4ccf9e0bfe4212fcde4ee86fbd10fa8665b1d499b8d4c50f4bd3db2bf42d",
+      "sourceAsset": "ppt/media/image77.png",
+      "slideNos": [
+        9
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:312aeb87-7cfb-5284-a0ed-f2faeb64ea31:6eab4ccf9e0bfe4212fcde4ee86fbd10fa8665b1d499b8d4c50f4bd3db2bf42d",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          9
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "494061b4-e905-5786-99e7-27429b6531ba",
+      "title": "Império em Movimento: Cultura que Move Gerações",
+      "year": "2026",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-ab45497ceeb0f972d895.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-ab45497ceeb0f972d895.webp",
+      "width": 470,
+      "height": 541,
+      "bytes": 71770,
+      "sha256": "78bd0d936aab892c35f2e5072331654c82ab450372c259bbb84a8e938638d1c2",
+      "sourceAssetOriginalHash": "ab45497ceeb0f972d895bca48fc828ff93972482c552c082fba268ad28ba816c",
+      "sourceAsset": "ppt/media/image87.png",
+      "slideNos": [
+        11
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:494061b4-e905-5786-99e7-27429b6531ba:ab45497ceeb0f972d895bca48fc828ff93972482c552c082fba268ad28ba816c",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Rascunho",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          11
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": true
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "e60a6e09-e600-513a-af52-5b848cab4f29",
+      "title": "Casal de Reis e Casal de Noivos",
+      "year": "2020",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-66540b07234b40d1fb98.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-66540b07234b40d1fb98.webp",
+      "width": 452,
+      "height": 302,
+      "bytes": 11170,
+      "sha256": "b1285d0718b08f978e0044f486753b0252ab391e4e5bf1287b229637f058fac4",
+      "sourceAssetOriginalHash": "66540b07234b40d1fb985b1e792e56a5d055b9209ec27fd99e4f46d692a46da9",
+      "sourceAsset": "ppt/media/image97.jpeg",
+      "slideNos": [
+        13
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:e60a6e09-e600-513a-af52-5b848cab4f29:66540b07234b40d1fb985b1e792e56a5d055b9209ec27fd99e4f46d692a46da9",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          13
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "882a6056-7e89-5439-bdd6-412b1d706d88",
+      "title": "Cangaço e homenagem a Elza Soares",
+      "year": "2022",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-9d0eef73d6d38540034f.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-9d0eef73d6d38540034f.webp",
+      "width": 426,
+      "height": 576,
+      "bytes": 18712,
+      "sha256": "e6791c6ee26e1c51ab438225982dbf976f266f9a64b45d3564e8b35ddc52f655",
+      "sourceAssetOriginalHash": "9d0eef73d6d38540034f191232a7c551cbc169c128073a28238535b74f65fa10",
+      "sourceAsset": "ppt/media/image140.png",
+      "slideNos": [
+        21
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:882a6056-7e89-5439-bdd6-412b1d706d88:9d0eef73d6d38540034f191232a7c551cbc169c128073a28238535b74f65fa10",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          21
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "556c5474-46fa-5581-bc94-319568e74fd6",
+      "title": "Prêmio Junino Melhores do Ano",
+      "year": "2022",
+      "activity": "Premiações",
+      "imagefile": "assets/pptx-v3-3b3bcd7a7615ebb17af8.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-3b3bcd7a7615ebb17af8.webp",
+      "width": 468,
+      "height": 623,
+      "bytes": 31264,
+      "sha256": "3c3b28e2d1954241dc237e07d7931b36fdeb9f40ede2110cdfb7307343fb0c84",
+      "sourceAssetOriginalHash": "3b3bcd7a7615ebb17af8791723eb9cef7195c2b4ee89b4fdf12085530a10db57",
+      "sourceAsset": "ppt/media/image152.png",
+      "slideNos": [
+        24
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:556c5474-46fa-5581-bc94-319568e74fd6:3b3bcd7a7615ebb17af8791723eb9cef7195c2b4ee89b4fdf12085530a10db57",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          24
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "86c4ebc0-0f52-5ca5-ad17-36e5a03d4df5",
+      "title": "Galinhada para o espetáculo",
+      "year": "2023",
+      "activity": "Ações sociais",
+      "imagefile": "assets/pptx-v3-bcc42b34c92eb54ae50b.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-bcc42b34c92eb54ae50b.webp",
+      "width": 667,
+      "height": 767,
+      "bytes": 36052,
+      "sha256": "bba20cb4af5fc44d0daa648367080d18d17b74a42aa877abc627e9229e9f7d12",
+      "sourceAssetOriginalHash": "bcc42b34c92eb54ae50bb5cd5bd76c8cee3d5046f83d3890f82d8fb11f8fa504",
+      "sourceAsset": "ppt/media/image170.jpeg",
+      "slideNos": [
+        28
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:86c4ebc0-0f52-5ca5-ad17-36e5a03d4df5:bcc42b34c92eb54ae50bb5cd5bd76c8cee3d5046f83d3890f82d8fb11f8fa504",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          28
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": true
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "a444e2be-847f-57ba-b500-efb9b6bdf19d",
+      "title": "Croquis e figurinos de Os Olhos da Terra",
+      "year": "2023",
+      "activity": "Figurinos e criação",
+      "imagefile": "assets/pptx-v3-d41aa902dac6a9f0ed1f.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-d41aa902dac6a9f0ed1f.webp",
+      "width": 366,
+      "height": 770,
+      "bytes": 54272,
+      "sha256": "388d60e9d8012907e75b522249a7cac3a368fdbda836566ae72b2966c8934bf3",
+      "sourceAssetOriginalHash": "d41aa902dac6a9f0ed1fbb9b195f2fc5ff0aa875d7ec78f0cf0b30fe31aa6757",
+      "sourceAsset": "ppt/media/image190.png",
+      "slideNos": [
+        33
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:a444e2be-847f-57ba-b500-efb9b6bdf19d:d41aa902dac6a9f0ed1fbb9b195f2fc5ff0aa875d7ec78f0cf0b30fe31aa6757",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          33
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "bce9bdc5-56af-5f44-ab3b-7c61a7901166",
+      "title": "Reis, Noivos e Rainha de 2023",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-dbe5afbb754e126469c9.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-dbe5afbb754e126469c9.webp",
+      "width": 737,
+      "height": 491,
+      "bytes": 60994,
+      "sha256": "7d2a389a69f48b3cb349302b9d68799a31b48a9b4b9576a0674f8a33c5b357d3",
+      "sourceAssetOriginalHash": "dbe5afbb754e126469c9bc9ad11ef5893eb48a2355438ed6b67fcab67331f00f",
+      "sourceAsset": "ppt/media/image195.jpeg",
+      "slideNos": [
+        34
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:bce9bdc5-56af-5f44-ab3b-7c61a7901166:dbe5afbb754e126469c9bc9ad11ef5893eb48a2355438ed6b67fcab67331f00f",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          34
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "8728d399-8401-5738-a105-04196b213a25",
+      "title": "Cangaço, Pajé e Rainha da Diversidade",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-aa57d0a56d832f523f5e.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-aa57d0a56d832f523f5e.webp",
+      "width": 262,
+      "height": 311,
+      "bytes": 15442,
+      "sha256": "e21dcb24cb9047ac155c930d08b30782acd2667f88d6a0657e732326b47f8ec7",
+      "sourceAssetOriginalHash": "aa57d0a56d832f523f5eca9d4ed524ee713773053cc874e0510a8fabd98fd221",
+      "sourceAsset": "ppt/media/image204.png",
+      "slideNos": [
+        35
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:8728d399-8401-5738-a105-04196b213a25:aa57d0a56d832f523f5eca9d4ed524ee713773053cc874e0510a8fabd98fd221",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          35
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "7efa4ca2-68aa-5246-ac46-6dabbbeda4ea",
+      "title": "Curumim, Puxador e conjunto indígena",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-e7588b49967645baa257.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-e7588b49967645baa257.webp",
+      "width": 241,
+      "height": 363,
+      "bytes": 13658,
+      "sha256": "820a21a58312df7acd187b7c8ecd948e5eb01bd543cf7a003c11970667ee51df",
+      "sourceAssetOriginalHash": "e7588b49967645baa25723356e1e02d8797cf6322ab6f07d7722df7ec5db9dfc",
+      "sourceAsset": "ppt/media/image209.png",
+      "slideNos": [
+        36
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:7efa4ca2-68aa-5246-ac46-6dabbbeda4ea:e7588b49967645baa25723356e1e02d8797cf6322ab6f07d7722df7ec5db9dfc",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          36
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": true
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "957bc0ab-b6a4-5e96-9609-a2a6423a32df",
+      "title": "Conferência Municipal de Cultura e palestra na UnirG",
+      "year": "2023",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-439c0d24bc204a1e6481.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-439c0d24bc204a1e6481.webp",
+      "width": 800,
+      "height": 598,
+      "bytes": 64424,
+      "sha256": "a80437b1edfe7984d75c1b2d83fea4a25557f80f159174a1f85463ecfb5fb966",
+      "sourceAssetOriginalHash": "439c0d24bc204a1e6481a800d2e0f3ba10b0de0dea87e9a573b57ca43a9d6c45",
+      "sourceAsset": "ppt/media/image218.png",
+      "slideNos": [
+        38
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:957bc0ab-b6a4-5e96-9609-a2a6423a32df:439c0d24bc204a1e6481a800d2e0f3ba10b0de0dea87e9a573b57ca43a9d6c45",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          38
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "842202b7-2435-518f-be2e-9cd4e17320b4",
+      "title": "Cursos de artesanato, damas e bordado",
+      "year": "2024",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-3e7a423611ba8afcf619.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-3e7a423611ba8afcf619.webp",
+      "width": 336,
+      "height": 485,
+      "bytes": 41284,
+      "sha256": "50d04f906cd56991bcb2356b49fec748ec91bb010559bb2c6a4c40d50e26bca5",
+      "sourceAssetOriginalHash": "3e7a423611ba8afcf619ed75ea7269927d8bd9332b48d611dd10a328c2265516",
+      "sourceAsset": "ppt/media/image307.png",
+      "slideNos": [
+        58
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:842202b7-2435-518f-be2e-9cd4e17320b4:3e7a423611ba8afcf619ed75ea7269927d8bd9332b48d611dd10a328c2265516",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          58
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "46c517ec-7d43-5e36-9ae0-a27db88e9173",
+      "title": "Circulação cultural de 2024",
+      "year": "2024",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-675e97990e1fe419c3d9.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-675e97990e1fe419c3d9.webp",
+      "width": 800,
+      "height": 443,
+      "bytes": 30524,
+      "sha256": "41cad7f6b9b3d83edb35d7506056e44c2e4a2603f9866b2037c091bf8cbc446c",
+      "sourceAssetOriginalHash": "675e97990e1fe419c3d9096ba3782b92c5bcaa416f2e5346efef27a982943386",
+      "sourceAsset": "ppt/media/image267.jpeg",
+      "slideNos": [
+        50
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:46c517ec-7d43-5e36-9ae0-a27db88e9173:675e97990e1fe419c3d9096ba3782b92c5bcaa416f2e5346efef27a982943386",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          50
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "d5c54941-1f88-5d8b-bb5e-2f6760960c18",
+      "title": "Croquis e figurinos de O Purgatório",
+      "year": "2024",
+      "activity": "Figurinos e criação",
+      "imagefile": "assets/pptx-v3-54fcbbb4c7b295085b29.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-54fcbbb4c7b295085b29.webp",
+      "width": 631,
+      "height": 798,
+      "bytes": 66480,
+      "sha256": "a1d3a71d821c122c35475d1177d4414a8787723f64a33396433ae5982c7778c6",
+      "sourceAssetOriginalHash": "54fcbbb4c7b295085b294ff6c5b8b30b51fc16c13aeac97bbb0697211aa8de3a",
+      "sourceAsset": "ppt/media/image275.png",
+      "slideNos": [
+        51
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:d5c54941-1f88-5d8b-bb5e-2f6760960c18:54fcbbb4c7b295085b294ff6c5b8b30b51fc16c13aeac97bbb0697211aa8de3a",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          51
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "cfb658cb-baeb-5afc-bfff-cd8ee95af907",
+      "title": "Representantes no Estadual FEQUAJUTO",
+      "year": "2024",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-db92b0223e04600d420c.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-db92b0223e04600d420c.webp",
+      "width": 332,
+      "height": 422,
+      "bytes": 28958,
+      "sha256": "51c48fe16f59696e22870c7d94dafb015803a04efddb7620ebc6d5545518ecbb",
+      "sourceAssetOriginalHash": "db92b0223e04600d420c16947619fe6a9cc8e2fc2fcc1060f347813cc295e625",
+      "sourceAsset": "ppt/media/image304.png",
+      "slideNos": [
+        57
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:cfb658cb-baeb-5afc-bfff-cd8ee95af907:db92b0223e04600d420c16947619fe6a9cc8e2fc2fcc1060f347813cc295e625",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          57
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "94ed0e52-2bba-5ee9-af96-479ff3e339df",
+      "title": "Terceira corrida solidária",
+      "year": "2025",
+      "activity": "Ações sociais",
+      "imagefile": "assets/pptx-v3-15b6d7dc5c4a9b6a38df.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-15b6d7dc5c4a9b6a38df.webp",
+      "width": 493,
+      "height": 739,
+      "bytes": 28686,
+      "sha256": "49219294f950c992049ff8d278a378f24bb17a2ff93a0b372566a19b5f6fd41e",
+      "sourceAssetOriginalHash": "15b6d7dc5c4a9b6a38dffa1b353128c994d4652838f213c45b7d21b4ddb26f20",
+      "sourceAsset": "ppt/media/image359.jpeg",
+      "slideNos": [
+        71
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:94ed0e52-2bba-5ee9-af96-479ff3e339df:15b6d7dc5c4a9b6a38dffa1b353128c994d4652838f213c45b7d21b4ddb26f20",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          71
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "2b654591-7903-55a6-b37b-424bd536a3d1",
+      "title": "Criação de portfólios culturais",
+      "year": "2025",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-f250dc55fb732bf966c8.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-f250dc55fb732bf966c8.webp",
+      "width": 587,
+      "height": 782,
+      "bytes": 39064,
+      "sha256": "44339abe971b740404101e94ad82e73d089f79e02e0521d1428a694067ab04ee",
+      "sourceAssetOriginalHash": "f250dc55fb732bf966c81aae69c08569378fb8ae0f67872d6efeeed910c690dd",
+      "sourceAsset": "ppt/media/image363.jpeg",
+      "slideNos": [
+        72
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:2b654591-7903-55a6-b37b-424bd536a3d1:f250dc55fb732bf966c81aae69c08569378fb8ae0f67872d6efeeed910c690dd",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          72
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "2fb5d03f-a898-5aa0-bfad-315878ca4cbe",
+      "title": "Croquis e figurinos da temporada 2025",
+      "year": "2025",
+      "activity": "Figurinos e criação",
+      "imagefile": "assets/pptx-v3-5f9f5b8731e48778cac2.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-5f9f5b8731e48778cac2.webp",
+      "width": 603,
+      "height": 793,
+      "bytes": 61394,
+      "sha256": "e257cf0f193852b67ee20ce98ca1023410971122b29f0875234e63c1f67b3eaa",
+      "sourceAssetOriginalHash": "5f9f5b8731e48778cac204a7e7070d9afe4f9757ffcb6c557ac527d6d9c77c83",
+      "sourceAsset": "ppt/media/image383.png",
+      "slideNos": [
+        77
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:2fb5d03f-a898-5aa0-bfad-315878ca4cbe:5f9f5b8731e48778cac204a7e7070d9afe4f9757ffcb6c557ac527d6d9c77c83",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          77
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "fba92299-0931-5bc2-a8ca-08c1f7560816",
+      "title": "Noivos — Vale Ouro e Rainha — Mãe do Ouro",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-4fa0cb1fc82eb37712a4.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-4fa0cb1fc82eb37712a4.webp",
+      "width": 563,
+      "height": 632,
+      "bytes": 20146,
+      "sha256": "9ce4757bfb038fd6ce61de95fa7642ad69af52a1173526e93cd660752a279dec",
+      "sourceAssetOriginalHash": "4fa0cb1fc82eb37712a40841fb79527cf7af3f19d80f704cd4eb3227a0404eb0",
+      "sourceAsset": "ppt/media/image395.png",
+      "slideNos": [
+        79
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:fba92299-0931-5bc2-a8ca-08c1f7560816:4fa0cb1fc82eb37712a40841fb79527cf7af3f19d80f704cd4eb3227a0404eb0",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          79
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "6fc3a975-a17e-50ac-acf0-6fb5883598ba",
+      "title": "Cangaço e Afrodite",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-8934c99dd7d0c70621b0.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-8934c99dd7d0c70621b0.webp",
+      "width": 800,
+      "height": 533,
+      "bytes": 61642,
+      "sha256": "5dc1486a9f01d98948a99fa3c740fc82088215c8e6fee8f377686a3b9d73d03b",
+      "sourceAssetOriginalHash": "8934c99dd7d0c70621b07de53c17fd0b55e6fab10c9b922046e2bfe9f106932d",
+      "sourceAsset": "ppt/media/image402.jpeg",
+      "slideNos": [
+        80
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:6fc3a975-a17e-50ac-acf0-6fb5883598ba:8934c99dd7d0c70621b07de53c17fd0b55e6fab10c9b922046e2bfe9f106932d",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          80
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "17d8b658-3004-5b3a-9ab5-7783786fe2b0",
+      "title": "Rainha Mirim e Marcador de 2025",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-72d22881b49dd616c868.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-72d22881b49dd616c868.webp",
+      "width": 800,
+      "height": 533,
+      "bytes": 23406,
+      "sha256": "d4556d89c1107af76e3eda297f79cd0c53430bf9c40cb852ccd35d02cc05a72a",
+      "sourceAssetOriginalHash": "72d22881b49dd616c868dd37f140c623dd7efc0de6d59271e410650209afbad4",
+      "sourceAsset": "ppt/media/image408.jpeg",
+      "slideNos": [
+        81
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:17d8b658-3004-5b3a-9ab5-7783786fe2b0:72d22881b49dd616c868dd37f140c623dd7efc0de6d59271e410650209afbad4",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          81
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "e60a6e09-e600-513a-af52-5b848cab4f29",
+      "title": "Casal de Reis e Casal de Noivos",
+      "year": "2020",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-864cce6d466fe256d4aa.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-864cce6d466fe256d4aa.webp",
+      "width": 453,
+      "height": 302,
+      "bytes": 15030,
+      "sha256": "1a74eeafd4ce7eec42852fd4da1aa1c5ff2d44e15f2cba2645206c34f89066ff",
+      "sourceAssetOriginalHash": "864cce6d466fe256d4aa66153f2be2bf6ba8d5d86931b5cc0b7b8831de812cd4",
+      "sourceAsset": "ppt/media/image99.jpeg",
+      "slideNos": [
+        13
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:e60a6e09-e600-513a-af52-5b848cab4f29:864cce6d466fe256d4aa66153f2be2bf6ba8d5d86931b5cc0b7b8831de812cd4",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          13
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "a444e2be-847f-57ba-b500-efb9b6bdf19d",
+      "title": "Croquis e figurinos de Os Olhos da Terra",
+      "year": "2023",
+      "activity": "Figurinos e criação",
+      "imagefile": "assets/pptx-v3-f9c9413d8e773268c5a0.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-f9c9413d8e773268c5a0.webp",
+      "width": 411,
+      "height": 669,
+      "bytes": 48896,
+      "sha256": "c65aa45d643369729d7067c8cc8be6d1a365072f5657d434ea574058aa49bddf",
+      "sourceAssetOriginalHash": "f9c9413d8e773268c5a0a5e8a49edf2b7fec63d6e36c41ebd28e47657732b52d",
+      "sourceAsset": "ppt/media/image191.png",
+      "slideNos": [
+        33
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:a444e2be-847f-57ba-b500-efb9b6bdf19d:f9c9413d8e773268c5a0a5e8a49edf2b7fec63d6e36c41ebd28e47657732b52d",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          33
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "bce9bdc5-56af-5f44-ab3b-7c61a7901166",
+      "title": "Reis, Noivos e Rainha de 2023",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-f6277ea75bc518b08115.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-f6277ea75bc518b08115.webp",
+      "width": 611,
+      "height": 800,
+      "bytes": 35026,
+      "sha256": "d781a95b8e472fc5eac96dabbac01d1aac0f7b332e3cc553da53bc74f7efbead",
+      "sourceAssetOriginalHash": "f6277ea75bc518b0811549c8b5fca9f401245c2f5d9a8b1150538451d4875ef9",
+      "sourceAsset": "ppt/media/image196.png",
+      "slideNos": [
+        34
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:bce9bdc5-56af-5f44-ab3b-7c61a7901166:f6277ea75bc518b0811549c8b5fca9f401245c2f5d9a8b1150538451d4875ef9",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          34
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "8728d399-8401-5738-a105-04196b213a25",
+      "title": "Cangaço, Pajé e Rainha da Diversidade",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-b869c5d9711a5da0d517.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-b869c5d9711a5da0d517.webp",
+      "width": 398,
+      "height": 551,
+      "bytes": 37722,
+      "sha256": "901d7fc5f163aa4370def3b1405a430576d8bb99813cd7801c4d3d8c08e89860",
+      "sourceAssetOriginalHash": "b869c5d9711a5da0d51717f5f0e59ca0087877bd3055c06406df819cfe75e435",
+      "sourceAsset": "ppt/media/image205.png",
+      "slideNos": [
+        35
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:8728d399-8401-5738-a105-04196b213a25:b869c5d9711a5da0d51717f5f0e59ca0087877bd3055c06406df819cfe75e435",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          35
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "7efa4ca2-68aa-5246-ac46-6dabbbeda4ea",
+      "title": "Curumim, Puxador e conjunto indígena",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-a8d2fb38edc3cdfe4ffa.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-a8d2fb38edc3cdfe4ffa.webp",
+      "width": 800,
+      "height": 417,
+      "bytes": 83540,
+      "sha256": "c5154429daa2e76e0847937e134ac044944a58cccca1a14fea654459b2ef2fc9",
+      "sourceAssetOriginalHash": "a8d2fb38edc3cdfe4ffac5cc83e98537698461671fdb2d903709534695f45ebc",
+      "sourceAsset": "ppt/media/image211.png",
+      "slideNos": [
+        36
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:7efa4ca2-68aa-5246-ac46-6dabbbeda4ea:a8d2fb38edc3cdfe4ffac5cc83e98537698461671fdb2d903709534695f45ebc",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          36
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "46c517ec-7d43-5e36-9ae0-a27db88e9173",
+      "title": "Circulação cultural de 2024",
+      "year": "2024",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-174f65462b8dded925c3.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-174f65462b8dded925c3.webp",
+      "width": 596,
+      "height": 800,
+      "bytes": 33070,
+      "sha256": "4710712e49c1e9d681dedf75be5cd9f049869f77bfca7629820b85d22a365b64",
+      "sourceAssetOriginalHash": "174f65462b8dded925c3e1fbfa1f9b5a4e99b07935c6f0556190aa65a33a4fe8",
+      "sourceAsset": "ppt/media/image268.jpeg",
+      "slideNos": [
+        50
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:46c517ec-7d43-5e36-9ae0-a27db88e9173:174f65462b8dded925c3e1fbfa1f9b5a4e99b07935c6f0556190aa65a33a4fe8",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          50
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "d5c54941-1f88-5d8b-bb5e-2f6760960c18",
+      "title": "Croquis e figurinos de O Purgatório",
+      "year": "2024",
+      "activity": "Figurinos e criação",
+      "imagefile": "assets/pptx-v3-d12f6c55adad857b0c28.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-d12f6c55adad857b0c28.webp",
+      "width": 799,
+      "height": 800,
+      "bytes": 96524,
+      "sha256": "1b2be18b484c1110cfb6ce2e2b3092d6f5b6b51cccca57861f082ec4e34958c1",
+      "sourceAssetOriginalHash": "d12f6c55adad857b0c28e18248ae495c0ecd0652ba38cf9a37dabc294c607183",
+      "sourceAsset": "ppt/media/image276.png",
+      "slideNos": [
+        51
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:d5c54941-1f88-5d8b-bb5e-2f6760960c18:d12f6c55adad857b0c28e18248ae495c0ecd0652ba38cf9a37dabc294c607183",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          51
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "2b654591-7903-55a6-b37b-424bd536a3d1",
+      "title": "Criação de portfólios culturais",
+      "year": "2025",
+      "activity": "Formação e educação",
+      "imagefile": "assets/pptx-v3-04202e7c1d6a6fcfa089.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-04202e7c1d6a6fcfa089.webp",
+      "width": 800,
+      "height": 600,
+      "bytes": 66036,
+      "sha256": "42e8bad8b46b0a1ca166cdeebb8c84a902dff3983f7004860a739fa9a6679133",
+      "sourceAssetOriginalHash": "04202e7c1d6a6fcfa0891f3629ba0fc728185f4d73ebfec8ac63130af292b3f2",
+      "sourceAsset": "ppt/media/image364.jpeg",
+      "slideNos": [
+        72
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:2b654591-7903-55a6-b37b-424bd536a3d1:04202e7c1d6a6fcfa0891f3629ba0fc728185f4d73ebfec8ac63130af292b3f2",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          72
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "2fb5d03f-a898-5aa0-bfad-315878ca4cbe",
+      "title": "Croquis e figurinos da temporada 2025",
+      "year": "2025",
+      "activity": "Figurinos e criação",
+      "imagefile": "assets/pptx-v3-ff83c292dd4d25bfc781.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-ff83c292dd4d25bfc781.webp",
+      "width": 606,
+      "height": 800,
+      "bytes": 98114,
+      "sha256": "b5a98dc82e35dcd205cc3f8b5eaa5aff5d761bf948e61b408f4d7d29630bb022",
+      "sourceAssetOriginalHash": "ff83c292dd4d25bfc781ed6d0c1d77860b8549a63623f1d242ba71a076acece3",
+      "sourceAsset": "ppt/media/image385.jpeg",
+      "slideNos": [
+        77
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:2fb5d03f-a898-5aa0-bfad-315878ca4cbe:ff83c292dd4d25bfc781ed6d0c1d77860b8549a63623f1d242ba71a076acece3",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          77
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": true
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "fba92299-0931-5bc2-a8ca-08c1f7560816",
+      "title": "Noivos — Vale Ouro e Rainha — Mãe do Ouro",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-20325f86504f976478cb.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-20325f86504f976478cb.webp",
+      "width": 640,
+      "height": 800,
+      "bytes": 27974,
+      "sha256": "3fddf406ec82036fa350c3490dea78a6938b078dc88581614a75b7a643cffb57",
+      "sourceAssetOriginalHash": "20325f86504f976478cbe5aa0196860d9283e42b0b3cbb12ba1e8321a9f47419",
+      "sourceAsset": "ppt/media/image396.webp",
+      "slideNos": [
+        79
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:fba92299-0931-5bc2-a8ca-08c1f7560816:20325f86504f976478cbe5aa0196860d9283e42b0b3cbb12ba1e8321a9f47419",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          79
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "6fc3a975-a17e-50ac-acf0-6fb5883598ba",
+      "title": "Cangaço e Afrodite",
+      "year": "2025",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-62548e61734d4200b3b4.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-62548e61734d4200b3b4.webp",
+      "width": 800,
+      "height": 533,
+      "bytes": 57554,
+      "sha256": "e96572ca7271b1c3da4d797ef28c8caead414eb7239ab0890aca9f3ee9981557",
+      "sourceAssetOriginalHash": "62548e61734d4200b3b4ae9201a0a2c0200feb1221c6c7486a1cc5f7241a2e26",
+      "sourceAsset": "ppt/media/image403.jpeg",
+      "slideNos": [
+        80
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:6fc3a975-a17e-50ac-acf0-6fb5883598ba:62548e61734d4200b3b4ae9201a0a2c0200feb1221c6c7486a1cc5f7241a2e26",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          80
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "e60a6e09-e600-513a-af52-5b848cab4f29",
+      "title": "Casal de Reis e Casal de Noivos",
+      "year": "2020",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-abda744bc329acda976a.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-abda744bc329acda976a.webp",
+      "width": 461,
+      "height": 308,
+      "bytes": 14146,
+      "sha256": "db6b924f7c5c5fd302d7965a4376dfa9045e14196dc529762f6d63743f2d0f06",
+      "sourceAssetOriginalHash": "abda744bc329acda976a55d3a7f9faa0d11f1b51b47123ebee0876a60a424fca",
+      "sourceAsset": "ppt/media/image100.jpeg",
+      "slideNos": [
+        13
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:e60a6e09-e600-513a-af52-5b848cab4f29:abda744bc329acda976a55d3a7f9faa0d11f1b51b47123ebee0876a60a424fca",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          13
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "bce9bdc5-56af-5f44-ab3b-7c61a7901166",
+      "title": "Reis, Noivos e Rainha de 2023",
+      "year": "2023",
+      "activity": "Destaques artísticos",
+      "imagefile": "assets/pptx-v3-8c7f34e1ecbb5768ff5e.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-8c7f34e1ecbb5768ff5e.webp",
+      "width": 441,
+      "height": 641,
+      "bytes": 30398,
+      "sha256": "0ba1c4883e1cfed20c77b5de45f8c1ae3a6609099b5d7ce936ed16b2952adfb2",
+      "sourceAssetOriginalHash": "8c7f34e1ecbb5768ff5eb26792a9a18aefee4d0b891805418876a165660a4526",
+      "sourceAsset": "ppt/media/image199.png",
+      "slideNos": [
+        34
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:bce9bdc5-56af-5f44-ab3b-7c61a7901166:8c7f34e1ecbb5768ff5eb26792a9a18aefee4d0b891805418876a165660a4526",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          34
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    },
+    {
+      "operation": "append_photo",
+      "targetId": "46c517ec-7d43-5e36-9ae0-a27db88e9173",
+      "title": "Circulação cultural de 2024",
+      "year": "2024",
+      "activity": "Eventos e apresentações",
+      "imagefile": "assets/pptx-v3-084db69f7a2d035ed0db.webp",
+      "proposedRoute": "/assets/portfolio/pptx-v3-084db69f7a2d035ed0db.webp",
+      "width": 800,
+      "height": 648,
+      "bytes": 36882,
+      "sha256": "46137edeec05bd6230461ec40f8646075a1d63726ad80dc31393bfa873daff28",
+      "sourceAssetOriginalHash": "084db69f7a2d035ed0dbfc8c9b6141a212a05dcf4e71877e46cbb67a5dab3776",
+      "sourceAsset": "ppt/media/image269.jpeg",
+      "slideNos": [
+        50
+      ],
+      "sourceSha256": "2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f",
+      "deltaKey": "foto:46c517ec-7d43-5e36-9ae0-a27db88e9173:084db69f7a2d035ed0dbfc8c9b6141a212a05dcf4e71877e46cbb67a5dab3776",
+      "replaceCover": false,
+      "preserveStatus": true,
+      "statusFromExisting": "Publicado",
+      "evidence": {
+        "kind": "Registro fotográfico",
+        "slides": [
+          50
+        ],
+        "sourceFile": "portfolio-cultural-atualizado.pptx",
+        "revision": "portfolio-pptx-v3",
+        "scope": "Registro parcial de atividade ou figurino, conforme o contexto do slide."
+      },
+      "privacyReview": "Sem identificador, documento, assinatura, contato pessoal ou detalhe clínico legível na inspeção. Confirmar autorização de uso de imagem antes da publicação.",
+      "requiresAuthorizationReview": true,
+      "applyAutomatically": false,
+      "possibleMinor": false
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "714faa01-0386-5be0-8117-d192e57c7bbf",
+      "slideNos": [
+        13
+      ],
+      "priorSourcePages": [
+        10
+      ],
+      "issue": "Cabeçalho 2020; texto da Rainha menciona 2022.",
+      "action": "preservar Rascunho e ano atual; confirmação manual"
+    },
+    {
+      "id": "55e8fa31-12d0-5ca3-8ef4-163cca27abf7",
+      "slideNos": [
+        79
+      ],
+      "priorSourcePages": [
+        76
+      ],
+      "issue": "Cabeçalho 2025; texto do Casal de Reis menciona 2023.",
+      "action": "preservar Rascunho e ano atual; confirmação manual"
+    },
+    {
+      "id": "4805ad39-a7ac-5034-a7f7-2f2e528e891f",
+      "slideNos": [
+        91
+      ],
+      "issue": "Seção 2026 mantém primeiro ensaio 2025; parágrafo de articulação repete slide 66 de 2025. Sem fotografias de atividade correspondentes.",
+      "action": "Close Day novo somente como Rascunho; ensaio e articulação não criar automaticamente"
+    },
+    {
+      "id": "494061b4-e905-5786-99e7-27429b6531ba",
+      "slideNos": [
+        10,
+        11
+      ],
+      "issue": "Imagens carnavalescas reutilizadas como ilustração de eixos de idosos e tradição; não comprovam execução desses eixos.",
+      "action": "projeto em Rascunho; selecionar somente fotos escolares, sujeitas à autorização de imagem"
+    },
+    {
+      "id": "67e8c782-a318-56e3-b938-b903e67bcc32",
+      "slideNos": [
+        69
+      ],
+      "issue": "Certificado nacional e portaria municipal são referências distintas; não intercambiar norma, autoridade emissora nem autenticidade.",
+      "action": "sem alteração do registro; nenhuma validação jurídica externa nesta análise"
+    }
+  ],
+  "mergeContract": {
+    "ownerTask": "ses_ea01f1bbeffe8rXyV34HQjDPI8",
+    "mode": "propostas incrementais mediante revisão",
+    "preserve": [
+      "id",
+      "deleted",
+      "seenSourceIds",
+      "photoTouched",
+      "customEdits",
+      "status",
+      "year",
+      "photo",
+      "photos",
+      "youtubeUrl",
+      "clippingLinks",
+      "spotifyUrl"
+    ],
+    "idempotency": "guardar deltaKey/sourceAssetOriginalHash e recibo da revisão; repetição não duplica textos/fotos",
+    "deletedPolicy": "ID excluído ou presente em seenSourceIds sem registro atual não recriar",
+    "textPolicy": "se hash da descrição atual difere do baseline ou customEdits, pendência manual; nunca substituir texto completo",
+    "photoPolicy": "se photoTouched ou galeria removida/personalizada, pendência manual; anexar após última foto, até 10, sem trocar capa",
+    "publicationPolicy": "preservar status de existentes; novos Rascunho ficam ocultos; não transformar planos em realizações",
+    "sourceVersionPolicy": "conferir seedSha256 antes de integrar; se mudou, recalcular delta sem sobrescrever a nova versão",
+    "capacityPolicy": "87+5=92, dentro dos 100 atuais; limite real verificar no banco; se exceder 100 não descartar silenciosamente, propor capacidade/paginação/quotas",
+    "resourcePolicy": "assets estáticos externos ao JSON; JSON sem base64; manifesto abaixo de 16MiB; descobrir recursos pelo manifesto, não por contagem fixa",
+    "apiCompatibility": "portfolio-cultural.cjs atual só permite rotas locais da foto original/legada e addImages trata foto única. Dono deve implementar importação v3 e allowlist das rotas propostas, não usar updateGallery para forçar importação.",
+    "internalNotesPolicy": "proveniência e notas técnicas apenas internas; não exibir no texto público da atividade"
+  }
+}

@@ -1,5 +1,213 @@
 # Império Nordestina — site com painel administrativo
 
+## Novidades do portfólio — importação incremental V3 do PPTX
+
+Esta revisão não importa dados ao iniciar o servidor e não substitui a base cultural. Em **Portfólio**, importe primeiro a base existente de 87 registros; depois use **Adicionar novidades do portfólio**. A ação é exclusiva do principal ou de conta com a área **Portfólio**, exige sessão, CSRF/origem e confirmação final. Não há ZIP novo ou publicação automática nesta etapa.
+
+Antes de continuar, as três caixas começam desmarcadas: revisão dos textos/créditos, autorização das 100 imagens e autorização das imagens com possíveis menores. A confirmação administrativa é uma declaração de conferência, não uma certificação automática de consentimento. Se não puder confirmar todas, não execute o lote. Fotografias não autorizadas não são anexadas automaticamente; os novos arquivos também não ficam acessíveis anonimamente antes da importação.
+
+### Conteúdo, preservação e pendências
+
+- Fonte: `portfolio-cultural-atualizado.pptx`, SHA-256 `2b7637019f03050254db8519d9a91539264954c72bdcc1d901fc354c5c1a557f`. Usa somente os deltas do manifesto já revisado; não reanalisa os slides e não copia `analise/` ou `scripts/`.
+- Na base intacta: 87 → **92 registros**, sendo **87 publicados e 5 rascunhos**. Adiciona Play na Dança 2024/2025/2026 como publicados; Império em Movimento e Close Day 2026 permanecem rascunhos. Não republica rascunhos existentes nem muda anos, IDs ou status anteriores.
+- Das **11 propostas textuais**, **10** são anexadas quando descrição SHA-256, sourceHash e identificação coincidem com a base; **1** com divergência cronológica permanece em `pendingReview`. Não substitui a descrição completa. Textos personalizados ou acima de 5000 caracteres ficam pendentes. As cinco ressalvas da fonte ficam no recibo administrativo.
+- **100 WebP**, somando **4.888.130 bytes**, para **44 atividades**. Cada arquivo foi reaberto e conferido por hash, tamanho e dimensão: até 800 px; maior arquivo 121.188 bytes. As 67 imagens antigas permanecem intactas. Não são 100 novos eventos.
+- Fotos são anexadas ao fim, até 10 por galeria, sem substituir capa. `photoTouched`, galeria vazia removida, uploads/personalizações, origem incompatível e falta de espaço geram pendência, sem restaurar ou remover fotos. Dedupe por rota, hash WebP e hash original conhecido. Links de YouTube, clipping e Spotify não são alterados.
+- `seenSourceIds` conserva exclusões anteriores. O recibo `portfolio-pptx-2b7637019f030502-v3`, as chaves dos deltas e os hashes ficam na mesma coleção `members_portfolio_v1`. Segunda chamada e chamada após reinício são no-op sem gravação; excluir foto/registro depois não permite recuperá-los repetindo o lote. Pendências são resolvidas por edição manual do trabalho, não por reexecução forçada da importação.
+- Antes da única gravação da coleção, verifica SHA-256 do seed, todos os assets, capacidade de 100 registros e cota JSON de 16 MiB. Falha não grava dados parciais. Usa a fila serial existente de processo único; não promete transação entre múltiplas chaves ou processos.
+
+### API, imagens e metadados
+
+`POST /api/admin/portfolio/adicionar-novidades`, JSON até 2 KiB, campos exatos `{confirm:true,textReviewed:true,imageAuthorizationReviewed:true,minorAuthorizationReviewed:true}`. Métodos, parâmetros, campos extras e confirmações incompletas são recusados. Resultado contém `added`, `textsAdded`, `photosAdded`, `pendingReview` e `alreadyImported`.
+
+A lista de caminhos locais exatos vem de `portfolio-pptx-v3.json`, vinculada ao ID de origem. `updateGallery` permite salvar/reordenar/remover somente fotos V3 já presentes no próprio registro; não aceita reinserção arbitrária, caminhos de outro trabalho ou evidência forjada. Arquivos são servidos como `image/webp`, com `nosniff` e `no-store`; nomes desconhecidos, query strings e caminhos codificados não são aceitos. Acesso anônimo exige recibo de autorização e foto atualmente associada a registro publicado; rascunhos/arquivos removidos não ficam públicos por URL direta. Principal/área Portfólio pode consultar os assets da revisão para análise.
+
+A API pública mantém apenas os campos editoriais publicados e `{image}` por foto. Não expõe recibos, hashes, evidências, proveniência, notas ou pendências. As evidências PPTX usam slides no painel sem depender de `pages` do PDF; o texto alternativo público continua neutro. A navegação pública foi ajustada apenas em telas estreitas para evitar texto encostado na borda.
+
+### Arquivos e verificação local
+
+Novos arquivos de aplicação: `portfolio-pptx-v3.cjs`, `portfolio-pptx-v3.json` e os 100 `public/assets/portfolio/pptx-v3-*.webp` enumerados por `photoAdditions[].proposedRoute` no JSON. Alterados: `portfolio-cultural.cjs`, `members.cjs`, `server.cjs`, `public/admin.html`, `public/portfolio.html` e este documento. O empacotador externo foi preparado para descobrir os assets pelo manifesto: **191 arquivos** de aplicação no total. Não foi executado nesta revisão; o ZIP antigo não representa esta versão.
+
+Verificações V3: **1084** de módulo, **639** HTTP e **18** DOM; repetição/reinício, personalizações/exclusões, capas/status, quota/capacidade sem parcial, RBAC/CSRF, arquivos exatos e metadados públicos. Regressões cumulativas reexecutadas: galeria 158 HTTP; materiais em lote 128 HTTP/20 DOM; segmentados 235 HTTP/19 DOM; aprovação 100 HTTP/22 DOM; avisos 191 HTTP/20 DOM; RBAC 1302 HTTP/147 DOM; membros 339; fotos 25 grupos DOM/13 grupos HTTP; autopresença 366 HTTP. Os testes de membros/RBAC usam as variantes de compatibilidade documentadas anteriormente. Todos usam dados sintéticos e armazenamento temporário, sem e-mail, credenciais reais ou banco externo. Prévias públicas móvel/desktop e administrativa foram renderizadas e inspecionadas; não equivalem a teste em aparelho real. PostgreSQL externo, múltiplos processos, produção, consentimento e validade externa dos fatos não foram verificados.
+
+## Materiais 2027 — selecionar pessoas e aplicar lista em lote
+
+### Marque pessoas e aplique a lista
+
+Na área **Materiais 2027 → Destinar lista por cadastro**, há a seção **Aplicar a mesma lista a várias pessoas**. Marque os cadastros reais que devem usar a mesma lista; o contador **N dançarinos selecionados** calcula a quantidade automaticamente. Não há criação de pessoas nem atribuição por um número arbitrário, nome, foto ou gênero presumido.
+
+1. Busque por nome e filtre a situação (**Ativos/Pendente/Aprovado**) e a lista atual (**Todas/Não definida/Feminino/Masculino**). Inativos não aparecem como elegíveis para lote.
+2. Marque pessoas individualmente ou **Selecionar todos os resultados exibidos neste filtro (até 100)**. Essa opção se refere a todos os resultados do filtro na caixa rolável, não a cadastros ocultos por outro filtro. Ao mudar qualquer filtro, a seleção é limpa explicitamente. Mais de 100 resultados exige refinar a busca ou marcar até 100 manualmente; não seleciona os primeiros 100 silenciosamente.
+3. Escolha **Lista destinada aos selecionados: Feminino/Masculino/Não definida**. Pressione **Aplicar lista aos selecionados** e confirme **Destinar lista X a N dançarinos?**. Não definida recebe confirmação reforçada de que a lista deixará de aparecer para essas pessoas.
+4. Aguarde o resultado. Sucesso atualiza a projeção local e limpa seleção; informa quantidade selecionada e quantas destinações realmente mudaram. Atualize o acompanhamento para ver os totais. As atribuições individuais abaixo devem ser recarregadas depois do lote, evitando salvar suas versões antigas. Em erro, seleção permanece; conflito exige recarregar/conferir antes de reenviar. A recarga intencional descarta a seleção para obter versões novas.
+
+Cada pessoa continua com uma única lista atual. Respostas anteriores não são copiadas, transferidas nem apagadas pela atribuição. O acesso do dançarino usa imediatamente a destinação atual no servidor; telas abertas precisam atualizar. Sem lista não vê materiais; retornar à lista anterior mantém respostas autorizadas do mesmo titular/UUID. Atribuição individual continua disponível e separada da aprovação de inscrição.
+
+### Endpoint e integridade
+
+`POST /api/admin/materiais-2027/destinacoes/lote`, JSON até **32 KiB**: `{dancerIds:[UUID...],listType,versions:{UUID:versao...}}`. De **1 a 100 IDs distintos**, todos existentes e Pendente/Aprovado, versões inteiras não negativas obrigatórias para exatamente os selecionados; tipos booleanos, IDs duplicados/forjados, destino inválido e campos extras recusados. Somente principal/área **Materiais**; Cadastros, Financeiro e demais áreas isoladas não podem usar o lote. Exige sessão administrativa, CSRF/origem, JSON; métodos alternativos e parâmetros recusados.
+
+A mesma fila serial relê cadastros/destinações e valida **todos** antes de alterar a coleção `members_materiais_destinacoes_2027_v1`. Um ID inexistente retorna 404, inativo/conflito 409, sem escrever destinação de ninguém no lote. Depois da validação há **uma única escrita da coleção existente**, sem promessa de transação entre várias chaves. Só versões das destinações efetivamente alteradas incrementam; a mesma lista atual não causa escrita/versionamento desnecessário. Repetição exata do lote já aplicado é idempotente quando todas as pessoas já estão no destino e a versão ainda é a consultada ou a imediatamente seguinte; outros conflitos recusados. Sem mesclar silenciosamente lote misto com versões antigas.
+
+Não altera cadastro, aprovação, documentos, foto, gênero pessoal, responsável, credenciais, presenças, finanças, opt-in público, inventário ou notificações. Sem dependência, nova coleção ou mudança global de limite. A coleção em memória e a fila seguem a arquitetura de processo único já existente; múltiplas instâncias e banco externo não homologados. Sem rota pública ou edição pelo dançarino.
+
+### Verificação desta etapa
+
+- `testar-materiais-lote.py`: **128 verificações HTTP**, validação de tamanho/duplicados/tipos, desconhecido, inativo, CSRF/origem/JSON, matriz de todas as áreas, lote de duas pessoas, idempotência, conflito sem alteração parcial, respostas preservadas, restrição imediata da lista, limpeza, atribuição individual antiga e reinício.
+- `testar-materiais-lote-dom.cjs`: **20 verificações DOM**, seleção individual/filtrada, contador, limite de escopo visível, confirmação de destino/quantidade e reforço ao limpar, envio duplo, atualização confirmada, seleção mantida e bloqueio por conflito. Prévia `previa-materiais-lote-admin.html` externa e inteiramente fictícia.
+- Regressões desta etapa: materiais segmentados **235 HTTP/19 DOM**; aprovação **100 HTTP/22 DOM**; avisos **191 HTTP/20 DOM**; administração **1.302 HTTP/147 DOM** (variante de rótulo já documentada); membros **339**; fotos **25 grupos DOM/13 HTTP**; galeria **158 HTTP**; autopresença **366 HTTP**.
+
+Prévias móvel e desktop renderizadas e inspecionadas sem corte/sobreposição. Corrigido o gerador de snapshot para preservar `selected` dos selects (a captura inicial não refletia a escolha Masculino; novas capturas conferidas). Capturador retornou 375/1264 px para pedidos 390/1280, sem homologação física.
+
+Alterados nesta etapa: `members.cjs`, `public/admin.html` e este `LEIA-ME.md`; testes/prévia externos. Mantidos **89 arquivos de produção**, sem dependências adicionais no empacotador. Aprovação rápida, central de avisos, fotos 20 MiB/1600 px/2 MiB e fallback JPEG/WebP preservados. Sem ZIP, publicação ou Git local para confirmar `main`.
+
+---
+
+## Aprovação individual simplificada — Dançarinos
+
+A lista **Dançarinos** passa a abrir no resumo compacto, sem planos financeiros ou formulário completo de correção. Contador de **pendentes de aprovação**, botão **Pendentes de aprovação**, busca por nome e filtro **Todas/Pendente/Aprovado/Inativo**. O padrão é Todas com contador destacado, para manter acesso imediato aos demais cadastros. Cada cartão traz nome, situação, idade/aviso de menor, data de inscrição quando disponível e miniatura carregada de forma tardia/assíncrona (sem recortar o arquivo). Sem foto, aparece indicação textual. CPF, RG, contato e identificação do responsável não são renderizados no resumo; **Ver cadastro** abre a conferência/correção existente, com as mesmas permissões.
+
+### Fluxo
+
+1. Abra Dançarinos e use **Pendentes de aprovação**, combinando busca se necessário.
+2. Para adulto pendente válido, pressione **Aprovar inscrição**. O botão fica bloqueado durante a requisição, e o status/contador só muda depois da confirmação do servidor. A aprovação é individual, não em lote. No filtro Pendente, a inscrição aprovada sai da lista; mensagem anuncia o resultado e o foco vai para Atualizar lista.
+3. Para menor, use **Ver cadastro** para conferir os dados e a autorização; marque **Conferi os dados e a autorização do responsável** no cartão para habilitar o botão. Essa declaração não é verificação automática de identidade ou prova legal de autorização. O servidor também exige a conferência e um cadastro com responsável completo/consentimento como antes.
+4. Cadastro Inativo não tem atalho de aprovação e é recusado pelo novo endpoint; use a correção existente para examinar a situação, sem reativação silenciosa. Não foi criado estado Rejeitado. Aprovação não atribui materiais, publica trajetória, cria plano/cobrança, redefine senha, revoga a sessão do dançarino ou envia aviso externo. Nesta revisão também não cria aviso interno de aprovação: permanece focada na ação solicitada.
+
+### Contrato e segurança
+
+- `POST /api/admin/dancarinos/<UUID>/aprovacao`, JSON até 4 KiB: `{status:"Aprovado",version:"<hash>",guardianReviewed:true?}`. Somente principal ou área **Cadastros de dançarinos**; outras áreas, sessão de dançarino e anônimo não autorizados. Exige CSRF/origem, recusa consultas, métodos alternativos, estado diferente e campos extras. Não aceita perfil, documentos, foto, senha, destinação ou finanças no corpo.
+- GET administrativo de dançarinos acrescenta `approvalVersion`, SHA-256 da projeção privada atual do cadastro. Não é segredo nem verificação de identidade; é token de concorrência. Para Pendente, o servidor relê e valida o perfil atual com foto até 1600 px/2 MiB, responsável/documentos obrigatórios e token; alteração desde a consulta retorna 409 para recarregar/conferir.
+- Na mesma fila serial existente, a única mudança persistida é `status='Aprovado'`. Valida sem normalizar/regravar documentos/foto/responsável. Credenciais, IDs, mensagens, datas e campos adicionais permanecem idênticos. Aprovado já existente devolve sucesso idempotente sem escrita/efeito secundário; duas requisições simultâneas fazem uma única transição. Inativo nunca é reativado pelo atalho. A correção administrativa antiga continua para os demais estados; o atalho não substitui essa tela.
+- Não expande permissões ou projeções públicas; o hash aparece apenas no GET administrativo já permitido. O resumo esconde dados sensíveis visualmente, mas o GET administrativo existente continua carregando os perfis completos para administradores da área. As miniaturas usam a foto original no navegador: `loading=lazy` não reduz o JSON/base64 transferido. Não há paginação nova nem promessa de escala para muitos perfis/fotos grandes.
+- Erros preservam o estado; o auxiliar de API administrativa agora conserva `error.status` para a interface bloquear/recarregar corretamente conflitos 409. Intervalos, versões e comportamento de notificações/materiais continuam separados.
+
+### Testes e prévias
+
+`testar-aprovacao-rapida.py`: **100 verificações HTTP**, incluindo todas as áreas, ausência de sessão administrativa, CSRF/origem, métodos/campos, estado inativo, perfil sem foto, menor/conferência, alteração concorrente, duplo envio, preservação exata do cadastro e domínios financeiros/públicos, reinício. `testar-aprovacao-rapida-dom.cjs`: **22 verificações DOM** de filtros, busca, estado do botão, mensagem/contador confirmados, erro e privacidade visual.
+
+Regressões: membros **339**; administração/RBAC **1.302 HTTP e 147 DOM**; materiais **235 HTTP e 19 DOM**; avisos **191 HTTP e 20 DOM**; fotos **25 grupos DOM e 13 HTTP**; autopresença **366 HTTP**; galeria **158 HTTP**. A suíte DOM antiga procurava literalmente **Consultar e corrigir perfil** e falhou por renomeação; original preservado e variante `aprovacao-compat-admin-rbac-dom.cjs` troca somente esse rótulo para **Ver cadastro**, passando as 147 verificações. Não se declara o teste antigo aprovado sem adaptação.
+
+Prévia externa `previa-aprovacao-admin.html`, dados integralmente fictícios e sem foto de pessoa inventada, capturada móvel e desktop e inspecionada sem cortes/sobreposições. As fixtures sem foto verificam a alternativa textual; fotos reais e aparelhos móveis físicos não homologados. Serviço retornou 375/1264 px para pedidos 390/1280.
+
+Arquivos alterados nesta etapa: `members.cjs`, `admin-access.cjs`, `public/admin.html` e este `LEIA-ME.md`. Testes/variante/prévia externos, sem dependências novas; mantidos **89 arquivos de produção**. Configuração, conteúdo, preços, senhas mínimas 6, portfólios, correção JPEG/WebP, fotos 20 MiB/1600 px/2 MiB, listas segmentadas e central de avisos preservados. Sem ZIP, publicação ou Git local para confirmar `main`. Testes usam armazenamento temporário; não homologados banco externo, várias instâncias ou tráfego real.
+
+---
+
+## Central de avisos — eventos, ensaios e apresentações (contrato vigente)
+
+### Canal e uso
+
+Avisos **dentro do site**, na área privada do dançarino: sino com contador global de não lidos, aba **Avisos** imediatamente antes de **Perfil** (que continua última), lista por data de criação e ação **Marcar como lido**. Presenças continua sendo a tela inicial. Horários dos avisos são exibidos em `America/Araguaina`; datas livres de eventos continuam como cadastradas e datas de encontros em AAAA-MM-DD. Não há push do sistema, WhatsApp, e-mail, WebSocket ou lembretes agendados. Nem uma configuração SMTP existente ativa envio externo nesta revisão; canal externo dependeria de implementação/configuração/consentimento específicos. Nenhuma tarefa persistente foi agendada no sandbox.
+
+O navegador consulta ao carregar a conta, voltar por foco/visibilidade e a cada 60 segundos enquanto visível e autenticado. Não garante atualização instantânea nem recebimento com o site fechado. Sair limpa central/contador e cancela o intervalo; resultados tardios são descartados pelo epoch da sessão. Falhas de rede têm retorno e tentativa manual. A leitura é persistida por cadastro e não é confirmação de comparecimento.
+
+### Como avisar
+
+- **Ensaios/apresentações:** principal ou delegado com **Presenças**, em **Presenças (Encontros)**. Crie/edite o encontro, selecione participantes, título, data e local opcional. **Notificar participantes ao salvar…** inicia marcada na interface, com prévia do texto e número selecionado; somente Pendente/Aprovado selecionados recebem. API recebe `notify:true` explícito; clientes antigos sem a opção não disparam avisos. Na edição, título/data/local alterados ou novos participantes podem criar aviso; salvar só presenças, motivos, encerramento ou código de autopresença não cria novo aviso. Encontro encerrado não dispara atualização. Fechar encontro futuro e confirmação do dia continuam com as validações existentes.
+- **Eventos públicos:** principal ou delegado com **Eventos**, salve o conteúdo primeiro. Em **Avisar dançarinos · eventos salvos**, confira título/data/local/descrição, pressione **Avisar dançarinos** e confirme. Cria avisos somente nas caixas de Pendente/Aprovado existentes naquele instante. Repetir o mesmo evento/conteúdo para quem já recebeu não duplica; cadastros novos podem recebê-lo se o administrador repetir explicitamente depois. Datas passadas não têm bloqueio adicional: confira a programação antes de anunciar. Não é aviso automático por salvar conteúdo/foto/descrição.
+
+Retorno administrativo: **Notificação criada no site para N cadastro(s)**. É contagem de criações persistidas, não entrega a celulares ou confirmação de leitura. A lista de nomes dos destinatários não é incluída no aviso. O local opcional do encontro é armazenado com o encontro e exibido no aviso; códigos e presenças nunca entram no conteúdo da notificação.
+
+### Rotas, identidade e limites
+
+- `GET /api/dancarinos/notificacoes?page=1&pageSize=20`: sessão própria ativa, paginação até 50, contador de todos os não lidos disponíveis; qualquer filtro de identidade é recusado. Nenhuma rota pública ou consulta da caixa de outra pessoa. `POST /api/dancarinos/notificacoes/<UUID>/lida`, JSON `{}`, exige CSRF/origem e aviso atualmente autorizado daquele titular; leitura idempotente. Cadastro inativo perde acesso como antes.
+- `GET /api/admin/notificacoes/eventos` e `POST /api/admin/notificacoes/eventos/<UUID>/avisar`, JSON `{hash,confirm:true}`, exigem área **Eventos**, sessão administrativa, CSRF/origem na escrita e conteúdo salvo atual. Não aceita mensagem, destinatário, URL ou título arbitrário. Corpo até 4 KiB; máximo de 5.000 destinatários num anúncio público. Financeiro, Cadastros, Materiais e Presenças isolados não ganham permissão de anunciar eventos. A área Presenças só notifica por seus encontros.
+- Catálogo privado em `members_avisos_eventos_v1`: referência UUID e SHA-256 dos campos exatos do evento salvo. Não altera esquema/IDs do conteúdo público. Reordenação mantém referência; alteração de conteúdo recebe outra referência e obriga recarregar/confirmar; evento removido não pode ser anunciado pelo ID anterior. Eventos idênticos são deduplicados por conteúdo. Esta estratégia conservadora não associa automaticamente um evento editado à identidade antiga.
+- Caixas privadas `members_avisos_v1_<UUID>`: `{items,receipts}`; UUIDs próprios, data de criação/leitura do servidor, tipo/título/data/local/descrição limitados pelo esquema de origem, link interno fixo, referência/hash internos excluídos da projeção. Até **200 avisos**, **400 recibos de deduplicação** e **180 dias** considerados por caixa; limpeza física ocorre na próxima escrita, sem cron. Depois da expiração/remoção do recibo, uma repetição pode voltar a criar aviso. Excluir cadastro esvazia sua caixa. Armazenamento usa a camada store existente.
+- Antes de ler ou marcar, o servidor reconfere a fonte atual: encontro precisa existir, ainda incluir o titular e manter título/data/local/tipo compatíveis; evento precisa continuar no conteúdo público com o mesmo hash. Remover participante/encontro/evento ou alterar conteúdo oculta os avisos obsoletos e seus detalhes. A caixa interna pode manter histórico até retenção. Uma edição de evento gera referência nova, portanto aparece como anúncio novo; alteração relevante de encontro conserva referência e usa indicação **Atualização** quando já houve aviso nessa caixa.
+- Deduplicação por fonte/hash e destinatário na fila serial existente. Inativação exclui destinatários; nenhuma classificação de materiais altera os avisos. Mutação da autopresença, `requiresCode`, segredo/hash de código, justificativa, nome de outro participante, CPF, foto, documentos e dados financeiros não são copiados.
+- Limite operacional: mesma arquitetura de processo único; leituras/escritas em caixas são sequenciais e anúncios grandes podem demorar. Não há transação distribuída entre encontro/conteúdo e múltiplas caixas: falha de armazenamento pode deixar distribuição parcial. Erro não deve ser tratado como entrega concluída; confira antes de repetir. Banco externo, várias instâncias, rede móvel real e desempenho em 5.000 destinatários não homologados. Sem migração destrutiva, dependência ou credencial nova.
+
+### Verificação e arquivos
+
+`testar-notificacoes.py`: **191 verificações HTTP** em servidor real com armazenamento temporário, incluindo participantes exclusivos, duas categorias de encontro, contagem/leitura, ID alheio, CSRF/origem, ausência de código real de autopresença, deduplicação/repetições concorrentes, alteração/remoção de acesso, versão de evento, reinício, inativos, limite/expiração e matriz das áreas na rota nova. `testar-notificacoes-dom.cjs`: **20 verificações DOM**, sino/contador, aba Perfil última, marcar lido, foco, limpeza no logout, confirmação do evento salvo, opção marcada e prévia de encontro. DOM usa rede simulada; não comprova navegador físico.
+
+Regressões executadas nesta etapa: materiais segmentados **235 HTTP e 19 DOM**, fotos **25 grupos DOM e 13 HTTP**, membros **339**, administração/RBAC **1.302 HTTP e 147 DOM**, autopresença **366 HTTP**, galeria **158 HTTP**. Preços, contas, portfólios, listas destinadas e correções de foto preservados.
+
+Prévias externas fictícias: `previa-avisos-dancarino-mobile.html`, `previa-avisos-admin-eventos.html`, `previa-avisos-admin-encontro.html`. Renderizadas e inspecionadas; o gerador de snapshot foi corrigido para preservar estado de checkbox (a primeira imagem estática não refletia o formulário marcado; nova captura conferida). Sem cortes/sobreposições observados. Serviço retornou 375 px móvel e 1264 px desktop apesar de pedidos 390/1280; não é validação exata dessas larguras.
+
+Alterados nesta etapa: `members.cjs`, `admin-access.cjs`, `public/admin.html`, `public/perfil.html` e `LEIA-ME.md`. **89 arquivos de produção**, sem arquivo/dependência adicional no aplicativo; testes e prévias externos, empacotador não precisa de novo nome. Não criado ZIP, não publicado e sem Git local para verificar `main`.
+
+---
+
+## Materiais 2027 — listas destinadas por cadastro (contrato vigente)
+
+Esta revisão substitui as descrições históricas de lista global visível a todos, totais de todos os dançarinos por item e gravações sem versão de lista/atribuição. Não representa informação de sexo/gênero pessoal: é somente uma destinação administrativa de materiais. Não há inferência por nome, foto ou documentos, nem campo novo no cadastro público.
+
+### Aplicação e migração: duas ações obrigatórias da organização
+
+1. Entre como principal ou delegado da área **Materiais** e abra **Materiais 2027**. Classifique cada item real em **Lista feminina** ou **Lista masculina**, usando **Lista de destino do material**, e salve a lista. A seção **Sem classificação** reúne materiais antigos; eles não aparecem para nenhum dançarino até serem classificados. Nada é duplicado ou criado automaticamente.
+2. Na seção **Destinar lista por cadastro**, selecione **Lista de materiais destinada: Não definida / Feminino / Masculino** e pressione **Salvar destinação** para cada cadastro. Nome e situação são exibidos; não há documentos/foto/e-mail. Cadastros antigos e novos começam virtualmente em **Não definida**; não existe atribuição coletiva automática.
+3. Atualize o acompanhamento. O filtro de lista aceita Feminino, Masculino e Não definida, além da visão Todas; pode combinar busca por nome e paginação. O dançarino recarrega **Materiais** para ver a destinação atual. Sem atribuição, recebe exatamente **A organização ainda não definiu sua lista de materiais**, sem itens ou controles Sim/Não.
+
+Cada cadastro tem no máximo uma lista destinada. A interface privada mostra **Sua lista: Feminino/Masculino**, somente seus itens e respostas Sim/Não. A classificação não é publicada na trajetória, destaques, comentários ou Diretoria. O dançarino não pode escolher/alterar a lista por cadastro, login, edição de perfil, filtros ou identidade de outro cadastro. A atribuição é exclusiva do principal/área Materiais; área Cadastros isolada, Financeiro, Destaques e Presenças não dão esse direito. Quem gerencia somente cadastros deve pedir a atribuição a alguém com Materiais.
+
+### Persistência, autorização e totais
+
+- `members_materiais_2027_v1` mantém ano 2027, versão e UUIDs válidos existentes, adicionando `audience: feminino|masculino|nao_definida`. Migração idempotente, na fila serial existente; só incrementa versão quando migra. IDs ausentes/inválidos recebem UUID novo como antes. Conteúdo e ordem preservados. Sem classificação não é uma terceira lista destinada, apenas pendência administrativa.
+- Destinações separadas: `members_materiais_destinacoes_2027_v1`, `{items:[{dancerId,listType,version,updatedAt}]}`. Ausência equivale a `nao_definida`, versão 0. Não reescreve documentos/fotos do cadastro nem respostas ao atribuir. Excluir cadastro remove a destinação na limpeza existente. Sem dependência nova, mudança de store ou segredo.
+- `GET /api/admin/materiais-2027/destinacoes` e `GET/PUT /api/admin/materiais-2027/destinacoes/<UUID>`: somente Materiais/principal. Projeção mínima `{dancerId,name,status,listType,version}`. PUT exige JSON `{listType,version}`, CSRF/origem e versão atual; conflito 409. Métodos alternativos e campos extras recusados.
+- GET `/api/dancarinos/materiais-2027` (alias antigo) e `/respostas` retornam exclusivamente `{year,listVersion,listType,assignmentVersion,items}` do titular. Nenhuma opção de consulta pode ampliar o acesso: parâmetros são recusados. Não retorna as duas listas para o navegador filtrar sozinho.
+- POST/PUT `/api/dancarinos/materiais-2027/respostas` exige `{itemId,hasMaterial,version,listVersion,assignmentVersion}`. Autoriza de novo contra o item e a atribuição atuais dentro da fila serial, antes de gravar. Material de outra lista ou cadastro sem lista: 403; removido: 404; versão antiga: 409. As versões evitam que uma ação antiga seja aceita depois de mudar a lista e voltar à mesma.
+- Reatribuir pessoa, mover material entre listas, renomear/reordenar com mesmo UUID **preserva respostas internas**, mas só mostra/conta as atualmente autorizadas. Retornar à mesma lista/UUID pode revelar sua resposta anterior. Remover e recriar item gera outro UUID e nunca transfere resposta por nome/posição. Limpeza antiga de órfãos continua na próxima gravação do titular. Respostas seguem limite 128 KiB, corpo 4 KiB; materiais até 200 itens, 1 MiB serializados e corpo 2 MiB; trajetória privada e suas cotas intactas.
+- Acompanhamento aceita `listType` adicional. Cada linha inclui somente respostas da destinação atual. Por item, `eligible = yes + no + notInformed`, contando exclusivamente cadastros **Pendente/Aprovado** destinados à `audience` do item. Inativo, excluído, Não definida ou Sem classificação não entra no denominador. Totais independem da busca/página/filtro; filtros afetam linhas. Nenhum dado financeiro, documento ou foto é retornado.
+- A fila dá atomicidade no processo único existente; múltiplas instâncias e banco externo não foram homologados. Destinações são carregadas como coleção; não há promessa de desempenho para listas enormes. A atribuição atualizada não apaga informação histórica, mas deve-se usar **Atualizar materiais e respostas** se a tela ficou aberta antes da alteração.
+
+### Verificação desta revisão
+
+`testar-materiais-segmentados.py`: **235 verificações HTTP**, com migração/UUIDs, alias/consultas, isolamento, CSRF/origem, Sim/Não, reatribuição, versão antiga, movimento de item, remoção/recriação, reinício, denominadores e matriz de todas as áreas no novo endpoint (coleção, item, escrita). `testar-materiais-segmentados-dom.cjs`: **19 verificações DOM**, com duas listas, pendência, atribuição e edição mantendo UUID. Scripts externos ao pacote; somente dados sintéticos em armazenamento temporário.
+
+Regressões reexecutadas: membros **339** na variante de qualidade, RBAC HTTP **1.302**, RBAC DOM **147**, galeria HTTP **158**, fotos **25 grupos DOM** e **13 HTTP**. O teste histórico de materiais que presumiu acesso global não representa o novo contrato e não foi declarado aprovado. Durante a implementação a regressão DOM detectou remoção acidental de `financeResource`; a função foi restaurada e a suíte passou depois da correção.
+
+Quatro prévias externas, rotuladas fictícias: `previa-materiais-segmentados-admin.html`, `previa-materiais-feminino.html`, `previa-materiais-masculino.html`, `previa-materiais-nao_definida.html`. Capturadas e inspecionadas sem cortes/sobreposições observados. Renderizador retornou 375 px para pedido móvel de 390 px; não equivale a teste em aparelho físico.
+
+Alterados nesta etapa: `members.cjs`, `public/admin.html`, `public/perfil.html` e este `LEIA-ME.md`. Rotas novas já entram na política existente de área `materiais`; `admin-access.cjs` e `server.cjs` não precisaram mudar. Mantidos os **89 arquivos de produção**, sem dependências novas; scripts/prévias são externos e não entram no empacotador. Correção cumulativa das fotos WebP/JPEG, seleção 20 MiB, perfil 1600 px/2 MiB, foto obrigatória e senhas mínimas 6 mantidas. Nada publicado ou compactado; não há Git local para confirmar `main`.
+
+---
+
+## Revisão localizada — foto de perfil com maior qualidade
+
+### Uso e recuperação de erro
+
+Em `/perfil?cadastro=1`: **1. Escolha uma foto. 2. Confira a prévia. 3. Finalize em Salvar cadastro.** O seletor nativo está visível, tem rótulo associado e não força a câmera. **Tirar foto** usa seletor separado com `capture="user"`, chamado diretamente pelo clique; **Trocar foto** reabre a seleção. O sistema operacional/navegador decide se oferece câmera ou galeria; `capture` não garante abertura da câmera. O texto do botão nativo acompanha o idioma do navegador.
+
+A foto continua obrigatória no cadastro, tanto pela validação manual da aplicação quanto no servidor. Os inputs de arquivo não usam `required`/erro nativo oculto: câmera e galeria compartilham estado de processamento. Durante a preparação, há progresso anunciado, botão de envio bloqueado e proteção contra envio programático ou duplicado. Erro limpa apenas a foto pendente, mantém os outros campos e leva foco à mensagem. Cancelar o seletor conserva uma foto já pronta. Cadastro bem-sucedido limpa foto e estado; não conecta automaticamente.
+
+- Origem até **20 MiB**; JPEG/PNG/WebP reconhecidos pela assinatura, inclusive JPEG de seletor iOS com MIME vazio. Extensão ou MIME declarados não bastam para validar o conteúdo.
+- HEIC/HEIF só funciona quando `createImageBitmap` ou `Image` do próprio navegador consegue decodificar. Não há conversor instalado nem promessa de suporte universal. Se falhar, use **Tirar foto**; se a câmera também gerar HEIC, configure JPEG/mais compatível no aparelho ou escolha outra imagem JPEG, PNG ou WebP. Os nomes dos ajustes variam por aparelho.
+- Perfil no cadastro/edição: JPEG, PNG ou WebP com dimensões conhecidas de até **1600 px por lado** e **2 MiB binários** mantém os bytes sem recompressão após a abertura pelo navegador. O aviso **Foto original preservada** só aparece nesse caminho; metadados existentes, inclusive EXIF/localização, também permanecem. Remova metadados sensíveis antes de escolher uma foto se necessário. HEIC/HEIF é sempre normalizado quando decodificável; WebP animado não é preservado como original.
+- Acima desses limites, preparação automática em WebP/JPEG até **1600 px / 2 MiB**, qualidades de encoder 0,94, 0,90 e 0,86 (não são garantia perceptiva). Não há redução agressiva para 800 px no perfil: se não couber em alta qualidade, falha com orientação e mantém os campos. O aviso é **Foto preparada em alta qualidade**, nunca original preservada. Sem compressão manual obrigatória, corte, formato quadrado ou exigência de rosto. Transparência na versão convertida recebe fundo branco; no original preservado, permanece.
+- A origem grande não é copiada inteira para base64: usa Blob e URL temporária no caminho Image. Apenas a versão dentro dos limites, original preservada ou preparada, é serializada e usada na prévia com `object-fit:contain`, compatível com a política de segurança existente. Nenhuma foto é enviada a terceiros ou gravada em armazenamento local do navegador pelo processamento.
+- Pipeline sequencial; cadastro/edição do perfil usa canvas até 1600 px. Trajetória continua com o pipeline antigo de **800 px/512 KiB** e cota privada de **8 MiB**, separada da foto de perfil. Diretoria, portfólios, patrocinadores e galerias continuam usando o validador antigo. Sem corte, deformação intencional ou rotação manual; orientação decodificada pelo navegador respeitada. EXIF real e aparelhos móveis ainda precisam de homologação.
+- Proteção de resolução: acima de **40 megapixels para perfil** (**24 megapixels para trajetória**) ou 20.000 px em qualquer eixo é recusado quando as dimensões são conhecidas. JPEG/PNG/WebP e `ispe` HEIF são inspecionados em até 256 KiB antes de decodificar. Cabeçalhos incomuns podem só revelar dimensões após a abertura. O limite reduz risco, mas não garante memória livre em todos os celulares.
+- Leitura: limite de 10 s; decodificação: 15 s por tentativa; encoder: 10 s por tentativa, com orçamento de compressão de 20 s. Eventos assíncronos têm limite de espera; tarefas nativas síncronas que bloqueiam a thread não podem ser interrompidas por JavaScript. Se houver travamento do próprio navegador, reabra o cadastro em navegador atualizado e use foto menor; campos não são persistidos após recarregar a página.
+
+Se aparecer erro: mantenha a página aberta, escolha outra imagem e aguarde a confirmação de foto preservada/preparada. Confira a orientação e a prévia antes de salvar. Se a câmera não abrir, use o seletor visível. Não envie documentos digitalizados.
+
+### Evidência e limites de verificação
+
+Captura fornecida posteriormente: arquivo selecionado `IMG_1285.jpeg`, mensagem exata “Seu navegador não suporta a conversão WebP. Use um navegador atualizado.” repetida no tooltip e texto, instrução antiga exigindo conversão WebP/800 px/512 KiB e retorno visível ao WhatsApp. Isso evidencia recusa pelo caminho obrigatório de conversão, mas o nome `.jpeg` sozinho não comprova integridade dos bytes nem permite identificar versão do iOS. A revisão atual não exige WebP: JPEG/PNG/WebP pequenos são preservados; quando precisa preparar, WebP retornando PNG, `null` ou lançando exceção segue para JPEG. Sem `toBlob`, há alternativa `toDataURL('image/jpeg')` apenas sobre canvas já limitado, com limite de tamanho e conferência da assinatura/MIME real. `createImageBitmap` ausente/incompatível usa `Image`. Erros de validade são limpos tanto ao selecionar quanto ao concluir, nos inputs de câmera e galeria do cadastro e da edição. A instrução antiga não existe mais na página revisada; só deixará de aparecer no site publicado após implantação, que não foi feita nesta sessão.
+
+Reproduzidos antes do ajuste com jsdom: **(a)** JPEG com MIME vazio recusado antes de decodificar; **(b)** câmera oculta com `customValidity` de erro continuava inválida após correção pela galeria, bloqueando o formulário. Não foram encontrados IDs duplicados, input original obrigatório invisível ou clique assíncrono perdendo gesto de usuário. Pressão de memória, diferenças de câmera/HEIC e orientação EXIF são riscos/hipóteses, não causa comprovada da reclamação específica.
+
+Testes externos, ao lado da pasta `imperio-admin` (fora dos 89 arquivos de produção):
+
+```sh
+# Instale jsdom em uma pasta de ferramentas isolada, não na produção.
+JSDOM_PATH=/caminho/node_modules/jsdom node signup-photo.cjs
+node signup-photo-http.cjs
+JSDOM_PATH=/caminho/node_modules/jsdom node signup-photo-previews.cjs
+```
+
+Resultados desta revisão: **25 grupos DOM/processamento**, com decodificação e canvas simulados; **13 grupos de integração HTTP**, módulo real e dados sintéticos em memória. Abrangem formatos, MIME vazio, HEIC compatível/incompatível, origem grande, resolução excessiva, fallback JPEG/Image, fila, timeout, erro/foco, cancelamento, estado mais recente, ausência de foto, envio duplicado, adulto/menor, edição e trajetória, cadastro real do módulo, idempotência, sessão de 8 h e acesso privado. Reexecutadas também as regressões existentes: membros **339** na variante explícita `qualidade-compat-testar-membros.py`, administração/RBAC HTTP **1.302**, DOM **147** e galeria **158** verificações. O teste histórico `rbac-compat-testar-membros.py` falhou na antiga expectativa de rejeitar 801 px: mudança de contrato intencional, não declarado aprovado. A variante só troca essa expectativa para 1601 px; original intacto. Não equivalem à homologação em Android/iPhone reais, PostgreSQL, SMTP ou produção; esses ambientes não foram acessados.
+
+Prévias externas: `previews-cadastro-foto/cadastro-mobile-antes-selecao.html` e `previews-cadastro-foto/cadastro-mobile-depois-selecao.html`. Estados estáticos sintéticos, sem pessoa/dados reais, não evidência de câmera/decoder real. Solicitados 390 px ao capturador; o serviço informou imagens rasterizadas com **375 px**, portanto não são prova de largura exata de 390 px. Inspeção visual não encontrou cortes/sobreposições/rolagem horizontal; controle nativo apareceu em inglês por configuração do renderizador.
+
+Arquivos de produção alterados nesta revisão: **`public/perfil.html`, `members.cjs`, `public/admin.html` e `LEIA-ME.md`**. Pipeline incorporado na própria página para manter o pacote existente de **89 arquivos** e não exigir nova rota/dependência. Preços, contas, RBAC, trajetória pública optativa, conteúdo e logotipo original preservados. Senhas seguem mínimo 6; sessão privada 8 h. `profilePhoto` usa 2 MiB/1600 px e o parser de imagem compartilhado mantém assinatura/base64/dimensões; o wrapper antigo mantém 512 KiB/800 px. Somente POST `/api/dancarinos/cadastro` e PUT `/api/dancarinos/perfil` aceitam corpo de **4 MiB** (foto base64 de até cerca de 2,8 MB mais metadados); padrão global de 2 MiB e cotas de outras rotas intactos. Correção administrativa omite `photo` se não mudou, preservando a foto grande sem aumentar corpo administrativo; substituição pela administração continua 512 KiB/800 px. Não houve mudança de esquema de estatísticas nem cópias adicionais da foto em comentários. A resposta pública de trajetória e vínculos de destaques já usam a referência do perfil e suportam seu base64 até 3.000.000 caracteres: 2 MiB cabem. Isso aumenta tamanho das respostas/banco em relação ao limite anterior; não há nova cota coletiva de perfis nem garantia de desempenho em grandes listas. Regras de publicação optativa e cota de 8 MiB da trajetória não foram ampliadas. Não foi criado ZIP nem feita publicação. Não há Git local para confirmar a branch `main`.
+
+---
+
 ## Revisão cumulativa — portfólio de cada integrante da Diretoria
 
 ### Como cadastrar

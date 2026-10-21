@@ -14,9 +14,10 @@ const digest=async(p,salt)=>(await scrypt(p,Buffer.from(salt,'hex'),64,{N:16384,
 async function credentials(p){const salt=crypto.randomBytes(32).toString('hex');return {salt,hash:await digest(password(p),salt)};}
 const nonce=()=>crypto.randomBytes(32).toString('hex');
 function areaFor(path){
+ if(path==='/api/admin/notificacoes/eventos'||/^\/api\/admin\/notificacoes\/eventos\/[^/]+\/avisar$/.test(path))return 'eventos';
  if(path==='/api/admin/destaques/perfis')return 'destaques';
  if(/^\/api\/admin\/dancarinos\/[^/]+\/financeiro$/.test(path)||/^\/api\/admin\/pagamentos\/(status|links)$/.test(path)||path==='/api/admin/contribuicao-2027')return 'financeiro';
- if(/^\/api\/admin\/dancarinos(?:\/[^/]+(?:\/senha)?)?$/.test(path))return 'dancarinos';
+ if(/^\/api\/admin\/dancarinos(?:\/[^/]+(?:\/(?:senha|aprovacao))?)?$/.test(path))return 'dancarinos';
  const map=[['encontros','presencas'],['patrocinadores','patrocinadores'],['portfolio','portfolio'],['trajetorias','trajetorias'],['materiais-2027','materiais'],['pedidos','pedidos']];
  for(const [prefix,area]of map)if(path==='/api/admin/'+prefix||path.startsWith('/api/admin/'+prefix+'/'))return area;
  if(path==='/api/admin/diretoria'||/^\/api\/admin\/diretoria\/[^/]+\/portfolio$/.test(path))return 'diretoria';if(path==='/api/admin/controle-inscricoes')return 'controleinscricoes';return null;
