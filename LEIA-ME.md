@@ -1,3 +1,51 @@
+# Atualização atual — Trajetórias no próprio site e autorização específica
+
+Esta seção é a referência vigente e substitui regras históricas abaixo sobre bloqueio total de menores, idade UTC e ausência de diretório. As contagens antigas são histórico das respectivas revisões, não resultados desta execução. Não há publicação em produção nem ativação em nome do proprietário.
+
+## Como aparecer no site
+
+1. Entre em **Área do dançarino → Minha trajetória**, usando sua própria conta.
+2. Marque **Deixar minha trajetória pública por link**. Para aparecer também na página do site, marque separadamente **Mostrar também na página Trajetórias do site** e salve.
+3. Para adulto, o compartilhamento elegível passa a funcionar. Para menor, o botão é **Solicitar publicação da trajetória**: o pedido fica pendente e privado até a conferência específica do responsável pela organização.
+4. Abra **Trajetórias** no menu do início (computador/celular), no perfil ou em `/trajetorias`. A busca usa apenas nome. São até **24 cartões por página**; cartão contém somente nome, foto/avatar neutro e **Ver trajetória**. Não há filtros de idade, gênero, contato ou documentos.
+
+Os dois controles começam desmarcados em contas novas. Compartilhamentos adultos anteriores continuam funcionando por link, mas **não entram silenciosamente no diretório**: ausência de `directoryListed` equivale a falso. A opção de lista pode ser salva sem publicar; isso nunca ativa o compartilhamento. Desmarcar a lista mantém o link; desligar o compartilhamento retira ambos. Escolhas anteriores de lista podem continuar guardadas para eventual reativação explícita. Nenhum identificador opaco existente é substituído.
+
+## Menores: operação manual, não verificação automática
+
+O consentimento de inscrição e os dados do responsável já cadastrados **não** valem automaticamente como autorização de exposição. A organização precisa conferir realmente, presencialmente ou fora do site, a autorização específica para **nome, foto de perfil, fotos/memórias e trajetória por link, além da descoberta pública no diretório**. A conferência tem ambos os escopos; aparecer na lista ainda exige a escolha independente do jovem.
+
+1. O jovem solicita pelo próprio perfil. Ninguém pode mandar `guardianApproved`, autorização, titular ou identidade no corpo dessa escolha. Enquanto pendente, conhecer ou adivinhar o identificador público não libera página, fotos, comentários, destaques ou seletor.
+2. O principal ou delegado com área **Trajetórias** abre **Administração → Trajetórias públicas → Autorização específica do responsável**. Confere a autorização real fora do sistema; registra a data, uma nota interna obrigatória de **10 a 1.000 caracteres** e confirma **Autorização específica conferida fora do site**. Não anexar documentos nem escrever CPF, contato ou novos dados sensíveis na nota.
+3. A área de trajetórias não mostra contatos, CPF ou cadastro do responsável. Para consulta cadastral, solicitar ao principal ou a quem possua a permissão **Cadastros de dançarinos**, separada. Ter apenas Cadastros não autoriza conferir publicação nesta rota.
+4. Registrar a conferência **não altera a escolha do jovem**: se ele já retirou o pedido, a trajetória continua privada. Havendo solicitação própria ativa e autorização válida, o link passa a ser elegível. Diretório requer ainda `directoryListed:true`.
+5. **Revogar autorização** desliga a publicação imediatamente no servidor. O jovem também pode retirar a publicação em qualquer estado, inclusive pendente. O estado de solicitação/autorização continua indicado na área privada.
+
+Este é um modelo operacional de registro manual. Checkbox, data e nota **não comprovam identidade, não substituem a conferência real e não certificam conformidade legal**. Não há envio real de e-mail, conector, coleta de novos documentos ou automatização de autorização.
+
+## Privacidade, armazenamento e limites
+
+- Mesma chave `members_trajetorias_publicas_v1`, preservando links, fotos, curtidas e comentários. Novos metadados são `directoryListed`, `authorization` e histórico interno `authorizationAudit` limitado às últimas **50 decisões por titular**. Cada decisão registra ator administrativo, horário do servidor, nota, data e escopos. O estado próprio só expõe situação, nunca nota/ator/hash interno.
+- PUT próprio: `{enabled, directoryListed?, version}`; ausência da nova escolha mantém a preferência salva ou falso em legado. Uma solicitação específica pendente não é aprovação; todos os campos extras são recusados.
+- GET `/api/trajetorias?q=nome&page=1`: parâmetros exclusivos, nome até **150 caracteres**, página **1 a 9999**, **24 resultados**, retorno `{total,page,pageSize,items:[{publicId,name,photo}]}`. UUID público aleatório existente; nunca ID cadastral, usuário ou e-mail. Texto renderizado como texto, não HTML. Máximo anterior de 10.000 compartilhamentos mantido; fotos de perfil existentes de até 2 MiB podem tornar respostas grandes. Não há otimização/miniatura nova ou garantia de desempenho sob carga.
+- GET `/api/admin/trajetorias/autorizacoes?page=1`: 25 registros por página, sem cadastro/contatos; PUT `.../:publicId`: `{version,action,note,reviewedOn?,confirmed?,link?,directory?}`. `approve` exige confirmação e ambos os escopos verdadeiros; `revoke` desliga publicação. Sessão principal/Trajetórias, CSRF, origem, versão e corpo até 8 KiB obrigatórios. Notas nunca entram em APIs públicas ou seletor de destaques.
+- Novas solicitações pendentes: limite de **40 em 15 minutos por titular e origem de rede no processo**; não interfere no opt-out. Curtidas/comentários mantêm limites anteriores (5 comentários por ator em 10 minutos, 200 por trajetória, 25 por página), com contas ativas e CSRF. Não há recursos extras de perfilamento de menores.
+- Um único critério de elegibilidade atende página individual, projeção pública, comentários, diretório e destaques/seletor. Opt-out, revogação, inatividade e exclusão retiram o público a cada consulta. Alterações relevantes de **nome/documentos do titular, nascimento ou qualquer campo do responsável** invalidam a autorização manual e exigem nova conferência. Reverter o cadastro não recupera uma autorização já invalidada. Alterar apenas telefone/cidade/foto do perfil não invalida a autorização. A idade é calculada pelo dia de **America/Araguaina**, inclusive na transição para 18; nascimento futuro/impossível é recusado.
+- Todas essas páginas/APIs usam `Cache-Control: no-store`. Páginas abertas precisam revalidar/atualizar; o diretório reconsulta ao retornar à aba e limpa cartões antes da busca. O servidor bloqueia novas consultas imediatamente. Uma imagem já vista, copiada ou baixada não pode ser recolhida. Sem transação multi-chave ou coordenação multi-instância: produção com várias instâncias, carga e política de backups/retensão precisam de homologação.
+- Nenhum nascimento, idade/rótulo de menor, CPF, telefone, responsável, gênero/lista de materiais, financeiro, presença, nota de conferência ou ID privado é acrescentado às projeções públicas. Textos livres publicados devem ser revisados pelo titular: o sistema não detecta automaticamente dados sensíveis digitados em memórias ou comentários.
+
+## Verificação desta execução e entrega
+
+Testes externos ao aplicativo, somente fixtures sintéticas com armazenamento temporário e `DATABASE_URL=''`: nova suíte **820 HTTP**, **45 DOM**, **5 verificações da função real de idade**; variante de trajetória **303 HTTP e 50 DOM**; destaques **84 HTTP e 36 DOM**; administração/RBAC **1.302 HTTP e 147 DOM**; membros **339**, autopresença **366**, aprovação rápida **100 HTTP e 22 DOM**; materiais segmentados **235 HTTP**, lote **128 HTTP**, avisos **191 HTTP**; fotos **25 grupos DOM e 13 grupos HTTP**; portfólio v3 **1.084 módulo, 639 HTTP e 18 DOM**. As variantes são explícitas: novos contratos de diretório/menor pendente, aba Avisos e botão Ver cadastro; originais históricos não alterados nem declarados aprovados. A suíte financeira histórica foi interrompida na expectativa antiga de lista global; não é declarada aprovada. Adicionais concluídos: controle de inscrições **54 HTTP**, links/contribuição **135**, Mercado Pago simulado **204**, Diretoria **104 HTTP e 33 DOM**, galeria **158 HTTP**, regressão editorial/galeria **181 HTTP**. As seis capturas finais (diretório computador/celular, adulto privado, jovem pendente e autorização administrativa computador/celular) foram inspecionadas; colisão de layout administrativa e fixture financeira incompleta foram corrigidas e verificadas antes do pacote.
+
+Capturas sintéticas revisadas para diretório computador/celular, escolhas privadas do adulto, jovem pendente e conferência administrativa. Não são pessoas reais nem conteúdo inicial. PostgreSQL externo, múltiplas instâncias, SMTP real, pagamentos reais, aparelhos móveis reais e produção **não testados**.
+
+Pacote cumulativo: **192 arquivos**, os 191 anteriores mais `public/trajetorias.html`. Alterados: `members.cjs`, `public/index.html`, `public/perfil.html`, `public/admin.html`, `public/trajetoria.html` e este `LEIA-ME.md`. Demais 185 arquivos anteriores preservados byte a byte, incluindo as 167 imagens WebP, logo original embutido, sementes, importação v3, dependências e configuração. Testes e prévias ficam fora do pacote; sem dados locais, credenciais, `.env` ou `node_modules`. O pacote só deve ser gerado depois da revisão das capturas. Não há Git para afirmar uma branch `main`, nem acesso para atualizar o site remoto: a instalação do pacote e a conferência real de autorizações cabem à organização.
+
+---
+
+## Histórico cumulativo (regras substituídas onde indicado acima)
+
 # Império Nordestina — site com painel administrativo
 
 ## Novidades do portfólio — importação incremental V3 do PPTX

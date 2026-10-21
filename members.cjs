@@ -67,8 +67,8 @@ function email(v) { v=text(v,180,true).toLowerCase(); if(!/^[^\s@]+@[^\s@]+\.[^\
 function phone(v) { v=text(v,30,true); if(!/^\+?[0-9 ()-]{8,30}$/.test(v)||v.replace(/\D/g,'').length<8||v.replace(/\D/g,'').length>15) error('Telefone inválido.'); return v; }
 function cpf(v) { v=text(v,14,true); if(!/^\d{11}$/.test(v)&&!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(v)) error('CPF inválido.'); v=v.replace(/\D/g,''); if(/^(\d)\1{10}$/.test(v)) error('CPF inválido.'); for(let n=9;n<=10;n++){let sum=0;for(let i=0;i<n;i++)sum+=Number(v[i])*(n+1-i);const d=(sum*10)%11;if(Number(v[n])!==(d===10?0:d))error('CPF inválido.');} return v; }
 function meetingDate(v, closed=false) { if(typeof v!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(v)) error('Data inválida. Use AAAA-MM-DD.'); const d=new Date(v+'T00:00:00.000Z'); if(!Number.isFinite(d.getTime())||d.toISOString().slice(0,10)!==v||v<'1900-01-01') error('Data inválida. Use uma data legítima a partir de 1900.'); if(closed&&v>new Date().toISOString().slice(0,10)) error('Não é possível encerrar encontro com data futura.'); return v; }
-function date(v) { meetingDate(v); if(v>new Date().toISOString().slice(0,10)) error('Nascimento não pode ser futuro.'); return v; }
-function age(v) { const now=new Date(),d=new Date(v+'T00:00:00Z');return now.getUTCFullYear()-d.getUTCFullYear()-(now.getUTCMonth()<d.getUTCMonth()||(now.getUTCMonth()===d.getUTCMonth()&&now.getUTCDate()<d.getUTCDate())?1:0); }
+function date(v) { meetingDate(v); if(v>checkinDay(new Date())) error('Nascimento não pode ser futuro.'); return v; }
+function age(v) { const today=checkinDay(new Date());return Number(today.slice(0,4))-Number(v.slice(0,4))-(today.slice(5)<v.slice(5)?1:0); }
 function password(v) { if(typeof v!=='string'||v.length<6||v.length>256) error('Senha deve ter entre 6 e 256 caracteres.');return v; }
 function photo(v, required=true, maxBytes=MAX_PHOTO, maxSide=800) {
   if(!required&&v==='')return '';
@@ -113,9 +113,16 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
   const sharing=()=>load(sharingKey,{items:[]});
   const interactionKey=id=>'members_trajetoria_interacoes_v1_'+id;
   const interactions=id=>load(interactionKey(id),{likes:[],comments:[],rates:{}});
-  function adult(d){try{return !!d&&age(date(d.birth))>=18;}catch{return false;}}
-  const visible=(s,d)=>s?.enabled===true&&d&&d.status!=='Inativo'&&adult(d);
-  function privacyView(s,d){return {enabled:visible(s,d),version:s?.version||0,publicId:visible(s,d)?s.publicId:null,canPublish:adult(d),notice:'Privada por padrão. Ao publicar, nome, foto de perfil e todas as memórias ficam visíveis a quem tiver o link. Ao reativar, as interações anteriores reaparecem.'};}
+  function validBirth(d){try{return !!d&&!!date(d.birth);}catch{return false;}}
+  function adult(d){return validBirth(d)&&age(d.birth)>=18;}
+  // Vínculo interno: alterações no titular, nascimento ou responsável invalidam a conferência.
+  const authorizationSource=d=>codeHash(JSON.stringify({name:d.name,birth:d.birth,cpf:d.cpf,rg:d.rg,rgSameAsCpf:d.rgSameAsCpf,guardian:d.guardian}));
+  const authorized=(s,d)=>s?.authorization?.status==='approved'&&s.authorization.source===authorizationSource(d)&&s.authorization.link===true&&s.authorization.directory===true;
+  function authorizationStatus(s,d){const a=s?.authorization;if(a?.status==='approved'&&!authorized(s,d))return 'invalidated';return a?.status||'none';}
+  // Único critério de elegibilidade usado em página, API, interações, diretório e destaques.
+  const visible=(s,d)=>s?.enabled===true&&UUID.test(s.publicId||'')&&d&&['Pendente','Aprovado'].includes(d.status)&&validBirth(d)&&(adult(d)||authorized(s,d));
+  function getPublicProfileInfo(s,d){return visible(s,d)?{publicId:s.publicId,name:d.name,photo:d.photo}:null;}
+  function privacyView(s,d){return {enabled:visible(s,d),requested:s?.enabled===true,directoryListed:s?.directoryListed===true,version:s?.version||0,publicId:visible(s,d)?s.publicId:null,canPublish:validBirth(d)&&(adult(d)||authorized(s,d)),canRequest:validBirth(d)&&!adult(d),authorizationStatus:authorizationStatus(s,d),notice:'Privada por padrão. Compartilhar por link e aparecer na página Trajetórias são escolhas separadas. Ao ativar a listagem, seu perfil também aparece na página Trajetórias do site. Ao reativar, as interações anteriores reaparecem.'};}
   async function socialView(s,d,viewer=null,isAdmin=false,page=1){
     const all=(await ds()).items,active=new Map(all.filter(a=>a.status!=='Inativo').map(a=>[a.id,a]));
     const data=await interactions(d.id),comments=data.comments.filter(c=>active.has(c.actorId));
@@ -235,11 +242,59 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       const data=await sharing();let s=data.items.find(i=>i.ownerId===dancer.id);
       if(method==='GET')return rawSend(res,200,privacyView(s,dancer));
       writeOrigin(req);if(!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type']||''))error('Envie JSON.',415);
-      const b=await readBody(req,4096);fields(b,['enabled','version']);if(typeof b.enabled!=='boolean')error('Informe sua escolha de publicação.');integer(b.version,0,Number.MAX_SAFE_INTEGER-1,'Versão');
+      const b=await readBody(req,4096);fields(b,['enabled','directoryListed','version']);if(typeof b.enabled!=='boolean'||b.directoryListed!==undefined&&typeof b.directoryListed!=='boolean')error('Informe sua escolha de publicação e listagem.');integer(b.version,0,Number.MAX_SAFE_INTEGER-1,'Versão');
       if(b.version!==(s?.version||0))error('Privacidade alterada. Atualize antes de salvar.',409);
-      if(b.enabled&&!adult(dancer))error('Publicação bloqueada: menores de 18 anos precisam de autorização específica do responsável. Este procedimento ainda não está implementado.',403);
-      if(!s){if(data.items.length>=10000)error('Limite de compartilhamentos atingido.',409);s={ownerId:dancer.id,publicId:crypto.randomUUID(),enabled:false,version:0};data.items.push(s);}
-      s.enabled=b.enabled;s.version++;s.updatedAt=new Date().toISOString();await store.set(sharingKey,data);return rawSend(res,200,privacyView(s,dancer));
+      if(b.enabled&&!validBirth(dancer))error('Nascimento inválido. Solicite a correção à organização.');
+      if(!s){if(data.items.length>=10000)error('Limite de compartilhamentos atingido.',409);s={ownerId:dancer.id,publicId:crypto.randomUUID(),enabled:false,directoryListed:false,version:0};data.items.push(s);}
+      const now=new Date().toISOString();
+      if(b.enabled&&!adult(dancer)&&!authorized(s,dancer)&&authorizationStatus(s,dancer)!=='pending'){
+        limit(req,'solicitar-trajetoria:'+dancer.id);
+        s.authorization={status:'pending',requestedAt:now,link:false,directory:false};
+      }
+      s.enabled=b.enabled;s.directoryListed=b.directoryListed??(s.directoryListed===true);s.version++;s.updatedAt=now;await store.set(sharingKey,data);return rawSend(res,200,privacyView(s,dancer));
+    }
+    if(p==='/trajetorias'||p==='/trajetorias/'){
+      if(method!=='GET')error('Método não permitido.',405);
+      return rawSend(res,200,require('fs').readFileSync(require('path').join(__dirname,'public','trajetorias.html'),'utf8'));
+    }
+    if(p==='/api/trajetorias'){
+      if(method!=='GET')error('Método não permitido.',405);
+      if([...u.searchParams.keys()].some(k=>!['page','q'].includes(k))||['page','q'].some(k=>u.searchParams.getAll(k).length>1))error('Busca inválida.');
+      const page=pageNumber(new URL('http://localhost/?page='+encodeURIComponent(u.searchParams.get('page')||'1'))),q=text(u.searchParams.get('q')||'',150);
+      const normalize=v=>v.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('pt-BR');
+      const all=new Map((await ds()).items.map(d=>[d.id,d]));
+      const items=(await sharing()).items.filter(s=>s.directoryListed===true).map(s=>getPublicProfileInfo(s,all.get(s.ownerId))).filter(i=>i&&normalize(i.name).includes(normalize(q))).sort((a,b)=>a.name.localeCompare(b.name,'pt-BR')||a.publicId.localeCompare(b.publicId));
+      return rawSend(res,200,{total:items.length,page,pageSize:24,items:items.slice((page-1)*24,page*24)});
+    }
+    const authorizationMatch=p.match(/^\/api\/admin\/trajetorias\/autorizacoes(?:\/([^/]+))?$/);
+    if(authorizationMatch){
+      if(u.search&&authorizationMatch[1])error('Parâmetros não permitidos.');
+      const settings=await sharing(),all=(await ds()).items,map=new Map(all.map(d=>[d.id,d]));
+      const view=s=>({publicId:s.publicId,name:map.get(s.ownerId).name,requested:s.enabled===true,directoryListed:s.directoryListed===true,version:s.version,status:authorizationStatus(s,map.get(s.ownerId)),requestedAt:s.authorization?.requestedAt||null,reviewedAt:s.authorization?.reviewedAt||null,reviewedOn:s.authorization?.reviewedOn||null,note:s.authorization?.note||'',actor:s.authorization?.actor||null});
+      if(!authorizationMatch[1]){
+        if(method!=='GET')error('Método não permitido.',405);const page=pageNumber(u),items=settings.items.filter(s=>map.has(s.ownerId)&&!adult(map.get(s.ownerId))&&validBirth(map.get(s.ownerId)));
+        return rawSend(res,200,{total:items.length,page,pageSize:25,items:items.slice((page-1)*25,page*25).map(view)});
+      }
+      if(method!=='PUT')error('Método não permitido.',405);
+      if(!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type']||''))error('Envie JSON.',415);
+      const s=settings.items.find(s=>s.publicId===authorizationMatch[1]),d=s?map.get(s.ownerId):null;
+      if(!s||!d||!UUID.test(authorizationMatch[1]))error('Solicitação não encontrada.',404);
+      const b=await readBody(req,8192);fields(b,['version','action','note','reviewedOn','confirmed','link','directory']);
+      integer(b.version,0,Number.MAX_SAFE_INTEGER-1,'Versão');if(b.version!==s.version)error('Solicitação alterada. Atualize e confira novamente.',409);
+      if(!['approve','revoke'].includes(b.action))error('Ação inválida.');
+      const note=text(b.note,1000,true);if(note.length<10)error('Informe uma nota interna de conferência com 10 a 1.000 caracteres, sem documentos ou dados sensíveis.');
+      const now=new Date().toISOString();let next={...s.authorization,status:'revoked',note,actor:admin.accountId,reviewedAt:now};
+      if(b.action==='approve'){
+        if(adult(d)||!validBirth(d)||d.status==='Inativo')error('Cadastro indisponível para esta autorização.',409);
+        guardian(d.guardian,true);
+        if(!s.authorization?.requestedAt)error('O titular precisa solicitar a publicação primeiro.',409);
+        if(b.confirmed!==true||b.link!==true||b.directory!==true)error('Confirme a conferência externa específica de nome, fotos, trajetória por link e descoberta no diretório.');
+        const reviewedOn=meetingDate(b.reviewedOn);if(reviewedOn>checkinDay(new Date()))error('Data de conferência não pode ser futura.');
+        next={...next,status:'approved',reviewedOn,source:authorizationSource(d),link:true,directory:true};
+      }else {s.enabled=false;next.link=false;next.directory=false;}
+      s.authorization=next;s.version++;s.updatedAt=now;
+      s.authorizationAudit??=[];s.authorizationAudit.push({...next,version:s.version});s.authorizationAudit=s.authorizationAudit.slice(-50);
+      await store.set(sharingKey,settings);return rawSend(res,200,view(s));
     }
     const sharedPage=p.match(/^\/trajetorias\/([^/]+)\/?$/);
     if(sharedPage){if(method!=='GET')error('Método não permitido.',405);const s=(await sharing()).items.find(s=>s.publicId===sharedPage[1]),d=s?(await ds()).items.find(d=>d.id===s.ownerId):null;if(!UUID.test(sharedPage[1])||!visible(s,d))error('Trajetória indisponível.',404);return rawSend(res,200,require('fs').readFileSync(require('path').join(__dirname,'public','trajetoria.html'),'utf8'));}
@@ -627,7 +682,7 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
     if(match&&['PUT','DELETE'].includes(method)){
       const data=await ds(),d=data.items.find(d=>d.id===match[1]);if(!d)error('Cadastro não encontrado.',404);
       if(method==='DELETE'&&!match[2]){mp.assertEditable(await load(KEYS.finance,{plans:[]}),d.id);const meetings=await ms();for(const m of meetings){if(m.attendees.some(a=>a.dancerId===d.id))revokeCheckin(m);m.attendees=m.attendees.filter(a=>a.dancerId!==d.id);}await store.set(KEYS.meetings,meetings);data.items=data.items.filter(x=>x.id!==d.id);await store.set(KEYS.dancers,data);await store.set(notificationKey(d.id),{items:[],receipts:[]});await store.set('members_trajetoria_v1_'+d.id,{items:[],version:0});await store.set(materialAnswersKey(d.id),{responses:{}});const destinations=await materialDestinations();destinations.items=destinations.items.filter(i=>i.dancerId!==d.id);await store.set(materialDestinationsKey,destinations);const shares=await sharing();shares.items=shares.items.filter(s=>s.ownerId!==d.id);await store.set(sharingKey,shares);await store.set(interactionKey(d.id),{likes:[],comments:[],rates:{}});await store.set('members_trajetoria_ritmo_v1_'+d.id,{count:0,until:0});revoke(d.id);return send(res,200,{ok:true});}
-      if(method==='PUT'){const b=await readBody(req);if(match[2]){fields(b,['password']);Object.assign(d,await credentials(password(b.password)));await store.set(KEYS.dancers,data);revoke(d.id);return send(res,200,{ok:true});}fields(b,['name','birth','phone','city','email','cpf','rgSameAsCpf','rg','photo','experience','message','guardian','status']);const clean=profile({...d,...b},value=>value===d.photo?profilePhoto(value):photo(value));unique(data.items,clean,d.id);const status=b.status??d.status;if(!['Pendente','Aprovado','Inativo'].includes(status))error('Status inválido.');Object.assign(d,clean,{status});await store.set(KEYS.dancers,data);if(status==='Inativo'||!adult(d)){const shares=await sharing(),s=shares.items.find(s=>s.ownerId===d.id);if(s?.enabled){s.enabled=false;s.version++;await store.set(sharingKey,shares);}}if(status==='Inativo')revoke(d.id);return send(res,200,{ok:true});}
+      if(method==='PUT'){const b=await readBody(req);if(match[2]){fields(b,['password']);Object.assign(d,await credentials(password(b.password)));await store.set(KEYS.dancers,data);revoke(d.id);return send(res,200,{ok:true});}fields(b,['name','birth','phone','city','email','cpf','rgSameAsCpf','rg','photo','experience','message','guardian','status']);const clean=profile({...d,...b},value=>value===d.photo?profilePhoto(value):photo(value));unique(data.items,clean,d.id);const status=b.status??d.status;if(!['Pendente','Aprovado','Inativo'].includes(status))error('Status inválido.');const previousSource=authorizationSource(d);Object.assign(d,clean,{status});await store.set(KEYS.dancers,data);const sourceChanged=previousSource!==authorizationSource(d);if(status==='Inativo'||sourceChanged){const shares=await sharing(),s=shares.items.find(s=>s.ownerId===d.id);if(s&&(status==='Inativo'||s.authorization||!adult(d))){if(sourceChanged&&s.authorization){s.authorization={...s.authorization,status:'invalidated',link:false,directory:false,invalidatedAt:new Date().toISOString()};}if(status==='Inativo'||!adult(d))s.enabled=false;s.version++;await store.set(sharingKey,shares);}}if(status==='Inativo')revoke(d.id);return send(res,200,{ok:true});}
     }
     if(method==='GET'&&p==='/api/admin/encontros')return send(res,200,{items:(await ms()).map(adminMeeting)});
     if(method==='POST'&&p==='/api/admin/encontros'){
@@ -646,11 +701,11 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
     }
     return send(res,404,{error:'Rota não encontrada.'});
   }
-  async function eligibleHighlightProfiles(){const settings=await sharing(),all=await ds(),byId=new Map(all.items.map(d=>[d.id,d]));return settings.items.filter(s=>UUID.test(s.publicId||'')&&visible(s,byId.get(s.ownerId))).map(s=>{const d=byId.get(s.ownerId);return {publicId:s.publicId,name:d.name,photo:d.photo};});}
+  async function eligibleHighlightProfiles(){const settings=await sharing(),all=await ds(),byId=new Map(all.items.map(d=>[d.id,d]));return settings.items.map(s=>getPublicProfileInfo(s,byId.get(s.ownerId))).filter(Boolean);}
   async function highlightProjection(source){if(!Array.isArray(source.highlights))return source;const available=new Map((await eligibleHighlightProfiles()).map(p=>[p.publicId,p]));return {...source,highlights:source.highlights.map((h,index)=>{const {publicProfileIds,publicProfiles,...rest}=h;if(publicProfileIds===undefined)return rest;const ids=Array.isArray(publicProfileIds)?publicProfileIds:[];return {...rest,publicProfiles:[...new Set(ids)].slice(0,index===0?2:1).map(id=>available.get(id)).filter(Boolean)};})};}
   function normalizeHighlightIds(value,index){if(value===undefined)return undefined;const max=index===0?2:1;if(!Array.isArray(value)||value.length>max||value.some(id=>typeof id!=='string'||!UUID.test(id))||new Set(value).size!==value.length)error('Selecione até '+max+' trajetória(s) pública(s), sem repetir.');return [...value];}
   async function validateHighlightBindings(candidate,previous){const available=new Set((await eligibleHighlightProfiles()).map(p=>p.publicId));for(const [index,h]of candidate.highlights.entries()){const ids=normalizeHighlightIds(h.publicProfileIds,index)||[],old=previous.highlights?.[index]?.publicProfileIds||[];for(const id of ids)if(!available.has(id)&&!old.includes(id))error('Perfil indisponível. A pessoa precisa ativar sua trajetória pública.',409);}return candidate;}
-  const handler=async function members(req,res,u){const p=u.pathname;if(!(/^\/api\/(admin\/)?diretoria\/[^/]+\/portfolio$/.test(p)||p.startsWith('/api/admin/notificacoes/eventos')||p==='/api/admin/destaques/perfis'||p==='/api/admin/participantes'||p.startsWith('/trajetorias/')||p.startsWith('/api/trajetorias/')||p.startsWith('/api/admin/trajetorias')||p.startsWith('/api/dancarinos/')||p.startsWith('/api/admin/dancarinos')||p.startsWith('/api/admin/encontros')||p.startsWith('/api/admin/pedidos')||p==='/api/admin/diretoria'||p==='/api/admin/materiais-2027'||p==='/api/admin/materiais-2027/acompanhamento'||/^\/api\/admin\/materiais-2027\/destinacoes(?:\/[^/]+)?$/.test(p)||p==='/api/admin/pagamentos/status'||p==='/api/admin/pagamentos/links'||p==='/api/admin/contribuicao-2027'||p==='/api/admin/controle-inscricoes'||p==='/api/pagamentos/mercadopago/webhook'||p==='/api/pedidos'||p==='/api/diretoria'||p==='/api/patrocinadores'||p==='/api/patrocinadores/submissoes'||p==='/api/portfolio'||/^\/api\/admin\/(patrocinadores|portfolio)(\/[^/]+)?$/.test(p)))return false;try{if(!['GET','HEAD'].includes(req.method))writeOrigin(req);if(req.method==='POST'&&['/api/dancarinos/cadastro','/api/dancarinos/entrar','/api/pedidos','/api/patrocinadores/submissoes'].includes(p)){origin(req);limit(req,p==='/api/dancarinos/entrar'?'login':p);}await serial(()=>route(req,res,u));}catch(e){if(!e.status)console.error('Falha na extensão de membros:',e.code||e.name);if(!res.headersSent&&!res.destroyed)send(res,e.status||500,{error:e.status?e.message:'Não foi possível concluir. Tente novamente.'});}return true;};
+  const handler=async function members(req,res,u){const p=u.pathname;if(!(/^\/api\/(admin\/)?diretoria\/[^/]+\/portfolio$/.test(p)||p.startsWith('/api/admin/notificacoes/eventos')||p==='/api/admin/destaques/perfis'||p==='/api/admin/participantes'||p==='/trajetorias'||p.startsWith('/trajetorias/')||p==='/api/trajetorias'||p.startsWith('/api/trajetorias/')||p.startsWith('/api/admin/trajetorias')||p.startsWith('/api/dancarinos/')||p.startsWith('/api/admin/dancarinos')||p.startsWith('/api/admin/encontros')||p.startsWith('/api/admin/pedidos')||p==='/api/admin/diretoria'||p==='/api/admin/materiais-2027'||p==='/api/admin/materiais-2027/acompanhamento'||/^\/api\/admin\/materiais-2027\/destinacoes(?:\/[^/]+)?$/.test(p)||p==='/api/admin/pagamentos/status'||p==='/api/admin/pagamentos/links'||p==='/api/admin/contribuicao-2027'||p==='/api/admin/controle-inscricoes'||p==='/api/pagamentos/mercadopago/webhook'||p==='/api/pedidos'||p==='/api/diretoria'||p==='/api/patrocinadores'||p==='/api/patrocinadores/submissoes'||p==='/api/portfolio'||/^\/api\/admin\/(patrocinadores|portfolio)(\/[^/]+)?$/.test(p)))return false;try{if(!['GET','HEAD'].includes(req.method))writeOrigin(req);if(req.method==='POST'&&['/api/dancarinos/cadastro','/api/dancarinos/entrar','/api/pedidos','/api/patrocinadores/submissoes'].includes(p)){origin(req);limit(req,p==='/api/dancarinos/entrar'?'login':p);}await serial(()=>route(req,res,u));}catch(e){if(!e.status)console.error('Falha na extensão de membros:',e.code||e.name);if(!res.headersSent&&!res.destroyed)send(res,e.status||500,{error:e.status?e.message:'Não foi possível concluir. Tente novamente.'});}return true;};
   handler.highlightProjection=source=>serial(()=>highlightProjection(source));
   handler.validateHighlightBindings=(candidate,previous)=>serial(()=>validateHighlightBindings(candidate,previous));
   return handler;
