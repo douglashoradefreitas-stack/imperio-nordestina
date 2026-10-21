@@ -12,9 +12,9 @@ if dest.exists():
 email=input('E-mail para acessar o painel: ').strip().lower()
 if not re.fullmatch(r'[^\s@]+@[^\s@]+\.[^\s@]+',email):
     raise SystemExit('E-mail inválido.')
-password=getpass.getpass('Crie uma senha com pelo menos 12 caracteres: ')
-if len(password)<12 or len(password)>256:
-    raise SystemExit('A senha precisa ter entre 12 e 256 caracteres.')
+password=getpass.getpass('Crie uma senha com pelo menos 6 caracteres: ')
+if len(password)<6 or len(password)>256:
+    raise SystemExit('A senha precisa ter entre 6 e 256 caracteres.')
 if password!=getpass.getpass('Repita a senha: '):
     raise SystemExit('As senhas não coincidem.')
 salt=secrets.token_bytes(16)

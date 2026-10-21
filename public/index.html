@@ -21,6 +21,7 @@
 .event-details{min-width:0;overflow-wrap:anywhere}
 .event-details .event-description{margin-top:8px;white-space:pre-line}
 .theme-card h3,.theme-card p,.highlight-body p{overflow-wrap:anywhere;white-space:pre-line}
+.highlight-trajectory{position:relative;display:block;width:100%;padding:0;border:0;background:transparent;color:var(--light);text-align:inherit;cursor:pointer}.highlight-trajectory:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}.trajectory-hint{position:absolute;bottom:14px;left:14px;right:14px;padding:10px 12px;background:var(--bg);border:1px solid var(--gold);color:var(--gold);font-size:12px;text-align:center}.highlight-profile-dialog{width:min(540px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:auto;background:var(--panel);color:var(--light);border:1px solid var(--gold);border-radius:6px;padding:24px}.highlight-profile-dialog::backdrop{background:#030914d9}.highlight-profile-dialog h2{font:500 34px/1.2 var(--display);margin:0 0 12px}.highlight-profile-option{display:flex;align-items:center;gap:18px;border:1px solid var(--line);padding:14px;margin-top:16px;overflow-wrap:anywhere}.highlight-profile-option:hover{border-color:var(--gold)}.highlight-profile-option img{width:64px;height:64px;object-fit:cover;flex-shrink:0}@media(prefers-reduced-motion:reduce){.highlight-trajectory{transition:none}}
 .admin-link{font-size:10px;opacity:.65}
 .api-status{margin-top:18px;margin-bottom:18px}
 .mobile-public-nav{display:none}.links{gap:18px}.notice[role=alert]{border-left-color:#edaaaa;color:#f4bcbc}#orderWhatsApp{margin-top:12px}#orderStatus{overflow-wrap:anywhere}@media(max-width:1050px){.header .links{display:none}.mobile-public-nav{display:flex;gap:24px;flex-wrap:wrap;padding-bottom:12px;font-size:12px;color:var(--gold)}}
@@ -135,6 +136,7 @@ function contentList(value,max,map){
   if(!Array.isArray(value)||value.length>max)throw new Error('Lista de conteúdo inválida');
   return value.map(map);
 }
+const highlightUUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 function validateContent(data){
   if(!data||typeof data!=='object'||Array.isArray(data))throw new Error('Conteúdo inválido');
   const c=data.contacts||{},t=data.theme||{},s=data.shirt||{};
@@ -150,7 +152,7 @@ function validateContent(data){
     contacts:{phone,instagram,email,pix:contentText(c.pix,180,'Pix')},
     theme:{title:contentText(t.title,150,'tema'),description:contentText(t.description,2000,'descrição'),image:contentImage(t.image)},
     shirt:{price:s.price,note:contentText(s.note,800,'nota'),image:contentImage(s.image),sizes:contentList(s.sizes,15,x=>contentText(x,12,'tamanho')).filter(Boolean)},
-    highlights:contentList(data.highlights,3,h=>({role:contentText(h.role,40,'papel'),name:contentText(h.name,150,'nome'),description:contentText(h.description,800,'descrição'),image:contentImage(h.image)})),
+    highlights:contentList(data.highlights,3,(h,index)=>({role:contentText(h.role,40,'papel'),name:contentText(h.name,150,'nome'),description:contentText(h.description,800,'descrição'),image:contentImage(h.image),publicProfiles:contentList(h.publicProfiles||[],index===0?2:1,p=>{if(typeof p.publicId!=='string'||!highlightUUID.test(p.publicId))throw new Error('Trajetória inválida');return {publicId:p.publicId,name:contentText(p.name,150,'nome público'),photo:contentImage(p.photo)}})})),
     events:contentList(data.events,30,e=>({title:contentText(e.title,150,'evento'),date:contentText(e.date,30,'data'),location:contentText(e.location,180,'local'),description:contentText(e.description,1000,'descrição')})),
     sponsors:contentList(data.sponsors,30,s=>({name:contentText(s.name,150,'patrocinador'),category:contentText(s.category,60,'categoria'),image:contentImage(s.image)}))
   };
@@ -165,6 +167,11 @@ function editableImage(src,alt,className){
   const img=contentNode('img','editable-image '+(className||''));
   img.src=src;img.alt=alt;img.loading='lazy';img.decoding='async';
   return img;
+}
+let highlightChooser=null,highlightTrigger=null;
+function openHighlightChooser(profiles,trigger){
+ if(!highlightChooser){highlightChooser=contentNode('dialog','highlight-profile-dialog');highlightChooser.setAttribute('aria-labelledby','highlightChooserTitle');highlightChooser.addEventListener('close',()=>{highlightChooser.replaceChildren();highlightTrigger?.focus();highlightTrigger=null;});highlightChooser.addEventListener('click',e=>{if(e.target===highlightChooser){const r=highlightChooser.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)highlightChooser.close();}});document.body.append(highlightChooser);}
+ highlightTrigger=trigger;highlightChooser.replaceChildren();const title=contentNode('h2','','Conheça as trajetórias do casal');title.id='highlightChooserTitle';const close=contentNode('button','button secondary','Fechar escolha');close.type='button';close.onclick=()=>highlightChooser.close();highlightChooser.append(title,contentNode('p','','Escolha a trajetória que deseja conhecer.'),close);for(const p of profiles){const link=contentNode('a','highlight-profile-option');link.href='/trajetorias/'+p.publicId;link.setAttribute('aria-label','Ver trajetória de '+p.name);if(p.photo)link.append(editableImage(p.photo,'Foto de perfil de '+p.name));link.append(contentNode('span','',p.name));highlightChooser.append(link);}highlightChooser.showModal();close.focus();
 }
 // Remember each WhatsApp message, so changing the phone never loses its purpose.
 const whatsappMessages=new WeakMap();
@@ -221,6 +228,7 @@ function applyContent(data){
   changedOrder();
   sizes.setAttribute('aria-label',content.shirt.sizes.length?'Tamanho da camiseta':'Tamanhos indisponíveis; consulte a organização');
   updateQuantity();
+  if(highlightChooser?.open)highlightChooser.close();
   const highlights=$('.highlights');
   highlights.replaceChildren(...content.highlights.map(item=>{
     const article=contentNode('article','card highlight');
@@ -229,7 +237,7 @@ function applyContent(data){
     const body=contentNode('div','highlight-body');
     body.append(contentNode('span','label','DESTAQUES · 2027'),contentNode('h3','',item.role));
     if(item.name)body.append(contentNode('p','content-name',item.name));
-    body.append(contentNode('p','',item.description));article.append(portrait,body);return article;
+    body.append(contentNode('p','',item.description));let photoControl=portrait;const profiles=item.publicProfiles;if(profiles.length){if(profiles.length===1){photoControl=contentNode('a','highlight-trajectory');photoControl.href='/trajetorias/'+profiles[0].publicId;photoControl.setAttribute('aria-label','Ver trajetória de '+profiles[0].name);}else{photoControl=contentNode('button','highlight-trajectory');photoControl.type='button';photoControl.setAttribute('aria-label','Escolher trajetória dos noivos');photoControl.setAttribute('aria-haspopup','dialog');photoControl.onclick=()=>openHighlightChooser(profiles,photoControl);}photoControl.append(portrait,contentNode('span','trajectory-hint','Conheça a trajetória'));}article.append(photoControl,body);return article;
   }));
   $('#destaques .notice').hidden=content.highlights.length>0&&content.highlights.every(item=>item.name&&item.image);
   const events=$('.event-list');
