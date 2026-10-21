@@ -9,6 +9,8 @@
     "start": "node server.cjs"
   },
   "dependencies": {
-    "pg": "^8.13.1"
+    "nodemailer": "^10.1.7",
+    "pg": "^8.13.1",
+    "tldts": "^7.4.19"
   }
 }

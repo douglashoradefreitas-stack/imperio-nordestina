@@ -1,13 +1,17 @@
 'use strict';
 const http=require('http'),fs=require('fs'),path=require('path'),crypto=require('crypto');
 const ROOT=__dirname;
+const displayProjection=require('./members.cjs').displayProjection;
+const preservePresentation=require('./members.cjs').preservePresentation;
+const contentVersion=()=> '"'+crypto.createHash('sha256').update(JSON.stringify(content)).digest('hex')+'"';
+let contentTail=Promise.resolve();
 const PORT=Number(process.env.PORT||3000),SECURE=process.env.COOKIE_SECURE==='true';
 const store=require('./store.cjs');
 let content=null,account=null;
 const sessions=new Map(),attempts=new Map();
 const token=()=>crypto.randomBytes(32).toString('hex');
 const equal=(a,b)=>{const x=Buffer.from(a),y=Buffer.from(b);return x.length===y.length&&crypto.timingSafeEqual(x,y)};
-const security={'X-Content-Type-Options':'nosniff','X-Frame-Options':'DENY','Referrer-Policy':'same-origin','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"};
+const security={'X-Content-Type-Options':'nosniff','X-Frame-Options':'DENY','Referrer-Policy':'no-referrer','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"};
 function send(res,status,data,headers={}){const json=typeof data!=='string';res.writeHead(status,{...security,'Content-Type':json?'application/json; charset=utf-8':'text/html; charset=utf-8','Cache-Control':'no-store',...headers});res.end(json?JSON.stringify(data):data)}
 function fail(message){const error=new Error(message);error.validation=true;throw error}
 function body(req){return new Promise((resolve,reject)=>{let parts=[],size=0;req.on('data',b=>{size+=b.length;if(size>16*1024*1024){reject(new Error('too_large'));req.destroy();return}parts.push(b)});req.on('end',()=>{try{resolve(JSON.parse(Buffer.concat(parts).toString()))}catch{reject(new Error('invalid_json'))}});req.on('error',reject)})}
@@ -21,7 +25,7 @@ const cookie=(id,age)=>`imperio_session=${id}; HttpOnly; SameSite=Strict; Path=/
 const members=require('./members.cjs')({store,session,permitted,getContent:()=>content,send,secure:SECURE});
 const server=http.createServer(async(req,res)=>{try{const u=new URL(req.url,'http://localhost');const method=req.method;
 if(await members(req,res,u))return;
-if(method==='GET'&&u.pathname==='/api/conteudo')return send(res,200,content);
+if(method==='GET'&&u.pathname==='/api/conteudo')return send(res,200,displayProjection(content),{ETag:contentVersion()});
 if(method==='GET'&&u.pathname==='/api/sessao'){const s=session(req);return s?send(res,200,{email:account.email,csrf:s.csrf}):send(res,401,{error:'Entre para acessar o painel.'})}
 if(method==='POST'&&u.pathname==='/api/entrar'){
  const origin=req.headers.origin;if(origin&&new URL(origin).host!==req.headers.host)return send(res,403,{error:'Origem não autorizada.'});
@@ -32,7 +36,7 @@ if(method==='POST'&&u.pathname==='/api/entrar'){
  if(String(b.email||'').trim().toLowerCase()!==account.email||!equal(hash,account.hash))return send(res,401,{error:'E-mail ou senha inválidos.'});
  const old=session(req);if(old)sessions.delete(old.id);const id=token(),csrf=token();sessions.set(id,{csrf,expires:Date.now()+8*3600000});attempts.delete(key);return send(res,200,{email:account.email,csrf},{'Set-Cookie':cookie(id,8*3600)});
 }
-if(method==='PUT'&&u.pathname==='/api/conteudo'){const s=session(req);if(!s)return send(res,401,{error:'Sua sessão terminou. Entre novamente.'});if(!permitted(req,s))return send(res,403,{error:'Atualize a página antes de salvar.'});const input=await body(req);const clean=validate(input);await store.set('conteudo',clean);content=clean;return send(res,200,{ok:true})}
+if(method==='PUT'&&u.pathname==='/api/conteudo'){const s=session(req);if(!s)return send(res,401,{error:'Sua sessão terminou. Entre novamente.'});if(!permitted(req,s))return send(res,403,{error:'Atualize a página antes de salvar.'});const input=await body(req);const save=contentTail.then(async()=>{if(req.headers['if-match']&&req.headers['if-match']!==contentVersion())return send(res,409,{error:'Conteúdo alterado em outra sessão. Recarregue antes de salvar.'});const clean=preservePresentation(content,validate(input));await store.set('conteudo',clean);content=clean;return send(res,200,{ok:true},{ETag:contentVersion()})});contentTail=save.catch(()=>{});return await save;}
 if(method==='POST'&&u.pathname==='/api/sair'){const s=session(req);if(!s||!permitted(req,s))return send(res,403,{error:'Sessão inválida.'});sessions.delete(s.id);return send(res,200,{ok:true},{'Set-Cookie':cookie('',0)})}
 if(method==='GET'&&/^\/assets\/portfolio\/(?:cultural-v1-202[0-5]|atividade-v2-(?:00[1-9]|0[1-7]\d|08[0-7]))\.webp$/.test(u.pathname)){try{const image=fs.readFileSync(path.join(ROOT,'public',u.pathname));res.writeHead(200,{...security,'Content-Type':'image/webp','Cache-Control':'public, max-age=86400'});return res.end(image)}catch(e){if(e.code==='ENOENT')return send(res,404,{error:'Imagem não encontrada.'});throw e}}
 if(method==='GET'&&['/','/admin','/admin/','/perfil','/perfil/','/diretoria','/diretoria/','/portfolio','/portfolio/'].includes(u.pathname)){const file=u.pathname==='/'?'index.html':u.pathname.startsWith('/admin')?'admin.html':u.pathname.startsWith('/perfil')?'perfil.html':u.pathname.startsWith('/portfolio')?'portfolio.html':'diretoria.html';try{return send(res,200,fs.readFileSync(path.join(ROOT,'public',file),'utf8'))}catch(e){if(e.code==='ENOENT')return send(res,404,{error:'Página não encontrada.'});throw e}}

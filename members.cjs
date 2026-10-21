@@ -1,6 +1,28 @@
 'use strict';
 // Extensão isolada: nunca lê/grava acesso ou conteudo e nunca serve arquivos de dados.
 const crypto = require('crypto');
+// Projeção editorial, sem modificar identificadores, URLs, fotos ou proveniência.
+function displayText(value){
+  if(typeof value!=='string')return value;
+  const caps=(source,target)=>source===source.toUpperCase()?target.toUpperCase():source[0]===source[0].toUpperCase()?target[0].toUpperCase()+target.slice(1):target;
+  return value.normalize('NFC').replace(/\b(nossas?|suas?|das?|nas?|pelas?|umas?|as?|essas?|estas?|aquelas?)\s+(tradiç(?:ão|ões))\b/giu,(all,pre,word)=>{
+    const plural=/ões$/iu.test(word),base=pre.toLowerCase();const map={nossa:'nosso',nossas:'nossos',sua:'seu',suas:'seus',da:'do',das:'dos',na:'no',nas:'nos',pela:'pelo',pelas:'pelos',uma:'um',umas:'uns',a:'o',as:'os',essa:'esse',essas:'esses',esta:'este',estas:'estes',aquela:'aquele',aquelas:'aqueles'};
+    return caps(pre,map[base]||base)+' '+caps(word,plural?'legados':'legado');
+  }).replace(/\btradiç(?:ão|ões)\b/giu,w=>caps(w,/ões$/iu.test(w)?'legados':'legado'));
+}
+function displayProjection(value,key=''){
+  if(key==='clippingLinks')return value;
+  if(typeof value==='string')return key==='sourceNote'?displayText(value):/(?:hash|source|import|id|url|photo|image|logo|salt|csrf|token|password|email|phone|cpf|rg|pix|request|receipt)/i.test(key)?value:displayText(value);
+  if(Array.isArray(value))return value.map(v=>displayProjection(v,key));
+  if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,displayProjection(v,k)]));
+  return value;
+}
+function preservePresentation(raw,input){
+  if(typeof input==='string'&&typeof raw==='string'&&input===displayText(raw))return raw;
+  if(Array.isArray(input))return input.map((v,i)=>preservePresentation(raw?.[i],v));
+  if(input&&typeof input==='object')return Object.fromEntries(Object.entries(input).map(([k,v])=>[k,preservePresentation(raw?.[k],v)]));
+  return input;
+}
 const {promisify} = require('util');
 const scrypt = promisify(crypto.scrypt);
 const KEYS = Object.freeze({dancers:'members_cadastros_v1', meetings:'members_encontros_v1', orders:'members_pedidos_v1', board:'members_diretoria_v1', finance:'members_financeiro_v1', materials:'members_materiais_2027_v1', manualLinks:'members_links_pagamento_v1', contribution:'members_contribuicao_2027_v1'});
@@ -21,6 +43,10 @@ function financeView(plan,billing,checkoutAttempts=[]){const installments=plan.i
 const GROUPS = [['diretoria','Diretoria 2027'],['artistico','Diretores artísticos'],['coreografos','Coreógrafos 2027'],['repertorio','Repertório musical 2027'],['atelie','Ateliê 2027']];
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const MAX_PHOTO = 512 * 1024;
+// Carregamento restrito ao portfólio; demais módulos continuam independentes.
+const portfolioGallery={galleryView:item=>require('./portfolio-cultural.cjs').galleryView(item),updateGallery:(...args)=>require('./portfolio-cultural.cjs').updateGallery(...args),updateLinks:(...args)=>require('./portfolio-cultural.cjs').updateLinks(...args)};
+// Projeção somente de leitura: fontes/evidências continuam no armazenamento e no ADMIN.
+const publicGallery=item=>{const {photoEvidence,...v}=portfolioGallery.galleryView(item);return {...v,photos:v.photos.map(p=>({image:p.image}))};};
 function error(message, status=400) { const e = new Error(message); e.status = status; throw e; }
 function object(v) { if (!v || typeof v !== 'object' || Array.isArray(v)) error('Objeto inválido.'); return v; }
 function fields(v, allowed) { object(v); if (Object.keys(v).some(k=>!allowed.includes(k))) error('Campo não permitido.'); }
@@ -71,11 +97,40 @@ const publicProfile=d=>Object.fromEntries(['id','name','birth','phone','city','e
 function stats(dancerId,meetings) {const s={rehearsalsPresent:0,rehearsalsAbsent:0,rehearsalsPending:0,rehearsalPercent:null,performancesPresent:0,performancesAbsent:0,performancesPending:0};for(const m of meetings){const a=m.attendees.find(a=>a.dancerId===dancerId);if(!a)continue;const prefix=m.type==='Ensaio'?'rehearsals':'performances';if(a.status==='Pendente')s[prefix+'Pending']++;else if(m.closed)s[prefix+(a.status==='Presente'?'Present':'Absent')]++;}const count=s.rehearsalsPresent+s.rehearsalsAbsent;if(count)s.rehearsalPercent=s.rehearsalsPresent/count*100;return s;}
 async function readBody(req, max=2*1024*1024) {let size=0,parts=[];for await(const b of req){size+=b.length;if(size<=max)parts.push(b);}if(size>max)error('Corpo acima do limite permitido.',413);try{return object(JSON.parse(Buffer.concat(parts).toString('utf8')));}catch(e){if(e.status)throw e;error('JSON inválido.');}}
 module.exports=function createMembers({store,session:adminSession,permitted,getContent,send,secure=false}) {
+  const rawSend=send;send=(res,status,data,headers)=>rawSend(res,status,displayProjection(data),headers);
   const dancerSessions=new Map(),rates=new Map();let tail=Promise.resolve();
   // Uma fila para todas as leituras/mutações desta extensão no processo único.
   const serial=fn=>{const result=tail.then(fn);tail=result.catch(()=>{});return result;};
   const load=async(key,initial)=>await store.get(key)??structuredClone(initial);
+  const recoveryKey='members_recovery_v1';
+  const unavailable='Recuperação por e-mail indisponível. Solicite à organização a redefinição.';
+  const recoveryMessage='Se houver cadastro ativo para esse e-mail, enviaremos instruções de recuperação.';
+  function mailConfig(){
+    try{const raw=process.env.APP_BASE_URL||'',u=new URL(raw),port=Number(process.env.SMTP_PORT||465),host=process.env.SMTP_HOST||'',from=process.env.SMTP_FROM||'';
+      if(u.protocol!=='https:'||u.username||u.password||u.port||u.pathname!=='/'||u.search||u.hash||!u.hostname.includes('.')||u.hostname==='localhost'||/^[\d.]+$/.test(u.hostname)||u.hostname.includes(':')||/\.(?:local|localhost|internal)$/i.test(u.hostname)||/[\s\\]/.test(raw)||!host||/[\s\r\n]/.test(host)||!/^\S+@[^\s@]+\.[^\s@]+$/.test(from)||!Number.isInteger(port)||port<1||port>65535)return null;
+      if(Boolean(process.env.SMTP_USER)!==Boolean(process.env.SMTP_PASS))return null;
+      return {base:u.origin,from,options:{host,port,secure:process.env.SMTP_SECURE!=='false',requireTLS:process.env.SMTP_SECURE==='false',...(process.env.SMTP_USER?{auth:{user:process.env.SMTP_USER,pass:process.env.SMTP_PASS}}:{}),connectionTimeout:4000,greetingTimeout:4000,socketTimeout:6000,logger:false,debug:false,disableFileAccess:true,disableUrlAccess:true}};
+    }catch{return null;}
+  }
+  async function recoveryLimit(req,address=''){
+    const data=await load(recoveryKey,{rates:{}}),now=Date.now();data.rates??={};
+    for(const[k,v]of Object.entries(data.rates))if(v.until<=now)delete data.rates[k];
+    const entries=address?[['email:'+codeHash(address),5]]:[['ip:'+codeHash(req.socket.remoteAddress||'unknown'),20]];
+    if(Object.keys(data.rates).length>10000)error('Muitas tentativas. Aguarde 15 minutos.',429);
+    let blocked=false;for(const[k,max]of entries){const r=data.rates[k]??={count:0,until:now+15*60000};if(++r.count>max)blocked=true;}
+    await store.set(recoveryKey,data);if(blocked)error('Muitas tentativas. Aguarde 15 minutos.',429);
+  }
   const ds=()=>load(KEYS.dancers,{items:[],receipts:[]});const ms=()=>load(KEYS.meetings,[]);const os=()=>load(KEYS.orders,{items:[],receipts:[]});
+  const materialAnswersKey=id=>'members_materiais_respostas_2027_v1_'+id;
+  async function materialList(){
+    const data=await load(KEYS.materials,{year:2027,items:[],version:0,updatedAt:null}),seen=new Set();let migrated=false;
+    const items=data.items.map(i=>{if(typeof i.id==='string'&&UUID.test(i.id)&&!seen.has(i.id)){seen.add(i.id);return i;}migrated=true;const id=crypto.randomUUID();seen.add(id);return {...i,id};});
+    if(!migrated)return data;
+    const clean={...data,items,version:data.version+1,updatedAt:new Date().toISOString()};await store.set(KEYS.materials,clean);return clean;
+  }
+  const materialAnswers=id=>load(materialAnswersKey(id),{responses:{}});
+  function materialResponse(data,id){const r=data.responses?.[id];return r&&typeof r.hasMaterial==='boolean'?{hasMaterial:r.hasMaterial,updatedAt:r.updatedAt,version:r.version}:{hasMaterial:null,updatedAt:null,version:0};}
+  async function ownMaterials(id){const list=await materialList(),answers=await materialAnswers(id);return {year:2027,listVersion:list.version,items:list.items.map(i=>({...i,response:materialResponse(answers,i.id)}))};}
   const board=()=>GROUPS.map(([key,title])=>({key,title,items:[]}));
   const mp=require('./mercado-pago.cjs')({store,readBody,fields,send});
   async function manualConfig(){const saved=await store.get(KEYS.manualLinks);if(saved!==null&&saved!==undefined){if(saved.generalUrl===DEFAULT_MANUAL_URL&&!Object.hasOwn(saved,'reportedAmountCents')){const migrated={...saved,reportedAmountCents:DEFAULT_REPORTED_CENTS,reportedAmountSource:'usuario',version:saved.version+1,updatedAt:new Date().toISOString()};await store.set(KEYS.manualLinks,migrated);return migrated;}return saved;}const initial={generalUrl:DEFAULT_MANUAL_URL,reportedAmountCents:DEFAULT_REPORTED_CENTS,reportedAmountSource:'usuario',version:0,updatedAt:null};await store.set(KEYS.manualLinks,initial);return initial;}
@@ -90,8 +145,50 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
   async function receipt(receipts,requestId,payload){const prev=receipts.find(r=>r.requestId===requestId);if(!prev)return null;if(!secureEqual(await digest(canonical(payload),prev.salt),prev.hash))error('requestId já utilizado com outro conteúdo.',409);return prev.response;}
   const timer=setInterval(()=>{for(const[k,s]of dancerSessions)if(s.expires<=Date.now())dancerSessions.delete(k);for(const[k,r]of rates)if(r.reset<=Date.now())rates.delete(k);},60000);timer.unref();
   async function route(req,res,u){const p=u.pathname,method=req.method;const isAdmin=p.startsWith('/api/admin/');let admin=null,own=null,dancer=null;
-    if(isAdmin){admin=adminSession(req);if(!admin){if((p==='/api/admin/controle-inscricoes'||p.startsWith('/api/admin/patrocinadores')||p.startsWith('/api/admin/portfolio'))&&ownSession(req))error(p==='/api/admin/controle-inscricoes'?'Controle de inscrições exclusivo do administrador.':'Recurso exclusivo do administrador.',403);error('Entre para acessar o painel.',401);}if(method!=='GET'&&!permitted(req,admin))error('Token administrativo inválido.',403);}
-    if(p.startsWith('/api/dancarinos/')&&!['/api/dancarinos/cadastro','/api/dancarinos/entrar'].includes(p)){own=ownSession(req);if(!own)error('Entre para acessar seu perfil.',401);dancer=(await ds()).items.find(d=>d.id===own.dancerId);if(!dancer||dancer.status==='Inativo'){revoke(own.dancerId);error('Sessão inválida.',401);}if(method!=='GET'&&!permitted(req,own))error('Token do perfil inválido.',403);}
+    if(isAdmin){admin=adminSession(req);if(!admin){if((p==='/api/admin/controle-inscricoes'||p==='/api/admin/materiais-2027/acompanhamento'||p.startsWith('/api/admin/patrocinadores')||p.startsWith('/api/admin/portfolio'))&&ownSession(req))error(p==='/api/admin/controle-inscricoes'?'Controle de inscrições exclusivo do administrador.':'Recurso exclusivo do administrador.',403);error('Entre para acessar o painel.',401);}if(method!=='GET'&&!permitted(req,admin))error('Token administrativo inválido.',403);}
+    if(p.startsWith('/api/dancarinos/')&&!['/api/dancarinos/cadastro','/api/dancarinos/entrar','/api/dancarinos/recuperacao','/api/dancarinos/recuperar-senha','/api/dancarinos/redefinir-senha'].includes(p)){own=ownSession(req);if(!own)error('Entre para acessar seu perfil.',401);dancer=(await ds()).items.find(d=>d.id===own.dancerId);if(!dancer||dancer.status==='Inativo'||(own.passwordHash&&own.passwordHash!==dancer.hash)){revoke(own.dancerId);error('Sessão inválida.',401);}if(method!=='GET'&&!permitted(req,own))error('Token do perfil inválido.',403);}
+    if(p==='/api/dancarinos/recuperacao'){if(method!=='GET')error('Método não permitido.',405);return send(res,200,{enabled:!!mailConfig()});}
+    if(['/api/dancarinos/recuperar-senha','/api/dancarinos/redefinir-senha'].includes(p)){
+      if(method!=='POST')error('Método não permitido.',405);
+      origin(req);if(req.headers['sec-fetch-site']==='cross-site')error('Origem não autorizada.',403);
+      if(!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type']||''))error('Envie JSON com Content-Type application/json.',415);
+      await recoveryLimit(req);const b=await readBody(req,4096);
+      if(p.endsWith('/recuperar-senha')){
+        fields(b,['email']);const address=email(b.email),config=mailConfig();if(!config)error(unavailable,503);
+        // Mesmo custo criptográfico e resposta para e-mails existentes/inexistentes.
+        await recoveryLimit({socket:{remoteAddress:'email-bucket'}},address);
+        const data=await ds(),d=data.items.find(d=>d.email===address&&d.status!=='Inativo');
+        const token=crypto.randomBytes(32).toString('hex'),hash=codeHash(token);
+        if(d){d.recovery={hash,expiresAt:new Date(Date.now()+30*60000).toISOString(),passwordHash:d.hash,email:d.email};await store.set(KEYS.dancers,data);
+          try{const transport=require('nodemailer').createTransport(config.options);await transport.sendMail({from:config.from,to:address,subject:'Recuperar senha — Império Nordestina',text:'Você solicitou a recuperação da sua senha. Abra o link em até 30 minutos:\n'+config.base+'/perfil?recuperar='+token+'\nSe não fez esta solicitação, ignore esta mensagem.',disableFileAccess:true,disableUrlAccess:true});transport.close();}catch{/* Sem diagnóstico com endereço, link ou segredo. Resposta não enumera contas. */}
+        }
+        return send(res,200,{message:recoveryMessage});
+      }
+      fields(b,['token','password']);const pass=password(b.password),valid=typeof b.token==='string'&&/^[a-f0-9]{64}$/.test(b.token),candidate=codeHash(valid?b.token:'invalid'),data=await ds();
+      const d=data.items.find(d=>d.recovery&&secureEqual(candidate,d.recovery.hash));
+      if(!valid||!d||d.status==='Inativo'||!Number.isFinite(Date.parse(d.recovery.expiresAt))||Date.parse(d.recovery.expiresAt)<=Date.now()||d.recovery.passwordHash!==d.hash||d.recovery.email!==d.email)error('Link inválido ou expirado. Solicite uma nova recuperação.');
+      Object.assign(d,await credentials(pass));delete d.recovery;await store.set(KEYS.dancers,data);revoke(d.id);
+      return send(res,200,{ok:true,message:'Senha redefinida. Entre novamente.'});
+    }
+    const trajectoryMatch=p.match(/^\/api\/dancarinos\/trajetoria(?:\/([^/]+))?$/);
+    if(trajectoryMatch){
+      const key='members_trajetoria_v1_'+dancer.id,data=await load(key,{items:[],version:0});
+      const id=trajectoryMatch[1];if(id&&!UUID.test(id))error('Registro não encontrado.',404);
+      if(method==='GET'&&!id)return send(res,200,data);
+      if(!['POST','PUT','DELETE'].includes(method)||(method==='POST'&&id)||(method!=='POST'&&!id))error('Método não permitido.',405);
+      origin(req);if(!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type']||''))error('Envie JSON com Content-Type application/json.',415);
+      const b=await readBody(req,768*1024);fields(b,method==='DELETE'?['version']:['version','year','group','title','description','photo']);
+      integer(b.version,0,Number.MAX_SAFE_INTEGER-1,'Versão');const item=id?data.items.find(i=>i.id===id):null;if(id&&!item)error('Registro não encontrado.',404);
+      if(data.version!==b.version)error('Trajetória alterada em outra sessão. Atualize antes de salvar.',409);
+      if(method==='DELETE')data.items=data.items.filter(i=>i.id!==id);
+      else {
+        if(method==='POST'&&data.items.length>=20)error('Limite de 20 fotos atingido. Exclua uma foto antes de adicionar.',409);
+        const clean={year:integer(b.year,1900,new Date().getUTCFullYear(),'Ano'),group:text(b.group??'',150),title:text(b.title??'',150),description:text(b.description??'',1000),photo:photo(b.photo===undefined&&item?item.photo:b.photo),updatedAt:new Date().toISOString()};
+        if(item)Object.assign(item,clean);else data.items.push({...clean,id:crypto.randomUUID()});
+      }
+      data.version++;if(Buffer.byteLength(JSON.stringify(data))>8*1024*1024)error('Limite privado de 8 MiB atingido. Reduza imagens ou exclua uma foto.',413);
+      await store.set(key,data);return send(res,method==='POST'?201:200,data);
+    }
     // Recursos editoriais isolados, sempre sob a fila comum e a autenticação acima.
     const sponsorKey='members_patrocinadores_v1',portfolioKey='members_portfolio_v1';
     const sponsorMatch=p.match(/^\/api\/admin\/patrocinadores\/([^/]+)$/),portfolioMatch=p.match(/^\/api\/admin\/portfolio\/([^/]+)$/);
@@ -138,21 +235,21 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       }
       if(p==='/api/portfolio'){
         if(method!=='GET')error('Método não permitido.',405);const data=await load(portfolioKey,initial);
-        return send(res,200,{items:data.items.filter(i=>i.status==='Publicado').map(({title,description,date,photo,youtubeUrl:video='',year,activity,photoEvidence})=>({title,description,date,photo,youtubeUrl:youtubeUrl(video),...(year!==undefined?{year}:{}),...(activity!==undefined?{activity}:{}),...(photoEvidence&&photo?{photoEvidence:{kind:photoEvidence.kind,pages:photoEvidence.pages,notice:photoEvidence.notice,scope:photoEvidence.scope}}:{})}))});
+        return send(res,200,{items:data.items.filter(i=>i.status==='Publicado').map(publicGallery).map(({title,description,date,photo,photos,clippingLinks,spotifyUrl,youtubeUrl:video='',year,activity})=>({title,description,date,photo,photos,clippingLinks,spotifyUrl,youtubeUrl:youtubeUrl(video),...(year!==undefined?{year}:{}),...(activity!==undefined?{activity}:{})}))});
       }
-      if(p==='/api/admin/portfolio'&&method==='GET')return send(res,200,await load(portfolioKey,initial));
+      if(p==='/api/admin/portfolio'&&method==='GET'){const data=await load(portfolioKey,initial);return send(res,200,{...data,items:data.items.map(portfolioGallery.galleryView)});}
       if((p==='/api/admin/portfolio'&&method==='POST')||portfolioMatch){
         if(portfolioMatch&&!['GET','PUT','DELETE'].includes(method))error('Método não permitido.',405);
         if(portfolioMatch&&!UUID.test(portfolioMatch[1]))error('Identificador inválido.');
-        const data=await load(portfolioKey,initial),item=portfolioMatch?data.items.find(i=>i.id===portfolioMatch[1]):null;if(portfolioMatch&&!item)error('Trabalho não encontrado.',404);if(method==='GET')return send(res,200,item);
-        const b=await readBody(req,768*1024);fields(b,method==='DELETE'?['version']:['title','description','date','photo','youtubeUrl','status','year','activity',...(item?['version']:[])]);if(item)checkVersion(b,item);
+        const data=await load(portfolioKey,initial),item=portfolioMatch?data.items.find(i=>i.id===portfolioMatch[1]):null;if(portfolioMatch&&!item)error('Trabalho não encontrado.',404);if(method==='GET')return send(res,200,portfolioGallery.galleryView(item));
+        const b=await readBody(req,8*1024*1024);fields(b,method==='DELETE'?['version']:['title','description','date','photo','photos','clippingLinks','spotifyUrl','youtubeUrl','status','year','activity',...(item?['version']:[])]);if(item)checkVersion(b,item);
         if(method==='DELETE'){data.items=data.items.filter(i=>i!==item);await store.set(portfolioKey,data);return send(res,200,{ok:true});}
         if(!['Publicado','Rascunho'].includes(b.status))error('Situação inválida.');const date=b.date===undefined?'':text(b.date,10);if(date)meetingDate(date);
         const extras={};if(b.year!==undefined||item?.year!==undefined){const year=text(b.year===undefined?item.year:b.year,4);if(year&&!/^(19|20|21)\d{2}$/.test(year))error('Ano inválido. Use quatro dígitos ou deixe vazio.');if(year&&date&&date.slice(0,4)!==year)error('Ano e data devem corresponder.');extras.year=year;}
         if(b.activity!==undefined||item?.activity!==undefined)extras.activity=text(b.activity===undefined?item.activity:b.activity,100);
-        const photoValue=b.photo===undefined?'':b.photo,localAsset=typeof photoValue==='string'&&/^\/assets\/portfolio\/(?:cultural-v1-202[0-5]|atividade-v2-(?:00[1-9]|0[1-7]\d|08[0-7]))\.webp$/.test(photoValue);if(localAsset&&photoValue!==item?.photo)error('Imagem local disponível somente no registro importado de origem.');
-        const clean={title:text(b.title,150,true),description:text(b.description,5000),date,photo:localAsset?photoValue:photo(photoValue,false),youtubeUrl:youtubeUrl(b.youtubeUrl===undefined?(item?.youtubeUrl||''):b.youtubeUrl),status:b.status,...extras,updatedAt:new Date().toISOString()};
-        if(item){if(Object.hasOwn(b,'photo')&&b.photo!==item.photo){item.photoTouched=true;delete item.photoEvidence;delete item.evidenceHash;}Object.assign(item,clean,{version:item.version+1});}else{if(data.items.length>=100)error('Limite de 100 trabalhos atingido.',409);data.items.push({...clean,id:crypto.randomUUID(),version:1});}
+        const gallery=portfolioGallery.updateGallery(b,item,v=>photo(v),error);
+        const clean=preservePresentation(item,{title:text(b.title,150,true),description:text(b.description,5000),date,...gallery,...portfolioGallery.updateLinks(b,item,error),youtubeUrl:youtubeUrl(b.youtubeUrl===undefined?(item?.youtubeUrl||''):b.youtubeUrl),status:b.status,...extras,updatedAt:new Date().toISOString()});
+        if(item){delete item.photoEvidence;if(item.photo!==clean.photo)delete item.evidenceHash;Object.assign(item,clean,{version:item.version+1});}else{if(data.items.length>=100)error('Limite de 100 trabalhos atingido.',409);data.items.push({...clean,id:crypto.randomUUID(),version:1});}
         aggregate(data);await store.set(portfolioKey,data);return send(res,item?200:201,item||data.items.at(-1));
       }
       error('Método não permitido.',405);
@@ -217,14 +314,41 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       const index=data.plans.findIndex(x=>x.dancerId===id);if(index<0)data.plans.push(plan);else data.plans[index]=plan;
       await store.set(KEYS.finance,data);return send(res,200,await financialView(plan,data));
     }
+    if(p==='/api/dancarinos/materiais-2027/respostas'){
+      if(u.search)error('Não envie filtros ou identidade de outro cadastro.');
+      if(method==='GET')return send(res,200,await ownMaterials(dancer.id));
+      if(!['POST','PUT'].includes(method))error('Método não permitido.',405);
+      origin(req);if(req.headers['sec-fetch-site']==='cross-site')error('Origem não autorizada.',403);
+      if(!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type']||''))error('Envie JSON com Content-Type application/json.',415);
+      const b=await readBody(req,4096);fields(b,['itemId','hasMaterial','version']);
+      if(typeof b.itemId!=='string'||!UUID.test(b.itemId)||typeof b.hasMaterial!=='boolean')error('Informe itemId UUID e hasMaterial booleano.');
+      integer(b.version,0,Number.MAX_SAFE_INTEGER-1,'Versão da resposta');const list=await materialList();if(!list.items.some(i=>i.id===b.itemId))error('Material removido ou inexistente. Atualize a lista.',404);
+      const data=await materialAnswers(dancer.id),previous=materialResponse(data,b.itemId);if(b.version!==previous.version)error('Resposta alterada em outra sessão. Atualize a lista antes de salvar.',409);
+      // Remove respostas órfãs na próxima gravação do titular; nunca transfere por nome/posição.
+      data.responses=Object.fromEntries(list.items.filter(i=>data.responses?.[i.id]).map(i=>[i.id,data.responses[i.id]]));
+      const response={hasMaterial:b.hasMaterial,version:previous.version+1,updatedAt:new Date().toISOString()};data.responses[b.itemId]=response;
+      if(Buffer.byteLength(JSON.stringify(data))>128*1024)error('Respostas excedem o limite de 128 KiB.',413);
+      await store.set(materialAnswersKey(dancer.id),data);return send(res,200,{itemId:b.itemId,response});
+    }
+    if(p==='/api/admin/materiais-2027/acompanhamento'){
+      if(method!=='GET')error('Método não permitido.',405);
+      const allowed=new Set(['page','pageSize','name']);for(const k of u.searchParams.keys())if(!allowed.has(k)||u.searchParams.getAll(k).length!==1)error('Filtro de acompanhamento inválido.');
+      const number=(key,defaultValue,max)=>{const raw=u.searchParams.get(key);if(raw===null)return defaultValue;if(!/^[1-9]\d*$/.test(raw))error('Paginação inválida.');return integer(Number(raw),1,max,'Paginação');};
+      const page=number('page',1,100000),pageSize=number('pageSize',25,50),name=text(u.searchParams.get('name')||'',150),list=await materialList();
+      const dancers=(await ds()).items.filter(d=>d.status!=='Inativo').sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
+      const totals=list.items.map(i=>({itemId:i.id,yes:0,no:0,notInformed:0})),matching=dancers.filter(d=>!name||d.name.toLocaleLowerCase('pt-BR').includes(name.toLocaleLowerCase('pt-BR'))),selected=matching.slice((page-1)*pageSize,page*pageSize),selectedIds=new Set(selected.map(d=>d.id)),rows=[];
+      for(const d of dancers){const answers=await materialAnswers(d.id),responses=list.items.map((i,index)=>{const response=materialResponse(answers,i.id);totals[index][response.hasMaterial===true?'yes':response.hasMaterial===false?'no':'notInformed']++;return {itemId:i.id,...response};});if(selectedIds.has(d.id))rows.push({dancerId:d.id,name:d.name,responses});}
+      return send(res,200,{year:2027,listVersion:list.version,items:list.items,rows,totals,population:'Cadastros Pendente e Aprovado; Inativo e excluídos não contam. Totais de todos os elegíveis, independentes do filtro e da página.',totalDancers:dancers.length,matchedDancers:matching.length,page,pageSize});
+    }
     if(p==='/api/admin/materiais-2027'||p==='/api/dancarinos/materiais-2027'){
       const isWrite=p==='/api/admin/materiais-2027'&&method==='PUT';
       if(method!=='GET'&&!isWrite)error('Método não permitido.',405);
-      const previous=await load(KEYS.materials,{year:2027,items:[],version:0,updatedAt:null});
+      const previous=await materialList();
       if(!isWrite)return send(res,200,previous);
       const b=await readBody(req);fields(b,['items','version']);integer(b.version,0,Number.MAX_SAFE_INTEGER-1,'Versão');if(b.version!==previous.version)error('Materiais alterados em outra sessão. Atualize antes de salvar.',409);
       if(!Array.isArray(b.items)||b.items.length>200)error('Informe até 200 materiais.');
-      const items=b.items.map(i=>{fields(i,['name','quantity','unit','notes']);return {name:text(i.name,150,true),quantity:integer(i.quantity,1,100000,'Quantidade'),unit:text(i.unit,40,true),notes:text(i.notes,1000)};});
+      const ids=new Set();const items=b.items.map(i=>{fields(i,['id','name','quantity','unit','notes']);let id;if(Object.hasOwn(i,'id')){if(typeof i.id!=='string'||!UUID.test(i.id)||!previous.items.some(old=>old.id===i.id)||ids.has(i.id))error('ID de material inválido, repetido ou removido. Atualize a lista.');id=i.id;}else id=crypto.randomUUID();ids.add(id);return {id,...preservePresentation(previous.items.find(old=>old.id===id),{name:text(i.name,150,true),quantity:integer(i.quantity,1,100000,'Quantidade'),unit:text(i.unit,40,true),notes:text(i.notes,1000)})};});
+      if(Buffer.byteLength(JSON.stringify(items))>1024*1024)error('Lista excede 1 MiB.',413);
       const clean={year:2027,items,version:b.version+1,updatedAt:new Date().toISOString()};await store.set(KEYS.materials,clean);return send(res,200,clean);
     }
     if(method==='GET'&&p==='/api/diretoria')return send(res,200,{groups:await load(KEYS.board,board())});
@@ -232,7 +356,7 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       const b=await readBody(req);fields(b,['name','birth','phone','city','email','password','cpf','rgSameAsCpf','rg','photo','experience','message','consent','guardian','requestId']);if(b.consent!==true)error('Consentimento obrigatório.');if(!UUID.test(b.requestId))error('requestId deve ser UUID.');const clean=profile(b),pass=password(b.password),payload={...clean,password:pass,consent:true};const data=await ds();const previous=await receipt(data.receipts,b.requestId,payload);if(previous)return send(res,201,previous);unique(data.items,clean);const id=crypto.randomUUID(),response={id,message:'Cadastro recebido. Aguarde a organização.'};data.items.push({...clean,id,joinedAt:new Date().toISOString(),status:'Pendente',...await credentials(pass)});data.receipts.push({requestId:b.requestId,...await credentials(canonical(payload)),response});await store.set(KEYS.dancers,data);return send(res,201,response);
     }
     if(method==='POST'&&p==='/api/dancarinos/entrar'){
-      const b=await readBody(req);const data=await ds();const d=data.items.find(d=>d.email===String(b.email||'').trim().toLowerCase());const candidate=typeof b.password==='string'&&b.password.length>=8&&b.password.length<=256?b.password:'';const salt=d?d.salt:'00'.repeat(32);const hash=await digest(candidate,salt);if(!d||!secureEqual(hash,d.hash)||d.status==='Inativo')error('E-mail ou senha inválidos.',401);const previous=ownSession(req);if(previous)dancerSessions.delete(previous.id);if(dancerSessions.size>=10000)error('Serviço ocupado. Aguarde.',503);const id=crypto.randomBytes(32).toString('hex'),csrf=crypto.randomBytes(32).toString('hex');dancerSessions.set(id,{dancerId:d.id,csrf,expires:Date.now()+8*3600000});return send(res,200,{csrf,name:d.name},{'Set-Cookie':cookie(id,8*3600)});
+      const b=await readBody(req);const data=await ds();const d=data.items.find(d=>d.email===String(b.email||'').trim().toLowerCase());const candidate=typeof b.password==='string'&&b.password.length>=8&&b.password.length<=256?b.password:'';const salt=d?d.salt:'00'.repeat(32);const hash=await digest(candidate,salt);if(!d||!secureEqual(hash,d.hash)||d.status==='Inativo')error('E-mail ou senha inválidos.',401);const previous=ownSession(req);if(previous)dancerSessions.delete(previous.id);if(dancerSessions.size>=10000)error('Serviço ocupado. Aguarde.',503);const id=crypto.randomBytes(32).toString('hex'),csrf=crypto.randomBytes(32).toString('hex');dancerSessions.set(id,{dancerId:d.id,passwordHash:d.hash,csrf,expires:Date.now()+8*3600000});return send(res,200,{csrf,name:d.name},{'Set-Cookie':cookie(id,8*3600)});
     }
     const releaseMatch=p.match(/^\/api\/admin\/encontros\/([^/]+)\/autopresenca$/);
     if(releaseMatch){
@@ -277,14 +401,14 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
     if(method==='GET'&&p==='/api/dancarinos/eu'){const meetings=await ms();const attendance=meetings.flatMap(m=>{const a=m.attendees.find(a=>a.dancerId===dancer.id);return a?[{id:m.id+':'+dancer.id,sessionId:m.id,type:m.type,title:m.title,date:m.date,closed:m.closed,status:a.status,reason:a.reason,source:a.source??null,recordedAt:a.recordedAt??null,...checkinView(m),selfCheckinOpen:dancer.status==='Aprovado'&&checkinOpen(m),expiresAt:dancer.status==='Aprovado'&&checkinOpen(m)?m.autoCheckin.expiresAt:null}]:[];});return send(res,200,{profile:publicProfile(dancer),attendance,stats:stats(dancer.id,meetings),csrf:own.csrf});}
     if(method==='POST'&&p==='/api/dancarinos/sair'){dancerSessions.delete(own.id);return send(res,200,{ok:true},{'Set-Cookie':cookie('',0)});}
     if(method==='PUT'&&p==='/api/dancarinos/perfil'){const b=await readBody(req);fields(b,['phone','city','photo','message']);const data=await ds(),d=data.items.find(d=>d.id===dancer.id);for(const k of Object.keys(b))d[k]=k==='phone'?phone(b[k]):k==='photo'?photo(b[k]):text(b[k],k==='city'?150:2000,k==='city');await store.set(KEYS.dancers,data);return send(res,200,{ok:true});}
-    if(method==='PUT'&&p==='/api/dancarinos/senha'){const b=await readBody(req);fields(b,['currentPassword','password']);const pass=password(b.password);if(typeof b.currentPassword!=='string'||b.currentPassword.length<8||b.currentPassword.length>256||!secureEqual(await digest(b.currentPassword,dancer.salt),dancer.hash))error('Senha atual inválida.',403);const data=await ds(),d=data.items.find(d=>d.id===dancer.id);Object.assign(d,await credentials(pass));await store.set(KEYS.dancers,data);revoke(d.id,own.id);return send(res,200,{ok:true});}
+    if(method==='PUT'&&p==='/api/dancarinos/senha'){const b=await readBody(req);fields(b,['currentPassword','password']);const pass=password(b.password);if(typeof b.currentPassword!=='string'||b.currentPassword.length<8||b.currentPassword.length>256||!secureEqual(await digest(b.currentPassword,dancer.salt),dancer.hash))error('Senha atual inválida.',403);const data=await ds(),d=data.items.find(d=>d.id===dancer.id);Object.assign(d,await credentials(pass));await store.set(KEYS.dancers,data);dancerSessions.get(own.id).passwordHash=d.hash;revoke(d.id,own.id);return send(res,200,{ok:true});}
     let match=p.match(/^\/api\/dancarinos\/faltas\/([^/]+)$/);
     if(method==='PUT'&&match){const b=await readBody(req);fields(b,['reason']);const meetings=await ms();let id;try{id=decodeURIComponent(match[1]);}catch{error('Identificador inválido.');}const m=meetings.find(m=>m.id+':'+dancer.id===id),a=m?.attendees.find(a=>a.dancerId===dancer.id);if(!a)error('Falta não encontrada.',404);if(a.status!=='Falta')error('Só é possível justificar sua própria falta.',403);a.reason=text(b.reason,2000);await store.set(KEYS.meetings,meetings);return send(res,200,{ok:true});}
     if(method==='GET'&&p==='/api/admin/dancarinos'){const data=await ds(),meetings=await ms();return send(res,200,{items:data.items.map(d=>({...publicProfile(d),stats:stats(d.id,meetings)}))});}
     match=p.match(/^\/api\/admin\/dancarinos\/([^/]+)(\/senha)?$/);
     if(match&&['PUT','DELETE'].includes(method)){
       const data=await ds(),d=data.items.find(d=>d.id===match[1]);if(!d)error('Cadastro não encontrado.',404);
-      if(method==='DELETE'&&!match[2]){mp.assertEditable(await load(KEYS.finance,{plans:[]}),d.id);const meetings=await ms();for(const m of meetings){if(m.attendees.some(a=>a.dancerId===d.id))revokeCheckin(m);m.attendees=m.attendees.filter(a=>a.dancerId!==d.id);}await store.set(KEYS.meetings,meetings);data.items=data.items.filter(x=>x.id!==d.id);await store.set(KEYS.dancers,data);revoke(d.id);return send(res,200,{ok:true});}
+      if(method==='DELETE'&&!match[2]){mp.assertEditable(await load(KEYS.finance,{plans:[]}),d.id);const meetings=await ms();for(const m of meetings){if(m.attendees.some(a=>a.dancerId===d.id))revokeCheckin(m);m.attendees=m.attendees.filter(a=>a.dancerId!==d.id);}await store.set(KEYS.meetings,meetings);data.items=data.items.filter(x=>x.id!==d.id);await store.set(KEYS.dancers,data);await store.set('members_trajetoria_v1_'+d.id,{items:[],version:0});await store.set(materialAnswersKey(d.id),{responses:{}});revoke(d.id);return send(res,200,{ok:true});}
       if(method==='PUT'){const b=await readBody(req);if(match[2]){fields(b,['password']);Object.assign(d,await credentials(password(b.password)));await store.set(KEYS.dancers,data);revoke(d.id);return send(res,200,{ok:true});}fields(b,['name','birth','phone','city','email','cpf','rgSameAsCpf','rg','photo','experience','message','guardian','status']);const clean=profile({...d,...b});unique(data.items,clean,d.id);const status=b.status??d.status;if(!['Pendente','Aprovado','Inativo'].includes(status))error('Status inválido.');Object.assign(d,clean,{status});await store.set(KEYS.dancers,data);if(status==='Inativo')revoke(d.id);return send(res,200,{ok:true});}
     }
     if(method==='GET'&&p==='/api/admin/encontros')return send(res,200,{items:(await ms()).map(adminMeeting)});
@@ -304,5 +428,8 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
     }
     return send(res,404,{error:'Rota não encontrada.'});
   }
-  return async function members(req,res,u){const p=u.pathname;if(!(p.startsWith('/api/dancarinos/')||p.startsWith('/api/admin/dancarinos')||p.startsWith('/api/admin/encontros')||p.startsWith('/api/admin/pedidos')||p==='/api/admin/diretoria'||p==='/api/admin/materiais-2027'||p==='/api/admin/pagamentos/status'||p==='/api/admin/pagamentos/links'||p==='/api/admin/contribuicao-2027'||p==='/api/admin/controle-inscricoes'||p==='/api/pagamentos/mercadopago/webhook'||p==='/api/pedidos'||p==='/api/diretoria'||p==='/api/patrocinadores'||p==='/api/patrocinadores/submissoes'||p==='/api/portfolio'||/^\/api\/admin\/(patrocinadores|portfolio)(\/[^/]+)?$/.test(p)))return false;try{if(req.method==='POST'&&['/api/dancarinos/cadastro','/api/dancarinos/entrar','/api/pedidos','/api/patrocinadores/submissoes'].includes(p)){origin(req);limit(req,p==='/api/dancarinos/entrar'?'login':p);}await serial(()=>route(req,res,u));}catch(e){if(!e.status)console.error('Falha na extensão de membros:',e.code||e.name);if(!res.headersSent&&!res.destroyed)send(res,e.status||500,{error:e.status?e.message:'Não foi possível concluir. Tente novamente.'});}return true;};
+  return async function members(req,res,u){const p=u.pathname;if(!(p.startsWith('/api/dancarinos/')||p.startsWith('/api/admin/dancarinos')||p.startsWith('/api/admin/encontros')||p.startsWith('/api/admin/pedidos')||p==='/api/admin/diretoria'||p==='/api/admin/materiais-2027'||p==='/api/admin/materiais-2027/acompanhamento'||p==='/api/admin/pagamentos/status'||p==='/api/admin/pagamentos/links'||p==='/api/admin/contribuicao-2027'||p==='/api/admin/controle-inscricoes'||p==='/api/pagamentos/mercadopago/webhook'||p==='/api/pedidos'||p==='/api/diretoria'||p==='/api/patrocinadores'||p==='/api/patrocinadores/submissoes'||p==='/api/portfolio'||/^\/api\/admin\/(patrocinadores|portfolio)(\/[^/]+)?$/.test(p)))return false;try{if(req.method==='POST'&&['/api/dancarinos/cadastro','/api/dancarinos/entrar','/api/pedidos','/api/patrocinadores/submissoes'].includes(p)){origin(req);limit(req,p==='/api/dancarinos/entrar'?'login':p);}await serial(()=>route(req,res,u));}catch(e){if(!e.status)console.error('Falha na extensão de membros:',e.code||e.name);if(!res.headersSent&&!res.destroyed)send(res,e.status||500,{error:e.status?e.message:'Não foi possível concluir. Tente novamente.'});}return true;};
 };
+module.exports.displayText=displayText;
+module.exports.displayProjection=displayProjection;
+module.exports.preservePresentation=preservePresentation;
