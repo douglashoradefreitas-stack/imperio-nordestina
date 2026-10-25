@@ -141,6 +141,31 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       return {base:u.origin,from,options:{host,port,secure:process.env.SMTP_SECURE!=='false',requireTLS:process.env.SMTP_SECURE==='false',...(process.env.SMTP_USER?{auth:{user:process.env.SMTP_USER,pass:process.env.SMTP_PASS}}:{}),connectionTimeout:4000,greetingTimeout:4000,socketTimeout:6000,logger:false,debug:false,disableFileAccess:true,disableUrlAccess:true}};
     }catch{return null;}
   }
+  // Notificações da aprovação: e-mail (SMTP já configurado para recuperação), aviso no site e WhatsApp opcional.
+  const waDigits=value=>{const digits=String(value||'').replace(/\D/g,'');if(digits.length<10||digits.length>13)return '';if(digits.length>11)return digits.startsWith('55')?digits:'';return '55'+digits;};
+  const approvalEnvKey='members_aprovacao_envios_v1';
+  const approvalEnv=()=>load(approvalEnvKey,{statuses:{}});
+  const whatsappCloudConfig=()=>{const token=process.env.WHATSAPP_TOKEN||'',id=process.env.WHATSAPP_PHONE_NUMBER_ID||'';return token&&id?{token,id}:null;};
+  const siteBase=()=>{try{return new URL(process.env.APP_BASE_URL||'').origin;}catch{return '';}};
+  const welcomeText=(name,base)=>'Olá, '+name+'! Sua inscrição na Império Nordestina foi aprovada. Acesse o site para acompanhar ensaios, apresentações e avisos: '+base;
+  const waUrl=(digits,message)=>digits?'https://wa.me/'+digits+'?text='+encodeURIComponent(message):null;
+  async function sendWelcomeEmail(address,name){const config=mailConfig();if(!config)return {status:'nao_configurado'};try{const transport=require('nodemailer').createTransport(config.options);await transport.sendMail({from:config.from,to:address,subject:'Inscrição aprovada — Império Nordestina',text:welcomeText(name,config.base),disableFileAccess:true,disableUrlAccess:true});transport.close();return {status:'enviado'};}catch{return {status:'falhou',reason:'falha no envio do e-mail'};}}
+  async function sendWhatsappCloud(to,message){const config=whatsappCloudConfig();if(!config)return null;try{const response=await fetch('https://graph.facebook.com/v21.0/'+encodeURIComponent(config.id)+'/messages',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+config.token},body:JSON.stringify({messaging_product:'whatsapp',to,type:'text',text:{body:message}}),signal:AbortSignal.timeout(8000)});if(!response.ok)return {status:'falhou',reason:'falha no envio automático'};return {status:'enviado'};}catch{return {status:'falhou',reason:'falha no envio automático'};}}
+  async function recordApprovalStatus(id,record){const data=await approvalEnv();data.statuses[id]={...record,at:new Date().toISOString()};const entries=Object.entries(data.statuses);if(entries.length>5000)data.statuses=Object.fromEntries(entries.slice(-5000));await store.set(approvalEnvKey,data);}
+  async function dispatchApproval(d){
+    const notice={kind:'Inscrição',title:'Inscrição aprovada',date:'',location:'',description:'Sua inscrição foi aprovada. Acompanhe ensaios, apresentações e avisos na sua área.',href:'/perfil'};
+    let created=0;try{const result=await createNotices('aprovacao:'+d.id,noticeHash({kind:notice.kind,title:notice.title}),notice,[d.id]);created=result.created;}catch{created=0;}
+    let emailStatus;try{emailStatus=await sendWelcomeEmail(d.email,d.name);}catch{emailStatus={status:'falhou',reason:'falha no envio do e-mail'};}
+    const digits=waDigits(d.phone);let whatsappStatus={status:'manual'};
+    if(whatsappCloudConfig()&&digits){try{whatsappStatus=await sendWhatsappCloud(digits,welcomeText(d.name,siteBase()))||{status:'manual'};}catch{whatsappStatus={status:'falhou',reason:'falha no envio automático'};}}
+    const record={email:emailStatus,whatsapp:whatsappStatus};
+    try{await recordApprovalStatus(d.id,record);}catch{}
+    return {record,created,whatsappUrl:waUrl(digits,welcomeText(d.name,siteBase()))};
+  }
+  // Grupo de dançarinos: link de convite definido apenas pela organização, nunca público.
+  const groupKey='members_grupo_dancarinos_v1';
+  function groupUrl(value){const s=text(value,2000);if(!s)return '';try{const u=new URL(s);if(u.protocol!=='https:'||u.username||u.password||u.port||u.hostname!=='chat.whatsapp.com'||u.pathname.length<2||u.search||u.hash||/[\u0000-\u0020\u007f\\]/.test(s))error('Use somente um link de convite HTTPS do grupo de dançarinos (chat.whatsapp.com).');return u.href;}catch(e){if(e.status)throw e;error('Link de convite do grupo inválido.');}}
+  const groupConfig=async()=>await store.get(groupKey)??{url:'',version:0,updatedAt:null};
   async function recoveryLimit(req,address=''){
     const data=await load(recoveryKey,{rates:{}}),now=Date.now();data.rates??={};
     for(const[k,v]of Object.entries(data.rates))if(v.until<=now)delete data.rates[k];
@@ -180,19 +205,19 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
   }
   const noticeCutoff=()=>Date.now()-180*86400000;
   async function noticeInbox(id){const data=await load(notificationKey(id),{items:[],receipts:[]});return {items:data.items.filter(i=>Date.parse(i.createdAt)>=noticeCutoff()).slice(-200),receipts:(data.receipts||[]).filter(i=>Date.parse(i.at)>=noticeCutoff()).slice(-400)};}
-  async function createNotices(sourceKey,hash,notice,recipients){
+  async function createNotices(sourceKey,hash,notice,recipients,force=false){
     let created=0;const now=new Date().toISOString();
     for(const dancerId of [...new Set(recipients)]){const box=await noticeInbox(dancerId),dedupe=sourceKey+':'+hash;
-      if(box.receipts.some(i=>i.key===dedupe))continue;
+      if(!force&&box.receipts.some(i=>i.key===dedupe))continue;
       const updated=box.receipts.some(i=>i.sourceKey===sourceKey);
       box.items.push({id:crypto.randomUUID(),sourceKey,hash,...notice,updated,createdAt:now,readAt:null});box.receipts.push({key:dedupe,sourceKey,at:now});
       box.items=box.items.slice(-200);box.receipts=box.receipts.slice(-400);await store.set(notificationKey(dancerId),box);created++;
     }return {created,eligible:recipients.length,channel:'site',message:'Notificação criada no site para '+created+' cadastro(s). Não é envio ao celular, WhatsApp ou e-mail.'};
   }
-  async function notifyMeeting(m){const active=new Set((await ds()).items.filter(d=>['Pendente','Aprovado'].includes(d.status)).map(d=>d.id)),notice=meetingNotice(m);return createNotices('encontro:'+m.id,noticeHash(notice),{kind:m.type,title:notice.title,date:notice.date,location:notice.location,description:'',href:'/perfil?aba=presencas'},m.attendees.filter(a=>active.has(a.dancerId)).map(a=>a.dancerId));}
+  async function notifyMeeting(m,force=false){const active=new Set((await ds()).items.filter(d=>['Pendente','Aprovado'].includes(d.status)).map(d=>d.id)),notice=meetingNotice(m);return createNotices('encontro:'+m.id,noticeHash(notice),{kind:m.type,title:notice.title,date:notice.date,location:notice.location,description:'',href:'/perfil?aba=presencas'},m.attendees.filter(a=>active.has(a.dancerId)).map(a=>a.dancerId),force);}
   async function visibleNotices(id){
     const box=await noticeInbox(id),meetings=new Map((await ms()).map(m=>[m.id,m])),events=new Set((getContent()?.events||[]).map(e=>noticeHash(eventNotice(e))));
-    const items=box.items.filter(n=>{if(n.sourceKey.startsWith('encontro:')){const m=meetings.get(n.sourceKey.slice(9));return !!m&&m.attendees.some(a=>a.dancerId===id)&&noticeHash(meetingNotice(m))===n.hash;}return n.sourceKey.startsWith('evento:')&&events.has(n.hash)}).sort((a,b)=>b.createdAt.localeCompare(a.createdAt)||b.id.localeCompare(a.id));
+    const items=box.items.filter(n=>{if(n.sourceKey.startsWith('aprovacao:'))return true;if(n.sourceKey.startsWith('encontro:')){const m=meetings.get(n.sourceKey.slice(9));return !!m&&m.attendees.some(a=>a.dancerId===id)&&noticeHash(meetingNotice(m))===n.hash;}return n.sourceKey.startsWith('evento:')&&events.has(n.hash)}).sort((a,b)=>b.createdAt.localeCompare(a.createdAt)||b.id.localeCompare(a.id));
     return {box,items};
   }
   const board=()=>GROUPS.map(([key,title])=>({key,title,items:[]}));
@@ -430,8 +455,8 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
     }
     if(p==='/api/admin/controle-inscricoes'){
       if(method!=='GET')error('Método não permitido.',405);
-      const dancers=await ds(),finance=await load(KEYS.finance,{plans:[]}),plans=new Map(finance.plans.map(plan=>[plan.dancerId,plan]));
-      const items=dancers.items.map(d=>{const plan=plans.get(d.id),defined=!!plan?.installments.length,active=(plan?.installments||[]).filter(i=>i.status!=='Cancelado');return {dancerId:d.id,name:d.name,phone:admin.isPrincipal||admin.permissions?.includes('dancarinos')?d.phone||'':'',defined,totalCents:defined?active.reduce((s,i)=>s+i.baseCents,0):null,paidInstallments:defined?active.filter(i=>i.status==='Pago').length:null,installmentsCount:defined?active.length:null,balanceCents:defined?active.filter(i=>i.status==='Pendente').reduce((s,i)=>s+i.baseCents,0):null,receivedCents:defined?active.filter(i=>i.status==='Pago').reduce((s,i)=>s+i.payment.amountCents,0):null,manualReceivedCents:defined?active.filter(i=>i.status==='Pago'&&i.payment.source==='manual').reduce((s,i)=>s+i.payment.amountCents,0):null,providerReceivedCents:defined?active.filter(i=>i.status==='Pago'&&i.payment.source==='mercadopago').reduce((s,i)=>s+i.payment.amountCents,0):null};});
+      const dancers=await ds(),finance=await load(KEYS.finance,{plans:[]}),plans=new Map(finance.plans.map(plan=>[plan.dancerId,plan])),envStatuses=(await approvalEnv()).statuses;
+      const items=dancers.items.map(d=>{const plan=plans.get(d.id),defined=!!plan?.installments.length,active=(plan?.installments||[]).filter(i=>i.status!=='Cancelado');return {dancerId:d.id,name:d.name,phone:admin.isPrincipal||admin.permissions?.includes('dancarinos')?d.phone||'':'',notifications:envStatuses[d.id]||null,defined,totalCents:defined?active.reduce((s,i)=>s+i.baseCents,0):null,paidInstallments:defined?active.filter(i=>i.status==='Pago').length:null,installmentsCount:defined?active.length:null,balanceCents:defined?active.filter(i=>i.status==='Pendente').reduce((s,i)=>s+i.baseCents,0):null,receivedCents:defined?active.filter(i=>i.status==='Pago').reduce((s,i)=>s+i.payment.amountCents,0):null,manualReceivedCents:defined?active.filter(i=>i.status==='Pago'&&i.payment.source==='manual').reduce((s,i)=>s+i.payment.amountCents,0):null,providerReceivedCents:defined?active.filter(i=>i.status==='Pago'&&i.payment.source==='mercadopago').reduce((s,i)=>s+i.payment.amountCents,0):null};});
       const totals=items.reduce((t,i)=>{t.registrations++;if(i.defined){t.definedPlans++;t.totalCents+=i.totalCents;t.balanceCents+=i.balanceCents;t.paidInstallments+=i.paidInstallments;t.installmentsCount+=i.installmentsCount;t.receivedCents+=i.receivedCents;t.manualReceivedCents+=i.manualReceivedCents;t.providerReceivedCents+=i.providerReceivedCents;}else t.undefinedPlans++;return t;},{registrations:0,definedPlans:0,undefinedPlans:0,totalCents:0,balanceCents:0,paidInstallments:0,installmentsCount:0,receivedCents:0,manualReceivedCents:0,providerReceivedCents:0});
       return send(res,200,{items,totals});
     }
@@ -448,6 +473,30 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       const generalUrl=manualUrl(b.generalUrl);let reportedAmountCents=generalUrl===previous.generalUrl?(previous.reportedAmountCents??null):null,reportedAmountSource=reportedAmountCents===null?null:(previous.reportedAmountSource??'administrador');if(b.reportedAmountCents!==undefined){reportedAmountCents=b.reportedAmountCents===null?null:integer(b.reportedAmountCents,1,MAX_CENTS,'Valor informado em centavos');reportedAmountSource=reportedAmountCents===null?null:'administrador';}if(!generalUrl){reportedAmountCents=null;reportedAmountSource=null;}const clean={...previous,generalUrl,reportedAmountCents,reportedAmountSource,version:b.version+1,updatedAt:new Date().toISOString()};await store.set(KEYS.manualLinks,clean);return send(res,200,clean);
     }
     if(p==='/api/admin/pagamentos/status'){if(method!=='GET')error('Método não permitido.',405);return send(res,200,mp.status());}
+    if(p==='/api/admin/grupo-dancarinos'){
+      if(!['GET','PUT'].includes(method))error('Método não permitido.',405);if(u.search)error('Parâmetros não permitidos.');
+      const previous=await groupConfig();if(method==='GET')return send(res,200,previous);
+      if(!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type']||''))error('Envie JSON.',415);
+      const b=await readBody(req,4096);fields(b,['url','version']);integer(b.version,0,Number.MAX_SAFE_INTEGER-1,'Versão');if(b.version!==previous.version)error('Link do grupo alterado em outra sessão. Recarregue antes de salvar.',409);
+      const clean={url:groupUrl(b.url),version:previous.version+1,updatedAt:new Date().toISOString()};await store.set(groupKey,clean);return send(res,200,clean);
+    }
+    const notifyMeetingMatch=p.match(/^\/api\/admin\/encontros\/([^/]+)\/notificar$/);
+    if(notifyMeetingMatch){
+      if(method!=='POST')error('Método não permitido.',405);if(u.search)error('Parâmetros não permitidos.');
+      if(!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type']||''))error('Envie JSON.',415);
+      const b=await readBody(req,4096);fields(b,['confirm']);if(b.confirm!==true)error('Confirme a criação dos avisos.');
+      const meetings=await ms(),m=meetings.find(x=>x.id===notifyMeetingMatch[1]);if(!m)error('Encontro não encontrado.',404);
+      if(m.closed)error('Encontro encerrado não recebe novos avisos.',409);
+      const all=(await ds()).items,activeIds=new Set(all.filter(d=>['Pendente','Aprovado'].includes(d.status)).map(d=>d.id));
+      let targets=m.attendees.filter(a=>activeIds.has(a.dancerId)).map(a=>a.dancerId);if(!targets.length)targets=all.filter(d=>['Pendente','Aprovado'].includes(d.status)).map(d=>d.id);
+      if(targets.length>5000)error('Limite de 5000 destinatários por aviso.',413);
+      const result=await createNotices('encontro:'+m.id,noticeHash(meetingNotice(m)),{kind:m.type,title:m.title,date:m.date,location:m.location||'',description:'',href:'/perfil?aba=presencas'},targets,true);
+      const now=new Date().toISOString();m.notifiedAt=now;m.notifiedTotal=(m.notifiedTotal||0)+result.created;await store.set(KEYS.meetings,meetings);
+      const sharePhone=admin.isPrincipal||!!admin.permissions?.includes('dancarinos');
+      const recipients=targets.map(id=>all.find(d=>d.id===id)).filter(Boolean).map(d=>({id:d.id,name:d.name,whatsapp:sharePhone?waDigits(d.phone):''}));
+      const messageText='Olá! '+m.type+' da Império Nordestina: '+m.title+'. Data: '+m.date+(m.location?'. Local: '+m.location+'.':'.')+' Confirme a presença na sua área do site.';
+      return send(res,200,{ok:true,created:result.created,eligible:targets.length,notifiedAt:m.notifiedAt,recipients,messageText,channel:'site',notice:'Avisos criados no site. Não é envio automático de WhatsApp; use os botões individuais por dançarino.'});
+    }
     if(p==='/api/dancarinos/checkout'){if(method!=='POST')error('Método não permitido.',405);limit(req,'checkout');return mp.checkout(req,res,dancer);}
     const financeMatch=p.match(/^\/api\/admin\/dancarinos\/([^/]+)\/financeiro$/);
     if(financeMatch||p==='/api/dancarinos/financeiro'){
@@ -512,6 +561,11 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       if(method!=='POST')error('Método não permitido.',405);if(u.search)error('Parâmetros não permitidos.');if(!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type']||''))error('Envie JSON.',415);const b=await readBody(req,1024);fields(b,[]);
       const {box,items}=await visibleNotices(dancer.id),item=items.find(n=>n.id===readNotice[1]);if(!item)error('Aviso indisponível.',404);
       const stored=box.items.find(n=>n.id===item.id);stored.readAt=stored.readAt||new Date().toISOString();await store.set(notificationKey(dancer.id),box);return send(res,200,{id:stored.id,readAt:stored.readAt});
+    }
+    if(p==='/api/dancarinos/grupo'){
+      if(method!=='GET')error('Método não permitido.',405);if(u.search)error('Parâmetros não permitidos.');
+      const config=await groupConfig(),allowed=dancer.status==='Aprovado'&&!!config.url;
+      return send(res,200,{configured:allowed,url:allowed?config.url:'',notice:'Convite do grupo de dançarinos. Disponível somente para cadastro aprovado e ativo, quando a organização define o link.'});
     }
     const materialAssignment=p.match(/^\/api\/admin\/materiais-2027\/destinacoes(?:\/([^/]+))?$/);
     if(materialAssignment){
@@ -658,7 +712,7 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
     if(method==='PUT'&&p==='/api/dancarinos/senha'){const b=await readBody(req);fields(b,['currentPassword','password']);const pass=password(b.password);if(typeof b.currentPassword!=='string'||b.currentPassword.length<6||b.currentPassword.length>256||!secureEqual(await digest(b.currentPassword,dancer.salt),dancer.hash))error('Senha atual inválida.',403);const data=await ds(),d=data.items.find(d=>d.id===dancer.id);Object.assign(d,await credentials(pass));await store.set(KEYS.dancers,data);dancerSessions.get(own.id).passwordHash=d.hash;revoke(d.id,own.id);return send(res,200,{ok:true});}
     let match=p.match(/^\/api\/dancarinos\/faltas\/([^/]+)$/);
     if(method==='PUT'&&match){const b=await readBody(req);fields(b,['reason']);const meetings=await ms();let id;try{id=decodeURIComponent(match[1]);}catch{error('Identificador inválido.');}const m=meetings.find(m=>m.id+':'+dancer.id===id),a=m?.attendees.find(a=>a.dancerId===dancer.id);if(!a)error('Falta não encontrada.',404);if(a.status!=='Falta')error('Só é possível justificar sua própria falta.',403);a.reason=text(b.reason,2000);await store.set(KEYS.meetings,meetings);return send(res,200,{ok:true});}
-    if(method==='GET'&&p==='/api/admin/dancarinos'){const data=await ds(),meetings=await ms();return send(res,200,{items:data.items.map(d=>({...publicProfile(d),approvalVersion:approvalVersion(d),...(admin.isPrincipal||admin.permissions?.includes('presencas')?{stats:stats(d.id,meetings)}:{})}))});}
+    if(method==='GET'&&p==='/api/admin/dancarinos'){const data=await ds(),meetings=await ms(),envStatuses=(await approvalEnv()).statuses;return send(res,200,{items:data.items.map(d=>({...publicProfile(d),approvalVersion:approvalVersion(d),notifications:envStatuses[d.id]||null,whatsappDigits:waDigits(d.phone),...(admin.isPrincipal||admin.permissions?.includes('presencas')?{stats:stats(d.id,meetings)}:{})})),mailEnabled:!!mailConfig(),whatsappCloudEnabled:!!whatsappCloudConfig()});}
     const approveMatch=p.match(/^\/api\/admin\/dancarinos\/([^/]+)\/aprovacao$/);
     if(approveMatch){
       if(method!=='POST')error('Método não permitido.',405);if(u.search)error('Parâmetros não permitidos.');
@@ -669,14 +723,16 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       if(b.guardianReviewed!==undefined&&typeof b.guardianReviewed!=='boolean')error('Confirmação de conferência inválida.');
       const data=await ds(),d=data.items.find(i=>i.id===approveMatch[1]);if(!d)error('Cadastro não encontrado.',404);
       if(d.status==='Inativo')error('Cadastro inativo não pode ser aprovado por este atalho. Confira o cadastro e sua situação.',409);
-      if(d.status==='Aprovado')return send(res,200,{id:d.id,status:d.status,version:approvalVersion(d),alreadyApproved:true});
+      if(d.status==='Aprovado')return send(res,200,{id:d.id,status:d.status,version:approvalVersion(d),alreadyApproved:true,notifications:(await approvalEnv()).statuses[d.id]||null});
       if(d.status!=='Pendente')error('Situação incompatível. Atualize a lista.',409);
       if(b.version!==approvalVersion(d))error('Cadastro alterado desde a consulta. Atualize e confira antes de aprovar.',409);
       // Valida o estado atual sem normalizar/regravar documentos ou fotos.
       profile(d,profilePhoto);
       if(age(d.birth)<18&&b.guardianReviewed!==true)error('Confira os dados e a autorização do responsável antes de aprovar o menor.');
       d.status='Aprovado';await store.set(KEYS.dancers,data);
-      return send(res,200,{id:d.id,status:d.status,version:approvalVersion(d),alreadyApproved:false});
+      // A aprovação já é definitiva: falha de e-mail/WhatsApp nunca desfaz nem bloqueia.
+      const dispatch=await dispatchApproval(d);
+      return send(res,200,{id:d.id,status:d.status,version:approvalVersion(d),alreadyApproved:false,notifications:dispatch.record,whatsappUrl:dispatch.whatsappUrl,noticesCreated:dispatch.created});
     }
     match=p.match(/^\/api\/admin\/dancarinos\/([^/]+)(\/senha)?$/);
     if(match&&['PUT','DELETE'].includes(method)){
@@ -705,7 +761,7 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
   async function highlightProjection(source){if(!Array.isArray(source.highlights))return source;const available=new Map((await eligibleHighlightProfiles()).map(p=>[p.publicId,p]));return {...source,highlights:source.highlights.map((h,index)=>{const {publicProfileIds,publicProfiles,...rest}=h;if(publicProfileIds===undefined)return rest;const ids=Array.isArray(publicProfileIds)?publicProfileIds:[];return {...rest,publicProfiles:[...new Set(ids)].slice(0,index===0?2:1).map(id=>available.get(id)).filter(Boolean)};})};}
   function normalizeHighlightIds(value,index){if(value===undefined)return undefined;const max=index===0?2:1;if(!Array.isArray(value)||value.length>max||value.some(id=>typeof id!=='string'||!UUID.test(id))||new Set(value).size!==value.length)error('Selecione até '+max+' trajetória(s) pública(s), sem repetir.');return [...value];}
   async function validateHighlightBindings(candidate,previous){const available=new Set((await eligibleHighlightProfiles()).map(p=>p.publicId));for(const [index,h]of candidate.highlights.entries()){const ids=normalizeHighlightIds(h.publicProfileIds,index)||[],old=previous.highlights?.[index]?.publicProfileIds||[];for(const id of ids)if(!available.has(id)&&!old.includes(id))error('Perfil indisponível. A pessoa precisa ativar sua trajetória pública.',409);}return candidate;}
-  const handler=async function members(req,res,u){const p=u.pathname;if(!(/^\/api\/(admin\/)?diretoria\/[^/]+\/portfolio$/.test(p)||p.startsWith('/api/admin/notificacoes/eventos')||p==='/api/admin/destaques/perfis'||p==='/api/admin/participantes'||p==='/trajetorias'||p.startsWith('/trajetorias/')||p==='/api/trajetorias'||p.startsWith('/api/trajetorias/')||p.startsWith('/api/admin/trajetorias')||p.startsWith('/api/dancarinos/')||p.startsWith('/api/admin/dancarinos')||p.startsWith('/api/admin/encontros')||p.startsWith('/api/admin/pedidos')||p==='/api/admin/diretoria'||p==='/api/admin/materiais-2027'||p==='/api/admin/materiais-2027/acompanhamento'||/^\/api\/admin\/materiais-2027\/destinacoes(?:\/[^/]+)?$/.test(p)||p==='/api/admin/pagamentos/status'||p==='/api/admin/pagamentos/links'||p==='/api/admin/contribuicao-2027'||p==='/api/admin/controle-inscricoes'||p==='/api/pagamentos/mercadopago/webhook'||p==='/api/pedidos'||p==='/api/diretoria'||p==='/api/patrocinadores'||p==='/api/patrocinadores/submissoes'||p==='/api/portfolio'||/^\/api\/admin\/(patrocinadores|portfolio)(\/[^/]+)?$/.test(p)))return false;try{if(!['GET','HEAD'].includes(req.method))writeOrigin(req);if(req.method==='POST'&&['/api/dancarinos/cadastro','/api/dancarinos/entrar','/api/pedidos','/api/patrocinadores/submissoes'].includes(p)){origin(req);limit(req,p==='/api/dancarinos/entrar'?'login':p);}await serial(()=>route(req,res,u));}catch(e){if(!e.status)console.error('Falha na extensão de membros:',e.code||e.name);if(!res.headersSent&&!res.destroyed)send(res,e.status||500,{error:e.status?e.message:'Não foi possível concluir. Tente novamente.'});}return true;};
+  const handler=async function members(req,res,u){const p=u.pathname;if(!(/^\/api\/(admin\/)?diretoria\/[^/]+\/portfolio$/.test(p)||p.startsWith('/api/admin/notificacoes/eventos')||p==='/api/admin/destaques/perfis'||p==='/api/admin/participantes'||p==='/trajetorias'||p.startsWith('/trajetorias/')||p==='/api/trajetorias'||p.startsWith('/api/trajetorias/')||p.startsWith('/api/admin/trajetorias')||p.startsWith('/api/dancarinos/')||p.startsWith('/api/admin/dancarinos')||p==='/api/admin/grupo-dancarinos'||p.startsWith('/api/admin/encontros')||p.startsWith('/api/admin/pedidos')||p==='/api/admin/diretoria'||p==='/api/admin/materiais-2027'||p==='/api/admin/materiais-2027/acompanhamento'||/^\/api\/admin\/materiais-2027\/destinacoes(?:\/[^/]+)?$/.test(p)||p==='/api/admin/pagamentos/status'||p==='/api/admin/pagamentos/links'||p==='/api/admin/contribuicao-2027'||p==='/api/admin/controle-inscricoes'||p==='/api/pagamentos/mercadopago/webhook'||p==='/api/pedidos'||p==='/api/diretoria'||p==='/api/patrocinadores'||p==='/api/patrocinadores/submissoes'||p==='/api/portfolio'||/^\/api\/admin\/(patrocinadores|portfolio)(\/[^/]+)?$/.test(p)))return false;try{if(!['GET','HEAD'].includes(req.method))writeOrigin(req);if(req.method==='POST'&&['/api/dancarinos/cadastro','/api/dancarinos/entrar','/api/pedidos','/api/patrocinadores/submissoes'].includes(p)){origin(req);limit(req,p==='/api/dancarinos/entrar'?'login':p);}await serial(()=>route(req,res,u));}catch(e){if(!e.status)console.error('Falha na extensão de membros:',e.code||e.name);if(!res.headersSent&&!res.destroyed)send(res,e.status||500,{error:e.status?e.message:'Não foi possível concluir. Tente novamente.'});}return true;};
   handler.highlightProjection=source=>serial(()=>highlightProjection(source));
   handler.validateHighlightBindings=(candidate,previous)=>serial(()=>validateHighlightBindings(candidate,previous));
   return handler;

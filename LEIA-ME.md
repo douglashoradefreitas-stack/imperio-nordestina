@@ -2,6 +2,41 @@
 
 Esta seção é a referência vigente e substitui regras históricas abaixo sobre bloqueio total de menores, idade UTC e ausência de diretório. As contagens antigas são histórico das respectivas revisões, não resultados desta execução. Não há publicação em produção nem ativação em nome do proprietário.
 
+## Revisão — notificações de aprovação, avisos de ensaios e grupo de dançarinos
+
+Esta seção descreve as três funções mais recentes e substitui, nelas, o que a seção abaixo diz sobre "não há envio real de e-mail". Nada foi publicado em produção: o aplicativo segue sendo aplicado manualmente por GitHub/Render.
+
+### 1. Aprovação → notificações (e-mail, aviso no site e WhatsApp)
+
+Ao aprovar uma inscrição (atalho "Aprovar inscrição" ou qualquer endpoint de aprovação), o servidor, já com a aprovação definitiva no armazenamento:
+
+1. **Envia e-mail de boas-vindas** pelo SMTP já configurado para a recuperação de senha (mesmas variáveis: `APP_BASE_URL`, `SMTP_HOST`, `SMTP_PORT` padrão 465, `SMTP_SECURE` padrão true, `SMTP_USER`+`SMTP_PASS` juntos, `SMTP_FROM`). Mensagem em português com o nome da pessoa e o link do site. Reutiliza a configuração existente; nenhuma credencial nova.
+2. **Cria o aviso in-app "Inscrição aprovada"** na área privada da pessoa (antes da atualização, a aprovação não criava aviso).
+3. **Registra o status de notificação por inscrição** e o exibe na aprovação e no Controle de inscrições: `E-mail: enviado / falhou / não configurado` e `WhatsApp: automático enviado / automático falhou / botão manual`.
+
+**Sem SMTP configurado a UI diz claramente "E-mail não configurado (defina SMTP_HOST, SMTP_USER, SMTP_PASS, SMTP_FROM no Render)"** — o painel nunca finge envio. Uma falha de envio **nunca impede nem desfaz a aprovação**; o motivo registrado é genérico, sem segredos ou endereços.
+
+### 2. WhatsApp — manual sempre; automático só com Meta Cloud API
+
+- **Botões manuais (sempre disponíveis)**: `https://wa.me/<número>?text=<mensagem urlencoded>`, abertos em nova aba com `rel="noopener"`. "Notificar no WhatsApp" (boas-vindas pronta, editável no diálogo) e "Enviar convite do grupo" (quando o link está definido). Normalização: só dígitos; 10–11 dígitos recebem prefixo 55; 12–13 iniciados por 55 são mantidos; sem telefone cadastrado o botão fica oculto.
+- **Envio automático opcional (Meta WhatsApp Cloud API)**: somente se `WHATSAPP_TOKEN` e `WHATSAPP_PHONE_NUMBER_ID` estiverem definidas (POST `https://graph.facebook.com/v21.0/<PHONE_NUMBER_ID>/messages`, texto simples). Sem essas variáveis **nada é enviado automaticamente** — o status fica "botão manual". Atenção: fora da janela de 24 horas do WhatsApp, o envio automático de texto livre exige **modelo (template) aprovado na Meta**; sem modelo aprovado, o envio automático tende a falhar (o status registra o motivo genérico) e os botões manuais continuam funcionando.
+
+### 3. Notificar dançarinos sobre ensaios e eventos
+
+- Em cada ensaio/apresentação da agenda (Presenças · Encontros), o botão **"Notificar dançarinos"** cria avisos in-app para os destinatários: dançarinos ativos (Pendente/Aprovado) atribuídos ao item; sem atribuição, todos os ativos. O aviso contém tipo, nome, data e local. Encontro encerrado não recebe novos avisos.
+- O item passa a mostrar **"Notificado em <data> · N aviso(s)"**, e **"Notificar novamente"** exige confirmação para evitar spam acidental.
+- No mesmo diálogo: lista de destinatários com **botão individual por dançarino** (wa.me com mensagem contendo nome do ensaio/evento, data/hora e local) e **"Copiar mensagem"**. Os números de telefone aparecem apenas para o principal ou para quem tem a permissão **Cadastros de dançarinos**; demais administradores veem nomes e avisos no site, sem contatos.
+
+### 4. Grupo de dançarinos
+
+- Configuração exclusiva da organização (principal ou área **Cadastros de dançarinos**): campo "Link de convite do grupo de dançarinos", que aceita somente links de convite HTTPS do WhatsApp (`chat.whatsapp.com/...`), salvo com CSRF e versionamento.
+- O link nunca aparece em endpoint público, trajetórias, diretoria, nem para inscrições pendentes ou inativas.
+- Dançarino **aprovado e ativo** vê na sua área (aba Perfil) o card "Grupo de dançarinos" com o botão "Entrar no grupo" (nova aba), somente quando o link está definido.
+
+### 5. Verificação desta revisão
+
+Suítes novas: aprovação→notificações **52 HTTP** (SMTP e Cloud API mockados; enviado/não configurado/falha; normalização de números; aviso in-app; status no controle), grupo **39 HTTP** (permissões, CSRF, card por situação, vazamento público), notificar-encontro **40 HTTP** (destinatários, inativos fora, registro de data, reenvio, telefone só com permissão, catálogo de eventos) e **25 DOM jsdom** (status na UI, botões wa.me, grupo, modal do encontro). Nenhum envio real: nodemailer e `fetch` são substituídos por mocks de teste. Suíte antiga **testar-aprovacao-rapida.py** contém a expectativa histórica de que a aprovação **não** criasse avisos (`members_avisos*`); com esta revisão essa verificação passa a falhar **por definição** (o aviso "Inscrição aprovada" é o requisito novo) — conflito intencional, relatado como tal, sem alteração da suíte original.
+
 ## Como aparecer no site
 
 1. Entre em **Área do dançarino → Minha trajetória**, usando sua própria conta.

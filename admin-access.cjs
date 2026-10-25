@@ -14,7 +14,8 @@ const digest=async(p,salt)=>(await scrypt(p,Buffer.from(salt,'hex'),64,{N:16384,
 async function credentials(p){const salt=crypto.randomBytes(32).toString('hex');return {salt,hash:await digest(password(p),salt)};}
 const nonce=()=>crypto.randomBytes(32).toString('hex');
 function areaFor(path){
- if(path==='/api/admin/notificacoes/eventos'||/^\/api\/admin\/notificacoes\/eventos\/[^/]+\/avisar$/.test(path))return 'eventos';
+  if(path==='/api/admin/notificacoes/eventos'||/^\/api\/admin\/notificacoes\/eventos\/[^/]+\/avisar$/.test(path))return 'eventos';
+  if(path==='/api/admin/grupo-dancarinos')return 'dancarinos';
  if(path==='/api/admin/destaques/perfis')return 'destaques';
  if(/^\/api\/admin\/dancarinos\/[^/]+\/financeiro$/.test(path)||/^\/api\/admin\/pagamentos\/(status|links)$/.test(path)||path==='/api/admin/contribuicao-2027')return 'financeiro';
  if(/^\/api\/admin\/dancarinos(?:\/[^/]+(?:\/(?:senha|aprovacao))?)?$/.test(path))return 'dancarinos';
