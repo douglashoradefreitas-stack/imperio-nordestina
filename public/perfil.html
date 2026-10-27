@@ -226,7 +226,7 @@ async function normalizarImagemEntrada(file,{forcar=false}={}){
  const sig=assinaturaImagem(await bytesCabecalhoImagem(file));
  if(!forcar&&(sig==='png'||sig==='jpeg'||sig==='webp'))return {arquivo:file,convertido:false,tipo:sig};
  if(sig==='heic')return await converterHeic(file);
- if(sig==='avif')return await converterNavegador(file);
+ if(sig==='avif'||!sig)return await converterNavegador(file);
  throw new Error(ERRO_FORMATO);
 }
 const photoVersions=new Map(),photoStates=new Map();

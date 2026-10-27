@@ -304,7 +304,7 @@ async function normalizarImagemEntrada(file,{forcar=false}={}){
  const sig=assinaturaImagem(await bytesCabecalhoImagem(file));
  if(!forcar&&(sig==='png'||sig==='jpeg'||sig==='webp'))return {arquivo:file,convertido:false,tipo:sig};
  if(sig==='heic')return await converterHeic(file);
- if(sig==='avif')return await converterNavegador(file);
+ if(sig==='avif'||!sig)return await converterNavegador(file);
  throw new Error(ERRO_FORMATO);
 }
 async function abrirViaDataUrl(arquivo){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(arquivo)});const img=new Image();await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=raw});return img}
