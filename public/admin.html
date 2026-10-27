@@ -283,7 +283,18 @@ function portfolioPhotos(d){if(!Array.isArray(d.photos))d.photos=d.photo?[{image
 async function optimizePortfolioPhoto(file,tentativa=0){
  if(!file)throw new Error('Nenhuma foto selecionada.');
  if(file.size>10*1024*1024)throw new Error('Use fotos de até 10 MiB de entrada.');
- let entrada;try{entrada=(await normalizarImagemEntrada(file)).arquivo}catch(e){throw new Error(e.message)}
+ let entrada;
+ try{entrada=(await normalizarImagemEntrada(file)).arquivo}
+ catch(e){
+  if(e.message!==ERRO_FORMATO&&e.message!==ERRO_HEIC)throw e;
+  let img=null;
+  try{img=await abrirViaDataUrl(file)}catch{img=null}
+  if(!img)throw e;
+  const canvas=document.createElement('canvas');canvas.width=img.naturalWidth||img.width;canvas.height=img.naturalHeight||img.height;canvas.getContext('2d').drawImage(img,0,0);
+  const blob=await new Promise(r=>canvas.toBlob(r,'image/jpeg',.92));
+  if(!blob)throw e;
+  entrada=nomeArquivoConvertido(blob,file.name,'.jpeg');
+ }
  const url=URL.createObjectURL(entrada);let img=new Image(),canvas;
  try{await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(new Error('Não foi possível abrir a foto.'));img.src=url});if(img.naturalWidth*img.naturalHeight>40000000)throw new Error('A imagem excede 40 megapixels. Reduza antes de selecionar.');const scale=Math.min(1,800/Math.max(img.width,img.height));canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);for(const quality of [.82,.72,.62,.52,.42,.32,.22,.12]){const image=canvas.toDataURL('image/webp',quality);if(photoBytes(image)<=512*1024)return image}throw new Error('A foto excede 512 KiB após otimizar. Escolha um arquivo menor.');}catch(e){if(!tentativa&&e.message==='Não foi possível abrir a foto.'){URL.revokeObjectURL(url);img.src='';let forcada;try{forcada=(await normalizarImagemEntrada(file,{forcar:true})).arquivo}catch{throw new Error(ERRO_FORMATO)}return optimizePortfolioPhoto(forcada,1)}throw e}finally{URL.revokeObjectURL(url);img.src='';if(canvas){canvas.width=1;canvas.height=1}}
 }
