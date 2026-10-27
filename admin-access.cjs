@@ -1,7 +1,7 @@
 'use strict';
 // Contas administrativas separadas do cadastro dos dançarinos. Nenhum segredo é projetado.
 const crypto=require('crypto'),{promisify}=require('util'),scrypt=promisify(crypto.scrypt);
-const AREAS=Object.freeze({tema:'Tema do ano',camiseta:'Camiseta e Pix',destaques:'Destaques',eventos:'Eventos',patrocinadores:'Patrocinadores',portfolio:'Portfólio',contatos:'Contatos',historia:'História',diretoria:'Diretoria',dancarinos:'Cadastros de dançarinos e redefinição de suas senhas',presencas:'Presenças e justificativas',financeiro:'Financeiro e integração de pagamentos',controleinscricoes:'Controle de inscrições e recebimentos',materiais:'Materiais e acompanhamento',pedidos:'Pedidos e contato do comprador',trajetorias:'Moderação de trajetórias públicas'});
+const AREAS=Object.freeze({tema:'Tema do ano',camiseta:'Camiseta e Pix',destaques:'Destaques',eventos:'Eventos',patrocinadores:'Patrocinadores',portfolio:'Portfólio',contatos:'Contatos',historia:'História',diretoria:'Diretoria',dancarinos:'Cadastros de dançarinos e redefinição de suas senhas',presencas:'Presenças e justificativas',financeiro:'Financeiro e integração de pagamentos',controleinscricoes:'Controle de inscrições e recebimentos',materiais:'Materiais e acompanhamento',pedidos:'Pedidos e contato do comprador',trajetorias:'Moderação de trajetórias públicas',ia:'Assistente de criação (IA)'});
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const KEY='admin_accounts_v1',AUDIT='admin_audit_v1';
 const eq=(a,b)=>{const x=Buffer.from(String(a)),y=Buffer.from(String(b));return x.length===y.length&&crypto.timingSafeEqual(x,y)};
@@ -14,8 +14,11 @@ const digest=async(p,salt)=>(await scrypt(p,Buffer.from(salt,'hex'),64,{N:16384,
 async function credentials(p){const salt=crypto.randomBytes(32).toString('hex');return {salt,hash:await digest(password(p),salt)};}
 const nonce=()=>crypto.randomBytes(32).toString('hex');
 function areaFor(path){
+  if(path==='/api/admin/ai/chat'||path==='/api/admin/ai/image'||path==='/api/admin/ai/status')return 'ia';
   if(path==='/api/admin/notificacoes/eventos'||/^\/api\/admin\/notificacoes\/eventos\/[^/]+\/avisar$/.test(path))return 'eventos';
   if(path==='/api/admin/grupo-dancarinos')return 'dancarinos';
+  if(path==='/api/admin/camiseta-2027')return 'materiais';
+  if(path==='/api/admin/comprovantes'||path.startsWith('/api/admin/comprovantes/'))return 'financeiro';
  if(path==='/api/admin/destaques/perfis')return 'destaques';
  if(/^\/api\/admin\/dancarinos\/[^/]+\/financeiro$/.test(path)||/^\/api\/admin\/pagamentos\/(status|links)$/.test(path)||path==='/api/admin/contribuicao-2027')return 'financeiro';
  if(/^\/api\/admin\/dancarinos(?:\/[^/]+(?:\/(?:senha|aprovacao))?)?$/.test(path))return 'dancarinos';

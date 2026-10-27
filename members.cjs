@@ -35,6 +35,11 @@ function manualUrl(value){const s=text(value,2000);if(!s)return '';try{const u=n
 // O provedor é opcional; sua configuração e credenciais ficam somente no servidor.
 const METHODS = ['Cartão de crédito','Boleto'];
 const PAYMENT_STATUSES = ['Pendente','Pago','Cancelado'];
+// Camiseta 2027: tipo escolhido pelo dançarino; tamanho por lista fechada.
+const SHIRT_TYPES = ['masculina','feminina','infantil'];
+const SHIRT_TYPE_LABELS = {masculina:'Masculina',feminina:'Feminina (baby look)',infantil:'Infantil'};
+const SHIRT_SIZES_DEFAULT = ['PP','P','M','G','GG'];
+const INFANTIL_SIZES = ['4','6','8','10','12','14'];
 const MAX_CENTS = 100000000;
 function integer(v,min,max,label){if(!Number.isSafeInteger(v)||v<min||v>max)error(label+' inválido.');return v;}
 function cardRate(v){if(v===null||v===undefined)return null;if(typeof v!=='number'||!Number.isFinite(v)||v<0||v>100||Math.abs(v*100-Math.round(v*100))>1e-8)error('Taxa deve ser nula ou percentual de 0 a 100, com até duas casas decimais.');return v;}
@@ -81,6 +86,18 @@ function photo(v, required=true, maxBytes=MAX_PHOTO, maxSide=800) {
   if(!w||!h||w>maxSide||h>maxSide)error('Foto inválida: limite de '+maxSide+' pixels por lado.');return v;
 }
 function profilePhoto(v){return photo(v,true,2*1024*1024,1600);}
+// Comprovante Pix: imagem (mesmo padrão do perfil: 2 MiB, 1600 px) ou PDF de até 5 MiB.
+const COMPROVANTE_PDF_MAX = 5 * 1024 * 1024;
+function comprovante(v){object(v);fields(v,['kind','data']);
+  if(v.kind==='image')return {kind:'image',data:photo(v.data,true,2*1024*1024,1600)};
+  if(v.kind==='pdf'){
+    if(typeof v.data!=='string'||v.data.length>Math.ceil(COMPROVANTE_PDF_MAX/3)*4+40)error('Comprovante em PDF deve ter até 5 MiB.');
+    const m=v.data.match(/^data:application\/pdf;base64,([A-Za-z0-9+/]+={0,2})$/);if(!m)error('Comprovante em PDF inválido. Use application/pdf.');
+    const bytes=Buffer.from(m[1],'base64');if(!bytes.length||bytes.length>COMPROVANTE_PDF_MAX||bytes.toString('base64')!==m[1]||bytes.subarray(0,5).toString('ascii')!=='%PDF-')error('Arquivo PDF inválido ou acima de 5 MiB.');
+    return {kind:'pdf',data:v.data};
+  }
+  error('Envie uma imagem (PNG, JPG ou WebP, até 2 MiB) ou um PDF (até 5 MiB).');
+}
 function guardian(v, minor) {if(v===null||v===undefined){if(minor)error('Menor precisa de responsável completo e consentimento.');return null;}fields(v,['name','cpf','phone','email','relationship','consent']);if(v.consent!==true)error('Consentimento do responsável obrigatório.');return {name:text(v.name,150,true),cpf:cpf(v.cpf),phone:phone(v.phone),email:email(v.email),relationship:text(v.relationship,80,true),consent:true};}
 function profile(v,validatePhoto=photo) {object(v);if(typeof v.rgSameAsCpf!=='boolean')error('Informe se RG é igual ao CPF.');const birth=date(v.birth);const rg=text(v.rg??'',40,!v.rgSameAsCpf);return {name:text(v.name,150,true),birth,phone:phone(v.phone),city:text(v.city,150,true),email:email(v.email),cpf:cpf(v.cpf),rgSameAsCpf:v.rgSameAsCpf,rg,photo:validatePhoto(v.photo),experience:text(v.experience??'',2000),message:text(v.message??'',2000),guardian:guardian(v.guardian,age(birth)<18)};}
 const secureEqual=(a,b)=>{const x=Buffer.from(String(a)),y=Buffer.from(String(b));return x.length===y.length&&crypto.timingSafeEqual(x,y);};
@@ -175,6 +192,15 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
     await store.set(recoveryKey,data);if(blocked)error('Muitas tentativas. Aguarde 15 minutos.',429);
   }
   const ds=()=>load(KEYS.dancers,{items:[],receipts:[]});const ms=()=>load(KEYS.meetings,[]);const os=()=>load(KEYS.orders,{items:[],receipts:[]});
+  // Camiseta 2027: registro próprio por dançarino (tipo + tamanho). Registros antigos ficam sem tipo.
+  const camisetaKey=id=>'members_camiseta_2027_v1_'+id;
+  const camisetaData=id=>load(camisetaKey(id),{type:null,size:null,updatedAt:null});
+  const adultSizes=()=>{const s=getContent()?.shirt?.sizes;return Array.isArray(s)&&s.length?s.map(v=>String(v).trim()).filter(Boolean):[...SHIRT_SIZES_DEFAULT];};
+  const shirtSizeOptions=type=>type==='infantil'?[...INFANTIL_SIZES]:adultSizes();
+  // Comprovantes Pix: armazenamento por dançarino; anexo nunca é público.
+  const comprovantesKey=id=>'members_comprovantes_v1_'+id;
+  const comprovantes=id=>load(comprovantesKey(id),{items:[]});
+  async function findComprovante(id){const data=await ds();for(const d of data.items){const box=await comprovantes(d.id);const c=box.items.find(i=>i.id===id);if(c)return {c,box,owner:d};}return null;}
   const MATERIAL_TYPES=['nao_definida','feminino','masculino'];
   const materialType=value=>MATERIAL_TYPES.includes(value)?value:'nao_definida';
   const materialDestinationsKey='members_materiais_destinacoes_2027_v1';
@@ -217,14 +243,17 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
   async function notifyMeeting(m,force=false){const active=new Set((await ds()).items.filter(d=>['Pendente','Aprovado'].includes(d.status)).map(d=>d.id)),notice=meetingNotice(m);return createNotices('encontro:'+m.id,noticeHash(notice),{kind:m.type,title:notice.title,date:notice.date,location:notice.location,description:'',href:'/perfil?aba=presencas'},m.attendees.filter(a=>active.has(a.dancerId)).map(a=>a.dancerId),force);}
   async function visibleNotices(id){
     const box=await noticeInbox(id),meetings=new Map((await ms()).map(m=>[m.id,m])),events=new Set((getContent()?.events||[]).map(e=>noticeHash(eventNotice(e))));
-    const items=box.items.filter(n=>{if(n.sourceKey.startsWith('aprovacao:'))return true;if(n.sourceKey.startsWith('encontro:')){const m=meetings.get(n.sourceKey.slice(9));return !!m&&m.attendees.some(a=>a.dancerId===id)&&noticeHash(meetingNotice(m))===n.hash;}return n.sourceKey.startsWith('evento:')&&events.has(n.hash)}).sort((a,b)=>b.createdAt.localeCompare(a.createdAt)||b.id.localeCompare(a.id));
+    const items=box.items.filter(n=>{if(n.sourceKey.startsWith('aprovacao:'))return true;if(n.sourceKey.startsWith('comprovante:'))return true;if(n.sourceKey.startsWith('encontro:')){const m=meetings.get(n.sourceKey.slice(9));return !!m&&m.attendees.some(a=>a.dancerId===id)&&noticeHash(meetingNotice(m))===n.hash;}return n.sourceKey.startsWith('evento:')&&events.has(n.hash)}).sort((a,b)=>b.createdAt.localeCompare(a.createdAt)||b.id.localeCompare(a.id));
     return {box,items};
   }
   const board=()=>GROUPS.map(([key,title])=>({key,title,items:[]}));
   const mp=require('./mercado-pago.cjs')({store,readBody,fields,send});
   async function manualConfig(){const saved=await store.get(KEYS.manualLinks);if(saved!==null&&saved!==undefined){if(saved.generalUrl===DEFAULT_MANUAL_URL&&!Object.hasOwn(saved,'reportedAmountCents')){const migrated={...saved,reportedAmountCents:DEFAULT_REPORTED_CENTS,reportedAmountSource:'usuario',version:saved.version+1,updatedAt:new Date().toISOString()};await store.set(KEYS.manualLinks,migrated);return migrated;}return saved;}const initial={generalUrl:DEFAULT_MANUAL_URL,reportedAmountCents:DEFAULT_REPORTED_CENTS,reportedAmountSource:'usuario',version:0,updatedAt:null};await store.set(KEYS.manualLinks,initial);return initial;}
   async function contributionConfig(){const saved=await store.get(KEYS.contribution);if(saved!==null&&saved!==undefined)return saved;const initial=structuredClone(DEFAULT_CONTRIBUTION);await store.set(KEYS.contribution,initial);return initial;}
-  async function financialView(plan,data){const view=financeView(plan,mp.status(),mp.view(data,plan.dancerId)),config=await manualConfig();view.manualPayment={generalUrl:config.generalUrl,reportedAmountCents:config.reportedAmountCents??null,reportedAmountSource:config.reportedAmountSource??null,providerVerified:false,notice:MANUAL_NOTICE,confirmation:'manual'};view.contribution2027=await contributionConfig();for(const i of view.installments){const specific=i.manualPaymentUrl||'';i.manualLink={url:specific||config.generalUrl||'',kind:specific?'installment':'general',label:specific?'Abrir pagamento desta parcela':'Abrir link geral de pagamento',confirmation:'manual'};}return view;}
+  async function financialView(plan,data){const view=financeView(plan,mp.status(),mp.view(data,plan.dancerId)),config=await manualConfig();view.manualPayment={generalUrl:config.generalUrl,reportedAmountCents:config.reportedAmountCents??null,reportedAmountSource:config.reportedAmountSource??null,providerVerified:false,notice:MANUAL_NOTICE,confirmation:'manual'};view.contribution2027=await contributionConfig();for(const i of view.installments){const specific=i.manualPaymentUrl||'';i.manualLink={url:specific||config.generalUrl||'',kind:specific?'installment':'general',label:specific?'Abrir pagamento desta parcela':'Abrir link geral de pagamento',confirmation:'manual'};}
+  const receipts=await comprovantes(plan.dancerId);
+  for(const i of view.installments){const latest=receipts.items.filter(c=>c.installmentId===i.id).sort((a,b)=>b.createdAt.localeCompare(a.createdAt)||b.id.localeCompare(a.id))[0];i.comprovante=latest?{status:latest.status,rejectionNote:latest.rejectionNote||'',kind:latest.kind,createdAt:latest.createdAt}:null;}
+  return view;}
   const cookie=(id,age)=>`imperio_dancer=${id}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${age}${secure?'; Secure':''}`;
   function ownSession(req){const c=(req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith('imperio_dancer='));const id=c?c.slice('imperio_dancer='.length):'';const s=dancerSessions.get(id);if(!s||s.expires<=Date.now()){dancerSessions.delete(id);return null;}return {id,...s};}
   function origin(req){if(!req.headers.origin)return;try{if(new URL(req.headers.origin).host===req.headers.host)return;}catch{}error('Origem não autorizada.',403);}
@@ -537,6 +566,81 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       const index=data.plans.findIndex(x=>x.dancerId===id);if(index<0)data.plans.push(plan);else data.plans[index]=plan;
       await store.set(KEYS.finance,data);return send(res,200,await financialView(plan,data));
     }
+    if(p==='/api/dancarinos/financeiro/comprovante'){
+      if(method!=='POST')error('Método não permitido.',405);
+      if(u.search)error('Não envie filtros ou identidade.');
+      if(!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type']||''))error('Envie JSON com Content-Type application/json.',415);
+      const b=await readBody(req,10*1024*1024);fields(b,['installmentId','comprovante']);
+      if(!UUID.test(b.installmentId))error('Parcela inválida.');
+      const finance=await load(KEYS.finance,{plans:[]}),planRow=finance.plans.find(x=>x.dancerId===dancer.id),installment=planRow?.installments.find(i=>i.id===b.installmentId);
+      if(!installment)error('Parcela não encontrada no seu plano.',404);
+      if(installment.status!=='Pendente')error('Esta parcela não está pendente.',409);
+      const clean=comprovante(b.comprovante),box=await comprovantes(dancer.id);
+      const now=new Date().toISOString(),record={id:crypto.randomUUID(),installmentId:b.installmentId,kind:clean.kind,data:clean.data,createdAt:now,status:'Pendente',rejectionNote:''};
+      box.items.push(record);box.items=box.items.slice(-10);
+      if(Buffer.byteLength(JSON.stringify(box))>48*1024*1024)error('Limite de armazenamento dos seus comprovantes atingido. Aguarde a conferência da organização.',413);
+      await store.set(comprovantesKey(dancer.id),box);
+      return send(res,201,{id:record.id,installmentId:record.installmentId,status:record.status,kind:record.kind,createdAt:record.createdAt,notice:'Comprovante enviado · aguardando conferência. A confirmação continua manual pela organização.'});
+    }
+    const comprovanteAction=p.match(/^\/api\/admin\/comprovantes\/([^/]+)\/(confirmar|rejeitar)$/);
+    const comprovanteAnexo=p.match(/^\/api\/admin\/comprovantes\/([^/]+)\/anexo$/);
+    if(p==='/api/admin/comprovantes'||comprovanteAction||comprovanteAnexo){
+      if(comprovanteAction){
+        if(method!=='POST')error('Método não permitido.',405);
+        if(!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type']||''))error('Envie JSON com Content-Type application/json.',415);
+        if(!UUID.test(comprovanteAction[1]))error('Comprovante não encontrado.',404);
+        const b=await readBody(req,4096);
+        if(comprovanteAction[2]==='confirmar')fields(b,['confirm','note']);else fields(b,['motivo']);
+        const found=await findComprovante(comprovanteAction[1]);if(!found)error('Comprovante não encontrado.',404);
+        if(comprovanteAction[2]==='confirmar'){
+          if(found.c.status==='Confirmado')error('Comprovante já confirmado.',409);
+          if(found.c.status==='Rejeitado')error('Comprovante rejeitado não pode ser confirmado. Aguarde novo envio do dançarino.',409);
+          if(b.confirm!==true)error('Confirme a conferência do comprovante.');
+          const finance=await load(KEYS.finance,{plans:[]}),planRow=finance.plans.find(x=>x.dancerId===found.owner.id),installment=planRow?.installments.find(i=>i.id===found.c.installmentId);
+          if(!installment)error('Parcela não encontrada no plano deste cadastro.',404);
+          if(installment.status!=='Pendente')error('A parcela não está pendente.',409);
+          mp.assertEditable(finance,found.owner.id);
+          const now=new Date().toISOString();
+          installment.status='Pago';
+          installment.payment={source:'manual',amountCents:installment.baseCents,note:text(b.note??'Comprovante conferido pela organização.',500,true),recordedAt:now};
+          found.c.status='Confirmado';found.c.confirmedAt=now;
+          await store.set(KEYS.finance,finance);await store.set(comprovantesKey(found.owner.id),found.box);
+          return send(res,200,{ok:true,status:'Confirmado',installment:{id:installment.id,status:installment.status,payment:installment.payment}});
+        }
+        if(found.c.status==='Rejeitado')error('Comprovante já rejeitado.',409);
+        const motivo=text(b.motivo??'',500);
+        found.c.status='Rejeitado';found.c.rejectionNote=motivo;found.c.rejectedAt=new Date().toISOString();
+        await store.set(comprovantesKey(found.owner.id),found.box);
+        const notice={kind:'Financeiro',title:'Comprovante rejeitado',date:'',location:'',description:'Seu comprovante da parcela não foi aceito pela organização.'+(motivo?' Motivo: '+motivo:' Envie um novo comprovante.'),href:'/perfil?aba=finance'};
+        await createNotices('comprovante:'+found.c.id,noticeHash(notice),notice,[found.owner.id]);
+        return send(res,200,{ok:true,status:'Rejeitado',rejectionNote:motivo});
+      }
+      if(comprovanteAnexo){
+        if(method!=='GET')error('Método não permitido.',405);
+        if(!UUID.test(comprovanteAnexo[1]))error('Comprovante não encontrado.',404);
+        const found=await findComprovante(comprovanteAnexo[1]);if(!found)error('Comprovante não encontrado.',404);
+        const m=found.c.data.match(/^data:([^;]+);base64,([A-Za-z0-9+/]+={0,2})$/),mime=m&&['image/png','image/jpeg','image/webp','application/pdf'].includes(m[1])?m[1]:null;
+        if(!mime)error('Anexo indisponível.',404);
+        const ext=mime==='application/pdf'?'pdf':mime==='image/png'?'png':mime==='image/jpeg'?'jpg':'webp';
+        const safe='comprovante-'+found.c.id+'.'+ext;
+        res.writeHead(200,{'Content-Type':mime,'Content-Disposition':'inline; filename="'+safe+'"','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Frame-Options':'DENY','Referrer-Policy':'no-referrer'});
+        return res.end(Buffer.from(m[2],'base64'));
+      }
+      if(p==='/api/admin/comprovantes'){
+        if(method!=='GET')error('Método não permitido.',405);
+        const allowed=new Set(['status']);for(const k of u.searchParams.keys())if(!allowed.has(k)||u.searchParams.getAll(k).length!==1)error('Filtro inválido.');
+        const filter=u.searchParams.get('status')||'';if(filter&&!['Pendente','Confirmado','Rejeitado'].includes(filter))error('Filtro de status inválido.');
+        const dancers=await ds(),plans=new Map((await load(KEYS.finance,{plans:[]})).plans.map(x=>[x.dancerId,x]));
+        const items=[];
+        for(const d of dancers.items){const box=await comprovantes(d.id);
+          for(const c of box.items){if(filter&&c.status!==filter)continue;
+            const installment=plans.get(d.id)?.installments.find(i=>i.id===c.installmentId);
+            items.push({id:c.id,dancerId:d.id,dancerName:d.name,installmentId:c.installmentId,planTitle:plans.get(d.id)?.title||'',baseCents:installment?.baseCents??null,dueDate:installment?.dueDate??null,kind:c.kind,createdAt:c.createdAt,status:c.status,rejectionNote:c.rejectionNote||''});}}
+        items.sort((a,b)=>b.createdAt.localeCompare(a.createdAt)||b.id.localeCompare(a.id));
+        return send(res,200,{items,notice:'Comprovantes são confidenciais: o anexo só abre pela administração com permissão Financeiro. Nenhum endpoint público lista comprovantes.'});
+      }
+      error('Método não permitido.',405);
+    }
     if(p==='/api/admin/notificacoes/eventos'){
       if(method!=='GET')error('Método não permitido.',405);if(u.search)error('Parâmetros não permitidos.');
       return send(res,200,{items:await noticeCatalog(),channel:'site'});
@@ -601,6 +705,19 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       assignments.items=assignments.items.filter(i=>i.dancerId!==id);assignments.items.push(item);await store.set(materialDestinationsKey,assignments);
       return send(res,200,view(target));
     }
+    if(p==='/api/dancarinos/camiseta-2027'){
+      if(u.search)error('Não envie filtros ou identidade de outro cadastro.');
+      if(method==='GET'){const data=await camisetaData(dancer.id);return send(res,200,{type:data.type||null,size:data.size||null,updatedAt:data.updatedAt||null,options:{types:SHIRT_TYPES.map(t=>({value:t,label:SHIRT_TYPE_LABELS[t]})),sizes:{masculina:adultSizes(),feminina:adultSizes(),infantil:[...INFANTIL_SIZES]}}});}
+      if(method!=='PUT')error('Método não permitido.',405);
+      origin(req);if(req.headers['sec-fetch-site']==='cross-site')error('Origem não autorizada.',403);
+      if(!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type']||''))error('Envie JSON com Content-Type application/json.',415);
+      const b=await readBody(req,4096);fields(b,['type','size']);
+      if(!SHIRT_TYPES.includes(b.type))error('Escolha o tipo da camiseta: Masculina, Feminina (baby look) ou Infantil.');
+      const size=text(b.size,12,true),options=shirtSizeOptions(b.type);
+      if(!options.includes(size))error('Tamanho inválido para o tipo escolhido. Use: '+options.join(', ')+'.');
+      const data={type:b.type,size,updatedAt:new Date().toISOString()};await store.set(camisetaKey(dancer.id),data);
+      return send(res,200,data);
+    }
     if(p==='/api/dancarinos/materiais-2027/respostas'){
 
       if(u.search)error('Não envie filtros ou identidade de outro cadastro.');
@@ -621,6 +738,16 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       const response={hasMaterial:b.hasMaterial,version:previous.version+1,updatedAt:new Date().toISOString()};data.responses[b.itemId]=response;
       if(Buffer.byteLength(JSON.stringify(data))>128*1024)error('Respostas excedem o limite de 128 KiB.',413);
       await store.set(materialAnswersKey(dancer.id),data);return send(res,200,{itemId:b.itemId,response});
+    }
+    if(p==='/api/admin/camiseta-2027'){
+      if(method!=='GET')error('Método não permitido.',405);
+      const allowed=new Set(['type']);for(const k of u.searchParams.keys())if(!allowed.has(k)||u.searchParams.getAll(k).length!==1)error('Filtro inválido.');
+      const filter=u.searchParams.get('type')||'';if(filter&&filter!=='nao_informado'&&!SHIRT_TYPES.includes(filter))error('Filtro de tipo inválido.');
+      const dancers=(await ds()).items.filter(d=>['Pendente','Aprovado'].includes(d.status)).sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
+      const byType={masculina:0,feminina:0,infantil:0,nao_informado:0},bySize={};
+      for(const d of dancers){const data=await camisetaData(d.id),type=SHIRT_TYPES.includes(data.type)?data.type:null,size=data.size||null;byType[type||'nao_informado']++;if(type&&size)bySize[size]=(bySize[size]||0)+1;}
+      const rows=[];for(const d of dancers){const data=await camisetaData(d.id),type=SHIRT_TYPES.includes(data.type)?data.type:null;rows.push({dancerId:d.id,name:d.name,status:d.status,type,size:data.size||null});}
+      return send(res,200,{year:2027,typeLabels:SHIRT_TYPE_LABELS,items:rows.filter(r=>!filter||(r.type||'nao_informado')===filter),totals:{byType,bySize},population:'Cadastros Pendente/Aprovado com registro salvo pelo próprio dançarino. Registros antigos ou não preenchidos aparecem como Não informado. Totais independem do filtro.'});
     }
     if(p==='/api/admin/materiais-2027/acompanhamento'){
       if(method!=='GET')error('Método não permitido.',405);
@@ -706,7 +833,7 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
       a.status='Presente';a.source='self';a.recordedAt=new Date(now).toISOString();
       await store.set(KEYS.meetings,meetings);return send(res,200,{ok:true,status:a.status,source:a.source,recordedAt:a.recordedAt});
     }
-    if(method==='GET'&&p==='/api/dancarinos/eu'){const meetings=await ms();const attendance=meetings.flatMap(m=>{const a=m.attendees.find(a=>a.dancerId===dancer.id);return a?[{id:m.id+':'+dancer.id,sessionId:m.id,type:m.type,title:m.title,date:m.date,closed:m.closed,status:a.status,reason:a.reason,source:a.source??null,recordedAt:a.recordedAt??null,...checkinView(m),selfCheckinOpen:dancer.status==='Aprovado'&&checkinOpen(m),expiresAt:dancer.status==='Aprovado'&&checkinOpen(m)?m.autoCheckin.expiresAt:null}]:[];});return send(res,200,{profile:publicProfile(dancer),attendance,stats:stats(dancer.id,meetings),csrf:own.csrf});}
+    if(method==='GET'&&p==='/api/dancarinos/eu'){const meetings=await ms();const attendance=meetings.flatMap(m=>{const a=m.attendees.find(a=>a.dancerId===dancer.id);return a?[{id:m.id+':'+dancer.id,sessionId:m.id,type:m.type,title:m.title,date:m.date,closed:m.closed,photo:m.photo||'',status:a.status,reason:a.reason,source:a.source??null,recordedAt:a.recordedAt??null,...checkinView(m),selfCheckinOpen:dancer.status==='Aprovado'&&checkinOpen(m),expiresAt:dancer.status==='Aprovado'&&checkinOpen(m)?m.autoCheckin.expiresAt:null}]:[];});return send(res,200,{profile:publicProfile(dancer),attendance,stats:stats(dancer.id,meetings),csrf:own.csrf});}
     if(method==='POST'&&p==='/api/dancarinos/sair'){dancerSessions.delete(own.id);return send(res,200,{ok:true},{'Set-Cookie':cookie('',0)});}
     if(method==='PUT'&&p==='/api/dancarinos/perfil'){const b=await readBody(req,4*1024*1024);fields(b,['phone','city','photo','message']);const data=await ds(),d=data.items.find(d=>d.id===dancer.id);for(const k of Object.keys(b))d[k]=k==='phone'?phone(b[k]):k==='photo'?profilePhoto(b[k]):text(b[k],k==='city'?150:2000,k==='city');await store.set(KEYS.dancers,data);return send(res,200,{ok:true});}
     if(method==='PUT'&&p==='/api/dancarinos/senha'){const b=await readBody(req);fields(b,['currentPassword','password']);const pass=password(b.password);if(typeof b.currentPassword!=='string'||b.currentPassword.length<6||b.currentPassword.length>256||!secureEqual(await digest(b.currentPassword,dancer.salt),dancer.hash))error('Senha atual inválida.',403);const data=await ds(),d=data.items.find(d=>d.id===dancer.id);Object.assign(d,await credentials(pass));await store.set(KEYS.dancers,data);dancerSessions.get(own.id).passwordHash=d.hash;revoke(d.id,own.id);return send(res,200,{ok:true});}
@@ -737,17 +864,17 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
     match=p.match(/^\/api\/admin\/dancarinos\/([^/]+)(\/senha)?$/);
     if(match&&['PUT','DELETE'].includes(method)){
       const data=await ds(),d=data.items.find(d=>d.id===match[1]);if(!d)error('Cadastro não encontrado.',404);
-      if(method==='DELETE'&&!match[2]){mp.assertEditable(await load(KEYS.finance,{plans:[]}),d.id);const meetings=await ms();for(const m of meetings){if(m.attendees.some(a=>a.dancerId===d.id))revokeCheckin(m);m.attendees=m.attendees.filter(a=>a.dancerId!==d.id);}await store.set(KEYS.meetings,meetings);data.items=data.items.filter(x=>x.id!==d.id);await store.set(KEYS.dancers,data);await store.set(notificationKey(d.id),{items:[],receipts:[]});await store.set('members_trajetoria_v1_'+d.id,{items:[],version:0});await store.set(materialAnswersKey(d.id),{responses:{}});const destinations=await materialDestinations();destinations.items=destinations.items.filter(i=>i.dancerId!==d.id);await store.set(materialDestinationsKey,destinations);const shares=await sharing();shares.items=shares.items.filter(s=>s.ownerId!==d.id);await store.set(sharingKey,shares);await store.set(interactionKey(d.id),{likes:[],comments:[],rates:{}});await store.set('members_trajetoria_ritmo_v1_'+d.id,{count:0,until:0});revoke(d.id);return send(res,200,{ok:true});}
+      if(method==='DELETE'&&!match[2]){mp.assertEditable(await load(KEYS.finance,{plans:[]}),d.id);const meetings=await ms();for(const m of meetings){if(m.attendees.some(a=>a.dancerId===d.id))revokeCheckin(m);m.attendees=m.attendees.filter(a=>a.dancerId!==d.id);}await store.set(KEYS.meetings,meetings);data.items=data.items.filter(x=>x.id!==d.id);await store.set(KEYS.dancers,data);await store.set(notificationKey(d.id),{items:[],receipts:[]});await store.set('members_trajetoria_v1_'+d.id,{items:[],version:0});await store.set(materialAnswersKey(d.id),{responses:{}});await store.set(camisetaKey(d.id),{type:null,size:null,updatedAt:null});await store.set(comprovantesKey(d.id),{items:[]});const destinations=await materialDestinations();destinations.items=destinations.items.filter(i=>i.dancerId!==d.id);await store.set(materialDestinationsKey,destinations);const shares=await sharing();shares.items=shares.items.filter(s=>s.ownerId!==d.id);await store.set(sharingKey,shares);await store.set(interactionKey(d.id),{likes:[],comments:[],rates:{}});await store.set('members_trajetoria_ritmo_v1_'+d.id,{count:0,until:0});revoke(d.id);return send(res,200,{ok:true});}
       if(method==='PUT'){const b=await readBody(req);if(match[2]){fields(b,['password']);Object.assign(d,await credentials(password(b.password)));await store.set(KEYS.dancers,data);revoke(d.id);return send(res,200,{ok:true});}fields(b,['name','birth','phone','city','email','cpf','rgSameAsCpf','rg','photo','experience','message','guardian','status']);const clean=profile({...d,...b},value=>value===d.photo?profilePhoto(value):photo(value));unique(data.items,clean,d.id);const status=b.status??d.status;if(!['Pendente','Aprovado','Inativo'].includes(status))error('Status inválido.');const previousSource=authorizationSource(d);Object.assign(d,clean,{status});await store.set(KEYS.dancers,data);const sourceChanged=previousSource!==authorizationSource(d);if(status==='Inativo'||sourceChanged){const shares=await sharing(),s=shares.items.find(s=>s.ownerId===d.id);if(s&&(status==='Inativo'||s.authorization||!adult(d))){if(sourceChanged&&s.authorization){s.authorization={...s.authorization,status:'invalidated',link:false,directory:false,invalidatedAt:new Date().toISOString()};}if(status==='Inativo'||!adult(d))s.enabled=false;s.version++;await store.set(sharingKey,shares);}}if(status==='Inativo')revoke(d.id);return send(res,200,{ok:true});}
     }
     if(method==='GET'&&p==='/api/admin/encontros')return send(res,200,{items:(await ms()).map(adminMeeting)});
     if(method==='POST'&&p==='/api/admin/encontros'){
-      const b=await readBody(req);fields(b,['type','title','date','closed','dancerIds','location','notify']);if(b.notify!==undefined&&typeof b.notify!=='boolean')error('Informe se deseja notificar.');if(!['Ensaio','Apresentação'].includes(b.type)||b.closed!==false)error('Tipo inválido ou encontro deve iniciar aberto.');if(!Array.isArray(b.dancerIds)||b.dancerIds.length>2000||new Set(b.dancerIds).size!==b.dancerIds.length)error('Seleção inválida.');const dancers=(await ds()).items;if(b.dancerIds.some(id=>!dancers.some(d=>d.id===id&&d.status!=='Inativo')))error('Seleção contém cadastro inelegível.');const m={id:crypto.randomUUID(),type:b.type,title:text(b.title,150,true),date:meetingDate(b.date),location:text(b.location??'',180),closed:false,attendees:b.dancerIds.map(dancerId=>({dancerId,status:'Pendente',reason:''}))};const meetings=await ms();meetings.push(m);await store.set(KEYS.meetings,meetings);const notification=b.notify===true?await notifyMeeting(m):null;return send(res,201,{id:m.id,notification});
+      const b=await readBody(req);fields(b,['type','title','date','closed','dancerIds','location','notify','photo']);if(b.notify!==undefined&&typeof b.notify!=='boolean')error('Informe se deseja notificar.');if(!['Ensaio','Apresentação'].includes(b.type)||b.closed!==false)error('Tipo inválido ou encontro deve iniciar aberto.');if(!Array.isArray(b.dancerIds)||b.dancerIds.length>2000||new Set(b.dancerIds).size!==b.dancerIds.length)error('Seleção inválida.');const dancers=(await ds()).items;if(b.dancerIds.some(id=>!dancers.some(d=>d.id===id&&d.status!=='Inativo')))error('Seleção contém cadastro inelegível.');const m={id:crypto.randomUUID(),type:b.type,title:text(b.title,150,true),date:meetingDate(b.date),location:text(b.location??'',180),closed:false,photo:photo(b.photo??'',false),attendees:b.dancerIds.map(dancerId=>({dancerId,status:'Pendente',reason:''}))};const meetings=await ms();meetings.push(m);await store.set(KEYS.meetings,meetings);const notification=b.notify===true?await notifyMeeting(m):null;return send(res,201,{id:m.id,notification});
     }
     match=p.match(/^\/api\/admin\/encontros\/([^/]+)$/);
-    if(match&&['PUT','DELETE'].includes(method)){let meetings=await ms();const m=meetings.find(m=>m.id===match[1]);if(!m)error('Encontro não encontrado.',404);let notification=null;if(method==='DELETE')meetings=meetings.filter(x=>x.id!==m.id);else {const beforeHash=noticeHash(meetingNotice(m)),beforeIds=new Set(m.attendees.map(a=>a.dancerId));const b=await readBody(req);fields(b,['title','date','closed','attendees','location','notify']);if(b.notify!==undefined&&typeof b.notify!=='boolean')error('Informe se deseja notificar.');if(typeof b.closed!=='boolean'||!Array.isArray(b.attendees)||b.attendees.length>2000)error('Encontro inválido.');const dancers=(await ds()).items,seen=new Set();const attendees=b.attendees.map(a=>{fields(a,['dancerId','status','reason']);if(seen.has(a.dancerId)||!dancers.some(d=>d.id===a.dancerId&&(d.status!=='Inativo'||m.attendees.some(old=>old.dancerId===d.id)))||!['Pendente','Presente','Falta'].includes(a.status))error('Presença inválida.');seen.add(a.dancerId);const previous=m.attendees.find(old=>old.dancerId===a.dancerId);const record={...previous,dancerId:a.dancerId,status:a.status,reason:text(a.reason??'',2000)};if(!previous||previous.status!==a.status){if(previous?.source)record.previousRecord={status:previous.status,source:previous.source,recordedAt:previous.recordedAt??null};record.source='admin';record.recordedAt=new Date().toISOString();}return record;});const nextDate=meetingDate(b.date,b.closed),nextTitle=text(b.title,150,true);if(b.closed||m.date!==nextDate||m.attendees.length!==attendees.length||m.attendees.some(old=>!seen.has(old.dancerId)))revokeCheckin(m);Object.assign(m,{title:nextTitle,date:nextDate,location:text(b.location??m.location??'',180),closed:b.closed,attendees});const relevant=beforeHash!==noticeHash(meetingNotice(m))||attendees.some(a=>!beforeIds.has(a.dancerId));await store.set(KEYS.meetings,meetings);if(b.notify===true&&!m.closed&&relevant)notification=await notifyMeeting(m);}await store.set(KEYS.meetings,meetings);return send(res,200,{ok:true,notification});}
+    if(match&&['PUT','DELETE'].includes(method)){let meetings=await ms();const m=meetings.find(m=>m.id===match[1]);if(!m)error('Encontro não encontrado.',404);let notification=null;if(method==='DELETE')meetings=meetings.filter(x=>x.id!==m.id);else {const beforeHash=noticeHash(meetingNotice(m)),beforeIds=new Set(m.attendees.map(a=>a.dancerId));const b=await readBody(req);fields(b,['title','date','closed','attendees','location','notify','photo']);if(b.notify!==undefined&&typeof b.notify!=='boolean')error('Informe se deseja notificar.');if(typeof b.closed!=='boolean'||!Array.isArray(b.attendees)||b.attendees.length>2000)error('Encontro inválido.');const dancers=(await ds()).items,seen=new Set();const attendees=b.attendees.map(a=>{fields(a,['dancerId','status','reason']);if(seen.has(a.dancerId)||!dancers.some(d=>d.id===a.dancerId&&(d.status!=='Inativo'||m.attendees.some(old=>old.dancerId===d.id)))||!['Pendente','Presente','Falta'].includes(a.status))error('Presença inválida.');seen.add(a.dancerId);const previous=m.attendees.find(old=>old.dancerId===a.dancerId);const record={...previous,dancerId:a.dancerId,status:a.status,reason:text(a.reason??'',2000)};if(!previous||previous.status!==a.status){if(previous?.source)record.previousRecord={status:previous.status,source:previous.source,recordedAt:previous.recordedAt??null};record.source='admin';record.recordedAt=new Date().toISOString();}return record;});const nextDate=meetingDate(b.date,b.closed),nextTitle=text(b.title,150,true);if(b.closed||m.date!==nextDate||m.attendees.length!==attendees.length||m.attendees.some(old=>!seen.has(old.dancerId)))revokeCheckin(m);Object.assign(m,{title:nextTitle,date:nextDate,location:text(b.location??m.location??'',180),closed:b.closed,attendees,photo:b.photo===undefined?(m.photo||''):photo(b.photo,false)});const relevant=beforeHash!==noticeHash(meetingNotice(m))||attendees.some(a=>!beforeIds.has(a.dancerId));await store.set(KEYS.meetings,meetings);if(b.notify===true&&!m.closed&&relevant)notification=await notifyMeeting(m);}await store.set(KEYS.meetings,meetings);return send(res,200,{ok:true,notification});}
     if(method==='POST'&&p==='/api/pedidos'){
-      const b=await readBody(req);fields(b,['name','phone','size','quantity','consent','requestId']);if(b.consent!==true||!UUID.test(b.requestId))error('Consentimento e requestId UUID obrigatórios.');if(!Number.isInteger(b.quantity)||b.quantity<1||b.quantity>20)error('Quantidade deve ser um inteiro entre 1 e 20.');const payload={name:text(b.name,150,true),phone:phone(b.phone),size:text(b.size,12,true),quantity:b.quantity,consent:true};const data=await os(),previous=await receipt(data.receipts,b.requestId,payload);if(previous)return send(res,201,previous);const shirt=getContent()?.shirt;if(!shirt||!Array.isArray(shirt.sizes)||!shirt.sizes.includes(payload.size)||typeof shirt.price!=='number'||!Number.isFinite(shirt.price)||shirt.price<=0||shirt.price>100000)error('Tamanho ou preço indisponível.');const unitPrice=Math.round(shirt.price*100)/100,total=Math.round(unitPrice*100)*payload.quantity/100;const id=crypto.randomUUID(),response={id,unitPrice,total,message:'Pedido registrado. Confirme a retirada com a organização.'};data.items.push({id,name:payload.name,phone:payload.phone,size:payload.size,quantity:payload.quantity,unitPrice,total,createdAt:new Date().toISOString(),status:'Recebido'});data.receipts.push({requestId:b.requestId,...await credentials(canonical(payload)),response});await store.set(KEYS.orders,data);return send(res,201,response);
+      const b=await readBody(req);fields(b,['name','phone','type','size','quantity','consent','requestId']);if(b.consent!==true||!UUID.test(b.requestId))error('Consentimento e requestId UUID obrigatórios.');if(!SHIRT_TYPES.includes(b.type))error('Escolha o tipo da camiseta: Masculina, Feminina (baby look) ou Infantil.');if(!Number.isInteger(b.quantity)||b.quantity<1||b.quantity>20)error('Quantidade deve ser um inteiro entre 1 e 20.');const payload={name:text(b.name,150,true),phone:phone(b.phone),type:b.type,size:text(b.size,12,true),quantity:b.quantity,consent:true};const data=await os(),previous=await receipt(data.receipts,b.requestId,payload);if(previous)return send(res,201,previous);const shirt=getContent()?.shirt,adultSizes=Array.isArray(shirt?.sizes)&&shirt.sizes.length?shirt.sizes:SHIRT_SIZES_DEFAULT;if(!shirt||typeof shirt.price!=='number'||!Number.isFinite(shirt.price)||shirt.price<=0||shirt.price>100000||(b.type==='infantil'?!INFANTIL_SIZES.includes(payload.size):!adultSizes.includes(payload.size)))error('Tamanho ou preço indisponível para o tipo escolhido.');const unitPrice=Math.round(shirt.price*100)/100,total=Math.round(unitPrice*100)*payload.quantity/100;const id=crypto.randomUUID(),response={id,unitPrice,total,message:'Pedido registrado. Confirme a retirada com a organização.'};data.items.push({id,name:payload.name,phone:payload.phone,type:payload.type,size:payload.size,quantity:payload.quantity,unitPrice,total,createdAt:new Date().toISOString(),status:'Recebido'});data.receipts.push({requestId:b.requestId,...await credentials(canonical(payload)),response});await store.set(KEYS.orders,data);return send(res,201,response);
     }
     if(method==='GET'&&p==='/api/admin/pedidos')return send(res,200,{items:(await os()).items});
     match=p.match(/^\/api\/admin\/pedidos\/([^/]+)$/);
@@ -761,7 +888,7 @@ module.exports=function createMembers({store,session:adminSession,permitted,getC
   async function highlightProjection(source){if(!Array.isArray(source.highlights))return source;const available=new Map((await eligibleHighlightProfiles()).map(p=>[p.publicId,p]));return {...source,highlights:source.highlights.map((h,index)=>{const {publicProfileIds,publicProfiles,...rest}=h;if(publicProfileIds===undefined)return rest;const ids=Array.isArray(publicProfileIds)?publicProfileIds:[];return {...rest,publicProfiles:[...new Set(ids)].slice(0,index===0?2:1).map(id=>available.get(id)).filter(Boolean)};})};}
   function normalizeHighlightIds(value,index){if(value===undefined)return undefined;const max=index===0?2:1;if(!Array.isArray(value)||value.length>max||value.some(id=>typeof id!=='string'||!UUID.test(id))||new Set(value).size!==value.length)error('Selecione até '+max+' trajetória(s) pública(s), sem repetir.');return [...value];}
   async function validateHighlightBindings(candidate,previous){const available=new Set((await eligibleHighlightProfiles()).map(p=>p.publicId));for(const [index,h]of candidate.highlights.entries()){const ids=normalizeHighlightIds(h.publicProfileIds,index)||[],old=previous.highlights?.[index]?.publicProfileIds||[];for(const id of ids)if(!available.has(id)&&!old.includes(id))error('Perfil indisponível. A pessoa precisa ativar sua trajetória pública.',409);}return candidate;}
-  const handler=async function members(req,res,u){const p=u.pathname;if(!(/^\/api\/(admin\/)?diretoria\/[^/]+\/portfolio$/.test(p)||p.startsWith('/api/admin/notificacoes/eventos')||p==='/api/admin/destaques/perfis'||p==='/api/admin/participantes'||p==='/trajetorias'||p.startsWith('/trajetorias/')||p==='/api/trajetorias'||p.startsWith('/api/trajetorias/')||p.startsWith('/api/admin/trajetorias')||p.startsWith('/api/dancarinos/')||p.startsWith('/api/admin/dancarinos')||p==='/api/admin/grupo-dancarinos'||p.startsWith('/api/admin/encontros')||p.startsWith('/api/admin/pedidos')||p==='/api/admin/diretoria'||p==='/api/admin/materiais-2027'||p==='/api/admin/materiais-2027/acompanhamento'||/^\/api\/admin\/materiais-2027\/destinacoes(?:\/[^/]+)?$/.test(p)||p==='/api/admin/pagamentos/status'||p==='/api/admin/pagamentos/links'||p==='/api/admin/contribuicao-2027'||p==='/api/admin/controle-inscricoes'||p==='/api/pagamentos/mercadopago/webhook'||p==='/api/pedidos'||p==='/api/diretoria'||p==='/api/patrocinadores'||p==='/api/patrocinadores/submissoes'||p==='/api/portfolio'||/^\/api\/admin\/(patrocinadores|portfolio)(\/[^/]+)?$/.test(p)))return false;try{if(!['GET','HEAD'].includes(req.method))writeOrigin(req);if(req.method==='POST'&&['/api/dancarinos/cadastro','/api/dancarinos/entrar','/api/pedidos','/api/patrocinadores/submissoes'].includes(p)){origin(req);limit(req,p==='/api/dancarinos/entrar'?'login':p);}await serial(()=>route(req,res,u));}catch(e){if(!e.status)console.error('Falha na extensão de membros:',e.code||e.name);if(!res.headersSent&&!res.destroyed)send(res,e.status||500,{error:e.status?e.message:'Não foi possível concluir. Tente novamente.'});}return true;};
+  const handler=async function members(req,res,u){const p=u.pathname;if(!(/^\/api\/(admin\/)?diretoria\/[^/]+\/portfolio$/.test(p)||p.startsWith('/api/admin/notificacoes/eventos')||p==='/api/admin/destaques/perfis'||p==='/api/admin/participantes'||p==='/trajetorias'||p.startsWith('/trajetorias/')||p==='/api/trajetorias'||p.startsWith('/api/trajetorias/')||p.startsWith('/api/admin/trajetorias')||p.startsWith('/api/dancarinos/')||p.startsWith('/api/admin/dancarinos')||p==='/api/admin/grupo-dancarinos'||p.startsWith('/api/admin/encontros')||p==='/api/admin/camiseta-2027'||p.startsWith('/api/admin/comprovantes')||p.startsWith('/api/admin/pedidos')||p==='/api/admin/diretoria'||p==='/api/admin/materiais-2027'||p==='/api/admin/materiais-2027/acompanhamento'||/^\/api\/admin\/materiais-2027\/destinacoes(?:\/[^/]+)?$/.test(p)||p==='/api/admin/pagamentos/status'||p==='/api/admin/pagamentos/links'||p==='/api/admin/contribuicao-2027'||p==='/api/admin/controle-inscricoes'||p==='/api/pagamentos/mercadopago/webhook'||p==='/api/pedidos'||p==='/api/diretoria'||p==='/api/patrocinadores'||p==='/api/patrocinadores/submissoes'||p==='/api/portfolio'||/^\/api\/admin\/(patrocinadores|portfolio)(\/[^/]+)?$/.test(p)))return false;try{if(!['GET','HEAD'].includes(req.method))writeOrigin(req);if(req.method==='POST'&&['/api/dancarinos/cadastro','/api/dancarinos/entrar','/api/pedidos','/api/patrocinadores/submissoes'].includes(p)){origin(req);limit(req,p==='/api/dancarinos/entrar'?'login':p);}await serial(()=>route(req,res,u));}catch(e){if(!e.status)console.error('Falha na extensão de membros:',e.code||e.name);if(!res.headersSent&&!res.destroyed)send(res,e.status||500,{error:e.status?e.message:'Não foi possível concluir. Tente novamente.'});}return true;};
   handler.highlightProjection=source=>serial(()=>highlightProjection(source));
   handler.validateHighlightBindings=(candidate,previous)=>serial(()=>validateHighlightBindings(candidate,previous));
   return handler;
