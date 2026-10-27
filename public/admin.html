@@ -295,8 +295,19 @@ async function optimizePortfolioPhoto(file,tentativa=0){
   if(!blob)throw e;
   entrada=nomeArquivoConvertido(blob,file.name,'.jpeg');
  }
- const url=URL.createObjectURL(entrada);let img=new Image(),canvas;
- try{await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(new Error('Não foi possível abrir a foto.'));img.src=url});if(img.naturalWidth*img.naturalHeight>40000000)throw new Error('A imagem excede 40 megapixels. Reduza antes de selecionar.');const scale=Math.min(1,800/Math.max(img.width,img.height));canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);for(const quality of [.82,.72,.62,.52,.42,.32,.22,.12]){const image=canvas.toDataURL('image/webp',quality);if(photoBytes(image)<=512*1024)return image}throw new Error('A foto excede 512 KiB após otimizar. Escolha um arquivo menor.');}catch(e){if(!tentativa&&e.message==='Não foi possível abrir a foto.'){URL.revokeObjectURL(url);img.src='';let forcada;try{forcada=(await normalizarImagemEntrada(file,{forcar:true})).arquivo}catch{throw new Error(ERRO_FORMATO)}return optimizePortfolioPhoto(forcada,1)}throw e}finally{URL.revokeObjectURL(url);img.src='';if(canvas){canvas.width=1;canvas.height=1}}
+ let img=null,canvas;
+ try{
+  try{img=await abrirViaDataUrl(entrada)}
+  catch{
+   let url=null;try{url=URL.createObjectURL(entrada)}catch{url=null}
+   if(!url)throw new Error('Não foi possível abrir a foto.');
+   img=new Image();
+   await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(new Error('Não foi possível abrir a foto.'));img.src=url});
+  }
+  if((img.naturalWidth||img.width)*(img.naturalHeight||img.height)>40000000)throw new Error('A imagem excede 40 megapixels. Reduza antes de selecionar.');
+  const w=img.naturalWidth||img.width,h=img.naturalHeight||img.height;
+  const scale=Math.min(1,800/Math.max(w,h));canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(w*scale));canvas.height=Math.max(1,Math.round(h*scale));canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+ }for(const quality of [.82,.72,.62,.52,.42,.32,.22,.12]){const image=canvas.toDataURL('image/webp',quality);if(photoBytes(image)<=512*1024)return image}throw new Error('A foto excede 512 KiB após otimizar. Escolha um arquivo menor.');}catch(e){if(!tentativa&&e.message==='Não foi possível abrir a foto.'){URL.revokeObjectURL(url);img.src='';let forcada;try{forcada=(await normalizarImagemEntrada(file,{forcar:true})).arquivo}catch{throw new Error(ERRO_FORMATO)}return optimizePortfolioPhoto(forcada,1)}throw e}finally{URL.revokeObjectURL(url);img.src='';if(canvas){canvas.width=1;canvas.height=1}}
 }
 function portfolioGalleryField(d,key,data){
  const wrap=el('section','field full portfolio-gallery'),label=el('label','','Fotos do trabalho (opcionais)'),input=el('input'),counter=el('p','help'),note=el('p','message'),grid=el('div','portfolio-photo-grid');input.id='portfolio-photos';label.htmlFor=input.id;input.type='file';input.multiple=true;input.accept='image/png,image/jpeg,image/webp,image/jfif,image/avif,image/heic,image/heif,image/heic-sequence,image/heif-sequence,image/pjpeg,image/pjp,.jfif,.avif,.heic,.heif,.pjpeg,.pjp';input.setAttribute('aria-describedby','portfolio-photo-limit');counter.id='portfolio-photo-limit';counter.setAttribute('aria-live','polite');note.setAttribute('role','alert');note.hidden=true;
