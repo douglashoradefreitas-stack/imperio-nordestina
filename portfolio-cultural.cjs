@@ -3,10 +3,27 @@
 const fs=require('fs'),path=require('path');
 const source=()=>JSON.parse(fs.readFileSync(path.join(__dirname,'portfolio-cultural-inicial.json'),'utf8'));
 // Galeria pública: metadados pertencem à imagem, nunca à posição da capa.
+// Enquadramento opcional por foto: zoom 1-3 e posição 0-100 (percentuais de object-position).
+// Nenhum byte da imagem é alterado; fotos sem framing mantêm o comportamento original.
+function framingRead(value){
+ if(!value||typeof value!=='object'||Array.isArray(value))return undefined;
+ const zoom=value.zoom===undefined?1:value.zoom,x=value.x===undefined?50:value.x,y=value.y===undefined?50:value.y;
+ if(typeof zoom!=='number'||!Number.isFinite(zoom)||zoom<1||zoom>3||typeof x!=='number'||!Number.isFinite(x)||x<0||x>100||typeof y!=='number'||!Number.isFinite(y)||y<0||y>100)return undefined;
+ const out={zoom:Math.round(zoom*100)/100,x:Math.round(x*100)/100,y:Math.round(y*100)/100};
+ return out.zoom===1&&out.x===50&&out.y===50?undefined:out;
+}
+function framing(value,fail){
+ if(value===undefined||value===null)return undefined;
+ if(typeof value!=='object'||Array.isArray(value))fail('Enquadramento inválido: informe zoom de 1 a 3 e posição de 0 a 100.');
+ if(Object.keys(value).some(k=>!['zoom','x','y'].includes(k)))fail('Enquadramento inválido: use somente zoom, x e y.');
+ const number=(key,min,max,fallback)=>{const v=value[key]===undefined?fallback:value[key];if(typeof v!=='number'||!Number.isFinite(v)||v<min||v>max)fail('Enquadramento inválido: '+key+' deve ser um número entre '+min+' e '+max+'.');return Math.round(v*100)/100};
+ const out={zoom:number('zoom',1,3,1),x:number('x',0,100,50),y:number('y',0,100,50)};
+ return out.zoom===1&&out.x===50&&out.y===50?undefined:out;
+}
 function gallery(item={}){
  item=item||{};
  const entries=Array.isArray(item.photos)?item.photos:(item.photo?[{image:item.photo,...(item.photoEvidence?{evidence:item.photoEvidence}:{})}]:[]);
- const seen=new Set();return entries.filter(p=>p&&typeof p.image==='string'&&p.image&&!seen.has(p.image)&&seen.add(p.image)).map(p=>({image:p.image,...(p.evidence?{evidence:p.evidence}:{})}));
+ const seen=new Set();return entries.filter(p=>p&&typeof p.image==='string'&&p.image&&!seen.has(p.image)&&seen.add(p.image)).map(p=>{const f=framingRead(p.framing);return {image:p.image,...(p.evidence?{evidence:p.evidence}:{}),...(f?{framing:f}:{})}});
 }
 function galleryView(item){const photos=gallery(item),result={...item,clippingLinks:item.clippingLinks??[],spotifyUrl:item.spotifyUrl??'',photos,photo:photos[0]?.image||''};delete result.photoEvidence;if(photos[0]?.evidence)result.photoEvidence=photos[0].evidence;return result;}
 function updateGallery(body,item,validate,fail){
@@ -17,15 +34,16 @@ function updateGallery(body,item,validate,fail){
  else {if(previous.length>1)fail('Este trabalho possui galeria. Atualize o painel antes de trocar ou remover a capa.',409);input=body.photo?[{image:body.photo}]:[];}
  const s=source(),original=item&&s.items.find(i=>i.id===item.id&&item.sourceImport===s.importId),allowed=new Set(original?[original.photo,original.legacyPhoto,original.supersededPhoto].filter(Boolean):[]),seen=new Set();
  const photos=input.map(entry=>{
-  if(!entry||typeof entry!=='object'||Array.isArray(entry)||Object.keys(entry).some(k=>!['image','evidence'].includes(k))||typeof entry.image!=='string'||!entry.image)fail('Cada foto deve conter image e apenas evidence opcional.');
+  if(!entry||typeof entry!=='object'||Array.isArray(entry)||Object.keys(entry).some(k=>!['image','evidence','framing'].includes(k))||typeof entry.image!=='string'||!entry.image)fail('Cada foto deve conter image e apenas evidence e framing opcionais.');
   const image=entry.image,old=previous.find(p=>p.image===image);let evidence;
   if(image.startsWith('/')){const v3=require('./portfolio-pptx-v3.cjs').localPhoto(item,image);if(v3){if(!old)fail('Fotos da revisão só podem ser anexadas pela importação autorizada.');evidence=old.evidence;}else{if(!allowed.has(image)||(!old&&image!==original?.photo))fail('Imagem local disponível somente no registro importado de origem.');evidence=old?.evidence||(image===original.photo?{...original.photoEvidence,revision:s.evidenceImportId}:undefined);}}
   else validate(image);
   if(entry.evidence!==undefined&&!require('util').isDeepStrictEqual(entry.evidence,evidence))fail('A origem da foto é definida pelo servidor; uploads não recebem crédito do PDF.');
-  if(seen.has(image))return null;seen.add(image);return {image,...(evidence?{evidence}:{})};
+  const frame=framing(entry.framing,fail);
+  if(seen.has(image))return null;seen.add(image);return {image,...(evidence?{evidence}:{}),...(frame?{framing:frame}:{})};
  }).filter(Boolean);
  if(hasArray&&Object.hasOwn(body,'photo')&&body.photo!==(photos[0]?.image||''))fail('photo deve corresponder à primeira foto da galeria.');
- const changed=JSON.stringify(previous.map(p=>p.image))!==JSON.stringify(photos.map(p=>p.image));
+ const changed=JSON.stringify(previous.map(p=>[p.image,p.framing||null]))!==JSON.stringify(photos.map(p=>[p.image,p.framing||null]));
  return {photos,photo:photos[0]?.image||'',...(photos[0]?.evidence?{photoEvidence:photos[0].evidence}:{}),...(changed?{photoTouched:true}:{})};
 }
 // Validação exclusivamente sintática: nunca resolve DNS nem consulta URLs do administrador.
@@ -94,4 +112,5 @@ function addImages(data){
 }
 module.exports=importCultural;module.exports.addImages=addImages;
 module.exports.gallery=gallery;module.exports.galleryView=galleryView;module.exports.updateGallery=updateGallery;
+module.exports.framing=framing;module.exports.framingRead=framingRead;
 module.exports.updateLinks=updateLinks;module.exports.externalUrl=externalUrl;module.exports.spotifyUrl=spotifyUrl;
